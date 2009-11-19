@@ -129,10 +129,10 @@
 (which-function-mode nil)
 
 (defun my-cedet-hook ()
+  (local-set-key "\M-u" 'semantic-ia-show-summary)
+  (local-set-key "\M-i" 'semantic-complete-analyze-inline)
   (local-set-key "\M-o" 'semantic-symref)
   (local-set-key "\M-p" 'semantic-ia-fast-jump)
-  (local-set-key "\M-[" 'semantic-ia-show-summary)
-  (local-set-key "\M-]" 'semantic-complete-analyze-inline)
 )
 
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
