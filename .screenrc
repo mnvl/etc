@@ -1,0 +1,18 @@
+activity "activity: window ~%"
+vbell_msg "bell: window ~%"
+vbellwait 2
+allpartial off
+autodetach on
+bufferfile ~/.screen-exchange
+escape "``"
+shelltitle $HOST
+defflow off
+defmode 0620
+defscrollback 1024
+deflogin off
+startup_message off
+bind ' ' windowlist -b
+#bindkey ^[ prev
+#bindkey ^] next
+hardstatus alwayslastline
+hardstatus string '%{= kw}[%H] %?%-Lw%?%{y}(%{w}%n*%f%t%?(%u)%?%{y})%{w}%?%+Lw%?%?%= %{g}'

@@ -1,0 +1,8 @@
+511,512c511
+<      ; n.b. "local function" is a bit of a hack, allowing only a single space
+<      (regexp-opt '("do" "local function" "function" "repeat" "then") t)
+---
+>      (regexp-opt '("do" "repeat" "then") t)
+513a513,514
+>      "\\(\\(local[ \\t]+\\)?\\(\\w[ \\t]*=[ \\t]*\\)?function\\)"
+>      "\\|"
