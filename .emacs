@@ -182,7 +182,8 @@
 				   (member-init-intro     . +)
 				   (topmost-intro         . 0)
 				   (access-label          . -)
-				   (inclass               . +)))
+				   (inclass               . +)
+				   (innamespace           . 0)))
     (c-echo-syntactic-information-p . t)
   ) "my-c-style")
 
