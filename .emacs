@@ -4,7 +4,7 @@
 
 ;; global settings
 (menu-bar-mode nil)
-(tool-bar-mode nil)
+(if window-system (tool-bar-mode nil))
 (setq transient-mark-mode 't)
 (global-font-lock-mode 't)
 (setq inhibit-splash-screen 't)
