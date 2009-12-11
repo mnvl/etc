@@ -1,10 +1,14 @@
 !!! xrdb -load ~/.Xdefaults && rxvt
 
-URxvt*font: -*-courier-medium-r-*-*-20-*
-URxvt*boldFont: -*-courier-medium-r-*-*-20-*
+!!! for rxvt under cygwin, so don't mind if xrdb -load failes under linux
+Rxvt*font: -*-courier-medium-r-*-*-16-*
+Rxvt*boldFont: -*-courier-medium-r-*-*-16-*
 
-XTerm*font: -*-dejavu sans mono-medium-r-*-*-*-*
-XTerm*boldFont: -*-dejavu sans mono-medium-r-*-*-*-*
+!!! for xterm under unix
+XTerm*faceName: DejaVu Sans Mon
+XTerm*faceSize: 16
+XTerm*boldMode: false
+XTerm*boldFont:
 
 *foreground: gray
 *background: black
