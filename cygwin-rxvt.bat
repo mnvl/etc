@@ -1,8 +1,8 @@
 @echo off
 
-call "c:\Program Files\Microsoft Visual Studio 9.0\vc\vcvarsall.bat" > NUL
+call "c:\Program Files (x86)\Microsoft Visual Studio 9.0\vc\vcvarsall.bat" x86 > NUL
 
 C:
 chdir C:\cygwin\bin
 
-rxvt -fg gray -bg black -fn 'Courier New-21' -e bash --login -i
+rxvt -e bash --login -i
