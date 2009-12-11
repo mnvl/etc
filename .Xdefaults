@@ -1,7 +1,7 @@
 !!! xrdb -load ~/.Xdefaults && rxvt
 
-!XTerm*font: -*-courier-medium-r-*-*-20-*
-!XTerm*boldFont: -*-courier-medium-r-*-*-20-*
+URxvt*font: -*-courier-medium-r-*-*-20-*
+URxvt*boldFont: -*-courier-medium-r-*-*-20-*
 
 XTerm*font: -*-dejavu sans mono-medium-r-*-*-*-*
 XTerm*boldFont: -*-dejavu sans mono-medium-r-*-*-*-*
