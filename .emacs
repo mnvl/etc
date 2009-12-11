@@ -1,6 +1,6 @@
 
 ;; path settings
-(add-to-list 'load-path (expand-file-name "~/etc/emacs"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
 
 ;; global settings
 (menu-bar-mode nil)
@@ -116,7 +116,7 @@
 
 ;; cedet
 ;; tip: try to disable my-c-mode-common-hook if cedet does not work!!!
-(load-file (expand-file-name "~/etc/emacs/cedet-1.0pre6/common/cedet.el"))
+(load-file (expand-file-name "~/.emacs.d/cedet-1.0pre6/common/cedet.el"))
 
 (global-ede-mode t)
 (semantic-load-enable-excessive-code-helpers)
@@ -155,7 +155,6 @@
 ;; cc-mode
 (require 'cc-mode)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.proto\\'" . c++-mode))
 (setq c-basic-offset 4)
 (setq c-tab-always-indent 't)
 
