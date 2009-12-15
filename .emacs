@@ -58,10 +58,6 @@
 ;; Bind the toggle function to a global key
 (global-set-key "\M-q" 'my-toggle-header-buffer)
 
-;; buffer rolling keys
-(global-set-key [(alt left)] 'previous-buffer)
-(global-set-key [(alt right)] 'next-buffer)
-
 ;; font lock
 ;; tip: use C-u C-x = to get name of face under cursor and some additional info
 (if window-system
