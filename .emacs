@@ -123,6 +123,7 @@
 (global-semantic-stickyfunc-mode nil)
 (global-semantic-idle-summary-mode)
 (global-semantic-idle-completions-mode)
+(setq semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-traditional)
 (which-function-mode nil)
 
 (defun my-cedet-hook ()
