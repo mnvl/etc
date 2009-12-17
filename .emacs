@@ -121,9 +121,8 @@
 (require 'semantic-gcc)
 
 (global-semantic-stickyfunc-mode nil)
-(global-semantic-idle-summary-mode)
-(global-semantic-idle-completions-mode)
-(setq semantic-complete-inline-analyzer-idle-displayor-class 'semantic-displayor-traditional)
+(global-semantic-idle-summary-mode nil)
+(global-semantic-idle-completions-mode nil)
 (which-function-mode nil)
 
 (defun my-cedet-hook ()
