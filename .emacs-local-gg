@@ -7,5 +7,5 @@
 (ede-cpp-root-project "server" :name "server" :file "~/gggit/server/CMakeLists.txt"
 		      :include-path '("/src" "/libs" "/libs/log4cplus/include" "/script"))
 
-(defun my-c-mode-local-hook () (message "hello") (c-set-offset 'innamespace '+))
+(defun my-c-mode-local-hook () (c-set-offset 'innamespace '+))
 (add-hook 'c-mode-common-hook 'my-c-mode-local-hook 't)
