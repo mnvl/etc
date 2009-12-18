@@ -120,10 +120,10 @@
 (require 'semantic-ia)
 (require 'semantic-gcc)
 
-(global-semantic-stickyfunc-mode nil)
-(global-semantic-idle-summary-mode nil)
-(global-semantic-idle-completions-mode nil)
-(which-function-mode nil)
+(global-semantic-stickyfunc-mode -1)
+(global-semantic-idle-summary-mode -1)
+(global-semantic-idle-completions-mode -1)
+(which-function-mode -1)
 
 (defun my-cedet-hook ()
   (local-set-key "\M-u" 'semantic-ia-show-summary)
