@@ -1,16 +1,15 @@
-!!! xrdb -load ~/.Xdefaults && rxvt
+!!! xrdb -load ~/.Xdefaults
 
-!!! for rxvt under cygwin, so don't mind if xrdb -load failes under linux
+!!! for rxvt under cygwin, so don't mind if xrdb -load fails under linux
 Rxvt*font: "Consolas-21"
 Rxvt*boldFont: "Consolas-21"
 Rxvt*foreground: #bebebe
 Rxvt*background: #000000
 
-!!! for xterm under unix
 XTerm*faceName: "DejaVu Sans Mon"
+XTerm*boldFont: "DejaVu Sans Mon"
 XTerm*faceSize: 16
 XTerm*boldMode: false
-XTerm*boldFont:
 XTerm*metaSendsEscape: true
 XTerm*eightBitInput: false
 
