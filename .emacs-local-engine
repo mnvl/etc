@@ -1,0 +1,7 @@
+
+(ede-cpp-root-project "engine"
+	:directory "~/engine"
+	:file "~/engine/CMakeLists.txt"
+	:include-path '("/src" "/contrib" "/contrib/lua/src" "/contrib/luabind/luabind")
+	:system-include-path (split-string (getenv "INCLUDE") ";")
+)
