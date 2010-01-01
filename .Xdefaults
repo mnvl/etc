@@ -18,7 +18,7 @@ XTerm*eightBitInput: false
 
 !black
 *color0:		#000000
-*color8:		#666666
+*color8:		#505050
 !red
 *color1:		#9e1828
 *color9:		#cf6171
@@ -29,8 +29,8 @@ XTerm*eightBitInput: false
 *color3:		#968a38
 *color11:		#fff796
 !blue
-*color4:		#414171
-*color12:		#4186be
+*color4:		#8282e1
+*color12:		#82a2f1
 !magenta
 *color5:		#96c359
 *color13:		#cf9ebe
