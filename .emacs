@@ -9,6 +9,7 @@
 (global-font-lock-mode 't)
 (setq inhibit-splash-screen 't)
 (setq gdb-many-windows 't)
+(iswitchb-mode 't)
 
 ;; save place
 (require 'saveplace)
@@ -145,7 +146,11 @@
 	indent-tabs-mode 't)
 
   ;; set font lock faces
-  (apply 'custom-set-faces my-font-lock-faces))
+  (apply 'custom-set-faces my-font-lock-faces)
+
+  ;; linum mode
+  (linum-mode 't)
+)
 
 (add-hook 'text-mode-hook 'my-text-mode-hook)
 
@@ -197,6 +202,9 @@
 
   ;; trailing whitespaces
   (add-hook 'font-lock-mode-hook 'highlight-trailing-whitespace)
+
+  ;; linum mode
+  (linum-mode 't)
 )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
@@ -224,6 +232,9 @@
 
   ;; trailing whitespaces (use cperl's hack with our face)
   (setq cperl-invalid-face 'trailing-whitespace-face)
+
+  ;; linum mode
+  (linum-mode 't)
 )
 
 (defalias 'perl-mode 'cperl-mode)
@@ -240,6 +251,9 @@
 
   ;; trailing whitespaces
   (add-hook 'font-lock-mode-hook 'highlight-trailing-whitespace)
+
+  ;; linum mode
+  (linum-mode 't)
 )
 
 (add-hook 'python-mode-hook 'my-python-mode-hook)
@@ -261,6 +275,9 @@
 
   ;; trailing whitespaces
   (add-hook 'font-lock-mode-hook 'highlight-trailing-whitespace)
+
+  ;; linum mode
+  (linum-mode 't)
 )
 
 (add-hook 'lua-mode-hook 'my-lua-mode-hook)
@@ -269,6 +286,7 @@
 (global-set-key [f5] 'goto-line)
 (global-set-key [f7] 'compile)
 (global-set-key [f8] 'recompile)
+(global-set-key "\C-z" 'undo)
 
 ;; local
 (load-file (expand-file-name "~/.emacs-local"))
