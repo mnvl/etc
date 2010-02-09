@@ -59,55 +59,50 @@
 ;; Bind the toggle function to a global key
 (global-set-key "\M-q" 'my-toggle-header-buffer)
 
+;; fonts
+(set-frame-font "Consolas-14")
+(set-cursor-color "gray")
+
 ;; font lock
 ;; tip: use C-u C-x = to get name of face under cursor and some additional info
-(if window-system
-    ;; x11, windows etc.
-    (defconst my-font-lock-faces
-      (list
-       '(default ((t (:foreground "black"))))))
-  ;; console
-  (defconst my-font-lock-faces
-    (list
-     '(default ((t (:foreground "white"))))
-     '(font-lock-builtin-face ((t (:foreground "white"))))
-     '(font-lock-comment-face ((t (:foreground "green"))))
-     '(font-lock-comment-delimiter-face ((t (:foreground "green"))))
-     '(font-lock-constant-face ((t (:foreground "gray"))))
-     '(font-lock-doc-string-face ((t (:foreground "white"))))
-     '(font-lock-function-name-face ((t (:foreground "purple"))))
-     '(font-lock-keyword-face ((t (:foreground "yellow"))))
-     '(font-lock-preprocessor-face ((t (:foreground "blue"))))
-     '(font-lock-reference-face ((t (:foreground "white"))))
-     '(font-lock-regexp-grouping-backslash ((t (:foreground "white"))))
-     '(font-lock-regexp-grouping-construct ((t (:foreground "white"))))
-     '(font-lock-string-face ((t (:foreground "gray"))))
-     '(font-lock-type-face ((t (:foreground "cyan"))))
-     '(font-lock-variable-name-face ((t (:foreground "gray"))))
-     '(font-lock-warning-face ((t (:foreground "red"))))
-     '(font-lock-warning-name-face ((t (:foreground "red"))))
-     '(show-paren-match-face ((t (:foreground "black" :background "green"))))
-     '(show-paren-mismatch-face ((t (:foreground "red" :background "green" :bold t))))
-     '(cperl-hash-face ((t (:foreground "cyan" :background "black"))))
-     '(cperl-array-face ((t (:foreground "cyan" :background "black"))))
-     '(link ((t (:foreground "white" :underline t))))
-     '(minibuffer-prompt ((t (:foreground "white"))))
-     '(semantic-decoration-on-private-members-face ((t)))
-     '(semantic-decoration-on-protected-members-face ((t)))
-     '(semantic-unmatched-syntax-face ((t (:background "darkred" :foreground "white"))))
-     '(semantic-decoration-on-unparsed-includes ((t (:background "darkred" :foreground "white"))))
-     '(semantic-decoration-on-unknown-includes ((t (:background "darkred" :foreground "white"))))
-     '(semantic-tag-boundary-face ((t)))
-     '(semantic-highlight-func-current-tag-face ((t)))
-     '(senator-momentary-highlight-face ((t (:background "black"))))
-     '(which-func ((t (:background "black"))))
+(defconst my-font-lock-faces
+  (list
+   '(default ((t (:foreground "white" :background "black"))))
+   '(font-lock-builtin-face ((t (:foreground "white"))))
+   '(font-lock-comment-face ((t (:foreground "green"))))
+   '(font-lock-comment-delimiter-face ((t (:foreground "green"))))
+   '(font-lock-constant-face ((t (:foreground "gray"))))
+   '(font-lock-doc-string-face ((t (:foreground "white"))))
+   '(font-lock-function-name-face ((t (:foreground "purple"))))
+   '(font-lock-keyword-face ((t (:foreground "yellow"))))
+   '(font-lock-preprocessor-face ((t (:foreground "blue"))))
+   '(font-lock-reference-face ((t (:foreground "white"))))
+   '(font-lock-regexp-grouping-backslash ((t (:foreground "white"))))
+   '(font-lock-regexp-grouping-construct ((t (:foreground "white"))))
+   '(font-lock-string-face ((t (:foreground "gray"))))
+   '(font-lock-type-face ((t (:foreground "cyan"))))
+   '(font-lock-variable-name-face ((t (:foreground "gray"))))
+   '(font-lock-warning-face ((t (:foreground "red"))))
+   '(font-lock-warning-name-face ((t (:foreground "red"))))
+   '(show-paren-match-face ((t (:foreground "black" :background "green"))))
+   '(show-paren-mismatch-face ((t (:foreground "red" :background "green" :bold t))))
+   '(cperl-hash-face ((t (:foreground "cyan" :background "black"))))
+   '(cperl-array-face ((t (:foreground "cyan" :background "black"))))
+   '(link ((t (:foreground "white" :underline t))))
+   '(minibuffer-prompt ((t (:foreground "white"))))
+   '(semantic-decoration-on-private-members-face ((t)))
+   '(semantic-decoration-on-protected-members-face ((t)))
+   '(semantic-unmatched-syntax-face ((t (:background "darkred" :foreground "white"))))
+   '(semantic-decoration-on-unparsed-includes ((t (:background "darkred" :foreground "white"))))
+   '(semantic-decoration-on-unknown-includes ((t (:background "darkred" :foreground "white"))))
+   '(semantic-tag-boundary-face ((t)))
+   '(semantic-highlight-func-current-tag-face ((t)))
+   '(senator-momentary-highlight-face ((t (:background "black"))))
+   '(which-func ((t (:background "black"))))
 
-     ;; faces for semantic-ia-fast-jump, retreived by reverse engineering
-     '(pulse-highlight-start-face ((t (:background "black"))))
-     '(pulse-highlight-face ((t (:background "black"))))
-     )
-    )
-  )
+   ;; faces for semantic-ia-fast-jump, retreived by reverse engineering
+   '(pulse-highlight-start-face ((t (:background "black"))))
+   '(pulse-highlight-face ((t (:background "black"))))))
 
 (apply 'custom-set-faces my-font-lock-faces)
 
@@ -283,10 +278,10 @@
 (add-hook 'lua-mode-hook 'my-lua-mode-hook)
 
 ;; keys
-(global-set-key [f5] 'goto-line)
-(global-set-key [f7] 'compile)
-(global-set-key [f8] 'recompile)
+(global-set-key "\C-q" 'speedbar)
 (global-set-key "\C-z" 'undo)
 
 ;; local
 (load-file (expand-file-name "~/.emacs-local"))
+
+(put 'upcase-region 'disabled nil)
