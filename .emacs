@@ -98,9 +98,10 @@
    '(semantic-tag-boundary-face ((t)))
    '(semantic-highlight-func-current-tag-face ((t)))
    '(senator-momentary-highlight-face ((t (:background "black"))))
-   '(which-func ((t (:background "black"))))
+   '(which-func ((t (:background "gray" :foreground "black"))))
+   '(linum ((t (:foreground "yellow"))))
 
-   ;; faces for semantic-ia-fast-jump, retreived by reverse engineering
+   ;; faces for semantic-ia-fast-jump, face names retreived by reverse engineering ;)
    '(pulse-highlight-start-face ((t (:background "black"))))
    '(pulse-highlight-face ((t (:background "black"))))))
 
@@ -116,10 +117,10 @@
 (require 'semantic-ia)
 (require 'semantic-gcc)
 
-(global-semantic-stickyfunc-mode -1)
-(global-semantic-idle-summary-mode -1)
-(global-semantic-idle-completions-mode -1)
-(which-function-mode -1)
+(global-semantic-stickyfunc-mode nil)
+(global-semantic-idle-summary-mode nil)
+(global-semantic-idle-completions-mode nil)
+(which-function-mode nil)
 
 (defun my-cedet-hook ()
   (local-set-key "\M-u" 'semantic-ia-show-summary)
