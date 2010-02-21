@@ -153,6 +153,7 @@
 ;; cc-mode
 (require 'cc-mode)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.fx\\'" . c++-mode))
 (setq c-basic-offset 4)
 (setq c-tab-always-indent 't)
 
