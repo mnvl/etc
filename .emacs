@@ -10,6 +10,8 @@
 (setq inhibit-splash-screen 't)
 (setq gdb-many-windows 't)
 (iswitchb-mode 't)
+(setq compilation-scroll-output 't)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; save place
 (require 'saveplace)
@@ -153,6 +155,7 @@
 ;; cc-mode
 (require 'cc-mode)
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.fx\\'" . c++-mode))
 (setq c-basic-offset 4)
 (setq c-tab-always-indent 't)
 
@@ -285,4 +288,3 @@
 ;; local
 (load-file (expand-file-name "~/.emacs-local"))
 
-(put 'upcase-region 'disabled nil)
