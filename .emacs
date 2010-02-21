@@ -98,7 +98,7 @@
    '(semantic-tag-boundary-face ((t)))
    '(semantic-highlight-func-current-tag-face ((t)))
    '(senator-momentary-highlight-face ((t (:background "black"))))
-   '(which-func ((t (:background "gray" :foreground "black"))))
+   (if window-system '(which-func ((t (:background "gray" :foreground "black")))) '(which-func ((t (:background "black" :foreground "gray")))))
    '(linum ((t (:foreground "yellow"))))
 
    ;; faces for semantic-ia-fast-jump, face names retreived by reverse engineering ;)
