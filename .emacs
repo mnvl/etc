@@ -101,7 +101,7 @@
    '(semantic-highlight-func-current-tag-face ((t)))
    '(senator-momentary-highlight-face ((t (:background "black"))))
    (if window-system '(which-func ((t (:background "gray" :foreground "black")))) '(which-func ((t (:background "black")))))
-   '(linum ((t (:foreground "yellow"))))
+   '(linum ((t (:foreground "black" :background "yellow"))))
 
    ;; faces for semantic-ia-fast-jump, face names retreived by reverse engineering ;)
    '(pulse-highlight-start-face ((t (:background "black"))))
