@@ -5,3 +5,5 @@
 	:include-path '("/src")
 	:system-include-path (split-string (getenv "INCLUDE") ";")
 )
+
+(setq compile-command "vcbuild.exe 'd:\\home\\frombola\\build\\FROMBOLA.sln' \"Debug|Win32\"")

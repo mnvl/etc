@@ -111,7 +111,7 @@
 
 ;; cedet
 ;; tip: try to disable my-c-mode-common-hook if cedet does not work!!!
-(load-file (expand-file-name "~/.emacs.d/cedet-1.0pre6/common/cedet.el"))
+(load-file (expand-file-name "~/.emacs.d/cedet-1.0pre7/common/cedet.el"))
 
 (global-ede-mode t)
 (semantic-load-enable-excessive-code-helpers)
@@ -138,15 +138,9 @@
 (setq default-major-mode 'text-mode)
 
 (defun my-text-mode-hook ()
-  ;; tab stops
   (setq tab-width 4
-	;; this will make sure tabs are used instead of spaces
 	indent-tabs-mode 't)
-
-  ;; set font lock faces
   (apply 'custom-set-faces my-font-lock-faces)
-
-  ;; linum mode
   (linum-mode 't)
 )
 
@@ -188,35 +182,23 @@
   ) "my-c-style")
 
 (defun my-c-mode-common-hook ()
-  ;; my-c-style
   (c-add-style "my-c-style" my-c-style t)
-
-  ;; tab stops
-  (setq tab-width 4
-	;; this will make sure tabs are used instead of spaces
-	indent-tabs-mode 't)
-
-  ;; set font lock faces
+  (setq tab-width 4 indent-tabs-mode 't)
   (apply 'custom-set-faces my-font-lock-faces)
-
-  ;; trailing whitespaces
   (add-hook 'font-lock-mode-hook 'highlight-trailing-whitespace)
-
-  ;; linum mode
   (linum-mode 't)
+  (setq compilation-scroll-output 't)
 )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 ;; cperl-mode
 (defun my-cperl-mode-hook ()
-  ;; tab stops
   (setq tab-width 4
-	;; this will make sure tabs are used instead of spaces
 	indent-tabs-mode 't)
 
-  ;; set font lock faces
   (apply 'custom-set-faces my-font-lock-faces)
+  (linum-mode 't)
 
   ;; indent
   (setq cperl-indent-level 4)
@@ -231,9 +213,6 @@
 
   ;; trailing whitespaces (use cperl's hack with our face)
   (setq cperl-invalid-face 'trailing-whitespace-face)
-
-  ;; linum mode
-  (linum-mode 't)
 )
 
 (defalias 'perl-mode 'cperl-mode)
@@ -245,13 +224,8 @@
 
 ;; python-mode
 (defun my-python-mode-hook ()
-  ;; set font lock faces
   (apply 'custom-set-faces my-font-lock-faces)
-
-  ;; trailing whitespaces
   (add-hook 'font-lock-mode-hook 'highlight-trailing-whitespace)
-
-  ;; linum mode
   (linum-mode 't)
 )
 
@@ -262,20 +236,12 @@
 (add-to-list 'auto-mode-alist '("\\.lua\\'" . lua-mode))
 
 (defun my-lua-mode-hook ()
-  ;; tab stops
   (setq tab-width 4
-	;; this will make sure tabs are used instead of spaces
 	indent-tabs-mode 't
-	;; set indent level
 	lua-indent-level 4)
 
-  ;; set font lock faces
   (apply 'custom-set-faces my-font-lock-faces)
-
-  ;; trailing whitespaces
   (add-hook 'font-lock-mode-hook 'highlight-trailing-whitespace)
-
-  ;; linum mode
   (linum-mode 't)
 )
 
@@ -284,6 +250,7 @@
 ;; keys
 (global-set-key "\C-q" 'speedbar)
 (global-set-key "\C-z" 'undo)
+(global-set-key [f7] 'compile)
 
 ;; local
 (load-file (expand-file-name "~/.emacs-local"))
