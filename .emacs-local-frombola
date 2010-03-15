@@ -1,0 +1,7 @@
+
+(ede-cpp-root-project "frombola"
+	:directory "~/frombola"
+	:file "~/frombola/CMakeLists.txt"
+	:include-path '("/src")
+	:system-include-path (split-string (getenv "INCLUDE") ";")
+)
