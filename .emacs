@@ -39,16 +39,14 @@
 
 ;; (taken from http://dizzyd.com/blog/post/116)
 ;; Association list of extension -> inverse extension
-(setq my-other-exts '(("cpp" . ("hpp" "h" "hxx" "h++" "H"))
-		      ("c"   . ("hpp" "h" "hxx" "h++" "H"))
-		      ("cxx" . ("hpp" "h" "hxx" "h++" "H"))
-		      ("c++" . ("hpp" "h" "hxx" "h++" "H"))
-		      ("C"   . ("hpp" "h" "hxx" "h++" "H"))
-		      ("hpp" . ("cpp" "c" "cxx" "c++" "C"))
-		      ("h"   . ("cpp" "c" "cxx" "c++" "C"))
-		      ("hxx" . ("cpp" "c" "cxx" "c++" "C"))
-		      ("h++" . ("cpp" "c" "cxx" "c++" "C"))
-		      ("H"   . ("cpp" "c" "cxx" "c++" "C"))))
+(setq my-other-exts '(("cpp" . ("hpp" "h" "hxx" "h++"))
+		      ("c"   . ("hpp" "h" "hxx" "h++"))
+		      ("cxx" . ("hpp" "h" "hxx" "h++"))
+		      ("c++" . ("hpp" "h" "hxx" "h++"))
+		      ("hpp" . ("cpp" "c" "cxx" "c++"))
+		      ("h"   . ("cpp" "c" "cxx" "c++"))
+		      ("hxx" . ("cpp" "c" "cxx" "c++"))
+		      ("h++" . ("cpp" "c" "cxx" "c++"))
 
 ;; Process the association list of extensions and find the last file
 ;; that exists
