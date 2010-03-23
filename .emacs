@@ -46,7 +46,7 @@
 		      ("hpp" . ("cpp" "c" "cxx" "c++"))
 		      ("h"   . ("cpp" "c" "cxx" "c++"))
 		      ("hxx" . ("cpp" "c" "cxx" "c++"))
-		      ("h++" . ("cpp" "c" "cxx" "c++"))
+		      ("h++" . ("cpp" "c" "cxx" "c++"))))
 
 ;; Process the association list of extensions and find the last file
 ;; that exists
