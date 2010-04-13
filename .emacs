@@ -10,7 +10,7 @@
 (setq inhibit-splash-screen 't)
 (setq gdb-many-windows 't)
 (iswitchb-mode 't)
-(setq compilation-scroll-output 't)
+(setq compilation-scroll-output 'first-error)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; save place
@@ -185,7 +185,7 @@
   (apply 'custom-set-faces my-font-lock-faces)
   (add-hook 'font-lock-mode-hook 'highlight-trailing-whitespace)
   (linum-mode 't)
-  (setq compilation-scroll-output 't)
+  (setq compilation-scroll-output 'first-error)
 )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
@@ -248,6 +248,8 @@
 ;; keys
 (global-set-key "\C-q" 'speedbar)
 (global-set-key "\C-z" 'undo)
+(global-set-key [f5] 'previous-error)
+(global-set-key [f6] 'next-error)
 (global-set-key [f7] 'compile)
 
 ;; local
