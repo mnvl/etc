@@ -12,6 +12,7 @@
 
 (semantic-add-system-include "d:/tools/boost_1_43_0/" 'c++-mode)
 (semantic-add-system-include "d:/tools/xerces-c-3.1.0-x86-windows-vc-9.0/include/" 'c++-mode)
+(semantic-add-system-include "d:/tools/OgreSDK_vc9_v1-7-1/include/OGRE/" 'c++-mode)
 
 (add-to-list 'semantic-lex-c-preprocessor-symbol-map '("Q_GUI_EXPORT" . ""))
 (add-to-list 'semantic-lex-c-preprocessor-symbol-map '("Q_CORE_EXPORT" . ""))
