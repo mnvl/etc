@@ -37,28 +37,6 @@
   "Highlight whitespace characters at line ends."
   (font-lock-add-keywords nil '(("[\040\t]+$" (0 'trailing-whitespace-face t)))))
 
-;; (taken from http://dizzyd.com/blog/post/116)
-;; Association list of extension -> inverse extension
-(setq my-other-exts '(("cpp" . ("hpp" "h" "hxx" "h++"))
-		      ("c"   . ("hpp" "h" "hxx" "h++"))
-		      ("cxx" . ("hpp" "h" "hxx" "h++"))
-		      ("c++" . ("hpp" "h" "hxx" "h++"))
-		      ("hpp" . ("cpp" "c" "cxx" "c++"))
-		      ("h"   . ("cpp" "c" "cxx" "c++"))
-		      ("hxx" . ("cpp" "c" "cxx" "c++"))
-		      ("h++" . ("cpp" "c" "cxx" "c++"))))
-
-;; Process the association list of extensions and find the last file
-;; that exists
-(defun my-find-other-file (fname fext) (dolist (value (cdr (assoc fext my-other-exts)) result) (if (file-exists-p (concat fname "." value)) (setq result (concat fname "." value)))))
-
-;; Toggle function that uses the current buffer name to open/find the
-;; other file
-(defun my-toggle-header-buffer() (interactive) (let ((ext (file-name-extension buffer-file-name)) (fname (file-name-sans-extension buffer-file-name))) (find-file (my-find-other-file fname ext))))
-
-;; Bind the toggle function to a global key
-(global-set-key "\M-q" 'my-toggle-header-buffer)
-
 ;; fonts
 (set-frame-font "Consolas-14")
 (set-cursor-color "gray")
@@ -127,6 +105,8 @@
   (local-set-key "\M-i" 'semantic-complete-analyze-inline)
   (local-set-key "\M-o" 'semantic-symref)
   (local-set-key "\M-p" 'semantic-ia-fast-jump)
+  (local-set-key "\M-q" 'eassist-switch-h-cpp)
+  (local-set-key "\M-1" 'eassist-list-methods)
 )
 
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
