@@ -38,7 +38,7 @@
   (font-lock-add-keywords nil '(("[\040\t]+$" (0 'trailing-whitespace-face t)))))
 
 ;; fonts
-(set-frame-font "Consolas-14")
+(if (eq system-type 'windows-nt) (set-frame-font "Consolas-14"))
 (set-cursor-color "gray")
 
 ;; font lock
@@ -87,7 +87,7 @@
 
 ;; cedet
 ;; tip: try to disable my-c-mode-common-hook if cedet does not work!!!
-(load-file (expand-file-name "~/.emacs.d/cedet-1.0pre7/common/cedet.el"))
+(load-file (expand-file-name "~/.emacs.d/cedet-1.0/common/cedet.el"))
 
 (global-ede-mode t)
 (semantic-load-enable-excessive-code-helpers)
