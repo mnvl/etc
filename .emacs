@@ -45,7 +45,7 @@
 ;; tip: use C-u C-x = to get name of face under cursor and some additional info
 (defconst my-font-lock-faces
   (list
-   '(default ((t (:foreground "white" :background "black"))))
+   '(default ((t (:foreground "white" :background "darkblack"))))
    '(font-lock-builtin-face ((t (:foreground "white"))))
    '(font-lock-comment-face ((t (:foreground "green"))))
    '(font-lock-comment-delimiter-face ((t (:foreground "green"))))
@@ -86,8 +86,8 @@
 (apply 'custom-set-faces my-font-lock-faces)
 
 ;; cedet
-;; tip: try to disable my-c-mode-common-hook if cedet does not work!!!
-(load-file (expand-file-name "~/.emacs.d/cedet-1.0/common/cedet.el"))
+(setq my-cedet-loader-path (expand-file-name "~/.emacs.d/cedet-1.0/common/cedet.el"))
+(if (file-exists-p my-cedet-loader-path) (load-file my-cedet-loader-path) (load-file "cedet-common/cedet.el"))
 
 (global-ede-mode t)
 (semantic-load-enable-excessive-code-helpers)
@@ -234,4 +234,3 @@
 
 ;; local
 (load-file (expand-file-name "~/.emacs-local"))
-
