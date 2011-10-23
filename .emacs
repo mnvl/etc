@@ -39,13 +39,14 @@
 
 ;; fonts
 (if (eq system-type 'windows-nt) (set-frame-font "Consolas-14"))
+(if (eq system-type 'gnu/linux) (set-frame-font "Monospace-14"))
 (set-cursor-color "gray")
 
 ;; font lock
 ;; tip: use C-u C-x = to get name of face under cursor and some additional info
 (defconst my-font-lock-faces
   (list
-   '(default ((t (:foreground "white" :background "darkblack"))))
+   '(default ((t (:foreground "white" :background "black"))))
    '(font-lock-builtin-face ((t (:foreground "white"))))
    '(font-lock-comment-face ((t (:foreground "green"))))
    '(font-lock-comment-delimiter-face ((t (:foreground "green"))))
@@ -76,8 +77,9 @@
    '(semantic-tag-boundary-face ((t)))
    '(semantic-highlight-func-current-tag-face ((t)))
    '(senator-momentary-highlight-face ((t (:background "black"))))
-   (if window-system '(which-func ((t (:background "gray" :foreground "black")))) '(which-func ((t (:background "black")))))
-   '(linum ((t (:foreground "blue" :background "black"))))
+(if window-system '(which-func ((t (:background "gray" :foreground "black")))) '(which-func ((t (:background "black")))))
+   '(which-func ((t (:foreground "black" :background "white"))))
+   '(linum ((t (:foreground "gray" :background "black"))))
 
    ;; faces for semantic-ia-fast-jump, face names retreived by reverse engineering ;)
    '(pulse-highlight-start-face ((t (:background "black"))))
@@ -225,12 +227,25 @@
 
 (add-hook 'lua-mode-hook 'my-lua-mode-hook)
 
+;; octave-mode
+(autoload 'octave-mode "octave-mod" nil t)
+(setq auto-mode-alist
+      (cons '("\\.m$" . octave-mode) auto-mode-alist))
+
+(add-hook 'octave-mode-hook
+          (lambda ()
+            (abbrev-mode 1)
+            (auto-fill-mode 1)
+            (if (eq window-system 'x)
+                (font-lock-mode 1))))
+
 ;; keys
 (global-set-key "\C-q" 'speedbar)
 (global-set-key "\C-z" 'undo)
 (global-set-key [f5] 'previous-error)
 (global-set-key [f6] 'next-error)
 (global-set-key [f7] 'compile)
+(global-set-key "\C-\M-y" 'x-clipboard-yank)
 
 ;; local
 (load-file (expand-file-name "~/.emacs-local"))
