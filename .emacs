@@ -237,7 +237,9 @@
             (abbrev-mode 1)
             (auto-fill-mode 1)
             (if (eq window-system 'x)
-                (font-lock-mode 1))))
+                (font-lock-mode 1))
+	    (setq octave-block-offset 4)
+	  ))
 
 ;; keys
 (global-set-key "\C-q" 'speedbar)
