@@ -233,7 +233,7 @@
 
 (defun my-ess-hook ()
   (setq ess-indent-level 4)
-  (setq ess-default-style 'my-c-style)
+  (ess-toggle-underscore nil)
   (setq ess-default-style 'my-c-style))
 (add-hook 'ess-mode-hook 'my-ess-hook)
 
