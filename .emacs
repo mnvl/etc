@@ -257,6 +257,12 @@
 (global-set-key [f6] 'next-error)
 (global-set-key [f7] 'compile)
 (global-set-key "\C-\M-y" 'x-clipboard-yank)
+(global-set-key "\C-s" 'isearch-forward-regexp)
+(global-set-key "\C-\M-s" 'isearch-forward)
+(global-set-key "\C-r" 'isearch-backward-regexp)
+(global-set-key "\C-\M-r" 'isearch-backward)
+(global-set-key "\M-s" 'replace-string)
+(global-set-key "\M-r" 'replace-regexp)
 
 ;; local
 (load-file (expand-file-name "~/.emacs-local"))
