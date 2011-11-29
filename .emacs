@@ -12,6 +12,7 @@
 (iswitchb-mode 't)
 (setq compilation-scroll-output 'first-error)
 (fset 'yes-or-no-p 'y-or-n-p)
+(setq x-select-enable-clipboard 't)
 
 ;; save place
 (require 'saveplace)
@@ -230,6 +231,15 @@
 
 (add-hook 'lua-mode-hook 'my-lua-mode-hook)
 
+;; emacs speaks statistics
+(require 'ess-site)
+
+(defun my-ess-hook ()
+  (setq ess-indent-level 4)
+  (ess-toggle-underscore nil)
+  (setq ess-default-style 'my-c-style))
+(add-hook 'ess-mode-hook 'my-ess-hook)
+
 ;; octave-mode
 (autoload 'octave-mode "octave-mod" nil t)
 (setq auto-mode-alist
@@ -237,10 +247,6 @@
 
 (add-hook 'octave-mode-hook
           (lambda ()
-            (abbrev-mode 1)
-            (auto-fill-mode 1)
-            (if (eq window-system 'x)
-                (font-lock-mode 1))
 	    (setq octave-block-offset 4)
 	  ))
 
