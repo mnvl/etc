@@ -263,6 +263,7 @@
 (global-set-key "\C-\M-r" 'isearch-backward)
 (global-set-key "\M-s" 'replace-string)
 (global-set-key "\M-r" 'replace-regexp)
+(global-set-key "\M-o" 'occur)
 
 ;; local
 (load-file (expand-file-name "~/.emacs-local"))
