@@ -89,30 +89,33 @@
 
 ;; cedet
 (setq my-cedet-loader-path (expand-file-name "~/.emacs.d/cedet-1.0/common/cedet.el"))
-(if (file-exists-p my-cedet-loader-path) (load-file my-cedet-loader-path) (load-file "cedet-common/cedet.el"))
 
-(global-ede-mode t)
-(semantic-load-enable-excessive-code-helpers)
+(defun my-cedet-init ()
+  (load-file my-cedet-loader-path)
 
-(require 'semantic-ia)
-(require 'semantic-gcc)
+  (global-ede-mode t)
+  (semantic-load-enable-excessive-code-helpers)
 
-(global-semantic-stickyfunc-mode nil)
-(global-semantic-idle-summary-mode nil)
-(global-semantic-idle-completions-mode nil)
-(which-function-mode nil)
+  (require 'semantic-ia)
+  (require 'semantic-gcc)
 
-(defun my-cedet-hook ()
-  (local-set-key "\M-u" 'semantic-ia-show-summary)
-  (local-set-key "\M-i" 'semantic-complete-analyze-inline)
-  (local-set-key "\M-o" 'semantic-symref)
-  (local-set-key "\M-p" 'semantic-ia-fast-jump)
-  (local-set-key "\M-q" 'eassist-switch-h-cpp)
-  (local-set-key "\M-1" 'eassist-list-methods)
-)
+  (global-semantic-stickyfunc-mode nil)
+  (global-semantic-idle-summary-mode nil)
+  (global-semantic-idle-completions-mode nil)
+  (which-function-mode nil)
 
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
-(add-hook 'lisp-mode-hook 'my-cedet-hook)
+  (defun my-cedet-hook ()
+    (local-set-key "\M-u" 'semantic-ia-show-summary)
+    (local-set-key "\M-i" 'semantic-complete-analyze-inline)
+    (local-set-key "\M-o" 'semantic-symref)
+    (local-set-key "\M-p" 'semantic-ia-fast-jump)
+    (local-set-key "\M-q" 'eassist-switch-h-cpp)
+    (local-set-key "\M-1" 'eassist-list-methods))
+
+  (add-hook 'c-mode-common-hook 'my-cedet-hook)
+  (add-hook 'lisp-mode-hook 'my-cedet-hook))
+
+(if (file-exists-p my-cedet-loader-path) (my-cedet-init))
 
 ;; text-mode
 (setq default-major-mode 'text-mode)
