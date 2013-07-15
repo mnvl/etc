@@ -127,12 +127,15 @@
 (require 'semantic/analyze/refs)
 (require 'semantic/ia)
 
-(global-ede-mode)
-(global-semantic-idle-scheduler-mode)
-(global-semanticdb-minor-mode)
-(global-semantic-idle-summary-mode)
-(global-semantic-mru-bookmark-mode)
-(add-hook 'c-mode-common-hook 'imenu-add-menubar-index)
+(global-ede-mode t)
+
+(setq semantic-default-submodes
+      '(global-semanticdb-minor-mode
+        global-semantic-decoration-mode
+        global-semantic-highlight-func-mode
+        global-semantic-idle-completions-mode
+        global-semantic-idle-scheduler-mode
+        global-semantic-mru-bookmark-mode))
 
 (defun my-cedet-hook ()
   (semantic-mode t)
@@ -146,5 +149,16 @@
 
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
 
+;; auto-complete-mode
+(when (require 'auto-complete-config nil 'noerror)
+  (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
+  (ac-config-default)
+  (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
+
+  (defun my-use-semantic-in-autocomplete-hook ()
+    (setq ac-sources (append ac-sources '(ac-source-semantic ac-source-semantic-raw))))
+
+  (add-hook 'c-mode-common-hook 'my-use-semantic-in-autocomplete-hook))
+
 ;; local
-(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs-local*"))) (load-file path))
+(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs-local-*"))) (load-file path))
