@@ -166,7 +166,6 @@
   (defun my-use-semantic-in-autocomplete-hook ()
     (setq ac-sources (append ac-sources '(ac-source-semantic ac-source-semantic-raw))))
 
-  (add-hook 'c-mode-common-hook 'my-use-semantic-in-autocomplete-hook)
   (add-hook 'c-mode-common-hook 'my-use-semantic-in-autocomplete-hook))
 
 ;; local
