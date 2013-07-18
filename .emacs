@@ -33,32 +33,37 @@
 ;; tip: use C-u C-x = to get name of face under cursor and some additional info
 (defconst my-font-lock-faces
   (list
-   '(default ((t (:foreground "white" :background "black"))))
-   '(font-lock-builtin-face ((t (:foreground "white"))))
-   '(font-lock-comment-face ((t (:foreground "green"))))
-   '(font-lock-comment-delimiter-face ((t (:foreground "green"))))
-   '(font-lock-constant-face ((t (:foreground "gray"))))
-   '(font-lock-doc-string-face ((t (:foreground "white"))))
-   '(font-lock-function-name-face ((t (:foreground "mediumpurple"))))
+   '(default ((t (:foreground "gray80" :background "black"))))
+   '(font-lock-builtin-face ((t (:foreground "sky blue"))))
+   '(font-lock-comment-face ((t (:foreground "sea green"))))
+   '(font-lock-comment-delimiter-face ((t (:foreground "sea green"))))
+   '(font-lock-constant-face ((t (:foreground "turquoise"))))
+   '(font-lock-doc-string-face ((t (:foreground "sea green"))))
+   '(font-lock-function-name-face ((t (:foreground "medium purple"))))
    '(font-lock-keyword-face ((t (:foreground "goldenrod"))))
    '(font-lock-preprocessor-face ((t (:foreground "lightblue"))))
-   '(font-lock-reference-face ((t (:foreground "white"))))
-   '(font-lock-regexp-grouping-backslash ((t (:foreground "white"))))
-   '(font-lock-regexp-grouping-construct ((t (:foreground "white"))))
+   '(font-lock-reference-face ((t (:foreground "plum"))))
+   '(font-lock-regexp-grouping-backslash ((t (:foreground "magneta"))))
+   '(font-lock-regexp-grouping-construct ((t (:foreground "magneta"))))
    '(font-lock-string-face ((t (:foreground "gray"))))
-   '(font-lock-type-face ((t (:foreground "steelblue"))))
-   '(font-lock-variable-name-face ((t (:foreground "white"))))
+   '(font-lock-type-face ((t (:foreground "steel blue"))))
+   '(font-lock-variable-name-face ((t (:foreground "cyan4"))))
    '(font-lock-warning-face ((t (:foreground "red"))))
    '(font-lock-warning-name-face ((t (:foreground "red"))))
    '(show-paren-match-face ((t (:foreground "black" :background "green"))))
    '(show-paren-mismatch-face ((t (:foreground "red" :background "green" :bold t))))
    '(cperl-hash-face ((t (:foreground "lightcyan" :background "black"))))
    '(cperl-array-face ((t (:foreground "lightcyan" :background "black"))))
-   '(link ((t (:foreground "white" :underline t))))
-   '(minibuffer-prompt ((t (:foreground "white"))))
+   '(link ((t (:foreground "CadetBlue1" :underline t))))
+   '(minibuffer-prompt ((t (:foreground "gray70"))))
    '(senator-momentary-highlight-face ((t (:background "black"))))
    (if window-system '(which-func ((t (:background "gray" :foreground "black")))) '(which-func ((t (:background "black")))))
-   '(linum ((t (:foreground "blue" :background "black"))))))
+   '(linum ((t (:foreground "DeepSkyBlue3" :background "black"))))
+   '(semantic-tag-boundary-face ((t (:background "dark")) (t (:background "")) (t (:background "light"))))
+   '(ac-completion-face ((t (:background "gray10"))))
+   '(ac-candidate-face ((t (:background "gray10"))))
+   '(ac-selection-face ((t (:background "dark blue"))))))
+
 (apply 'custom-set-faces my-font-lock-faces)
 
 ;; cc-mode
@@ -120,6 +125,7 @@
 (global-set-key "\M-o" 'occur)
 (global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\M-n" 'forward-paragraph)
+(global-set-key "\C-v" 'clipboard-yank)
 
 ;; semantic
 (require 'cedet)
@@ -148,6 +154,8 @@
   (local-set-key "\M-i" 'semantic-complete-analyze-inline))
 
 (add-hook 'c-mode-common-hook 'my-cedet-hook)
+(add-hook 'python-mode-hook 'my-cedet-hook)
+(add-hook 'java-mode-hook 'my-cedet-hook)
 
 ;; auto-complete-mode
 (when (require 'auto-complete-config nil 'noerror)
@@ -158,6 +166,7 @@
   (defun my-use-semantic-in-autocomplete-hook ()
     (setq ac-sources (append ac-sources '(ac-source-semantic ac-source-semantic-raw))))
 
+  (add-hook 'c-mode-common-hook 'my-use-semantic-in-autocomplete-hook)
   (add-hook 'c-mode-common-hook 'my-use-semantic-in-autocomplete-hook))
 
 ;; local
