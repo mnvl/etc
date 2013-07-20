@@ -1,6 +1,6 @@
 
 ;; path settings
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/"))
 
 ;; global settings
 (tool-bar-mode nil)
@@ -60,8 +60,8 @@
    '(linum ((t (:foreground "DeepSkyBlue3" :background "black"))))
    '(minibuffer-prompt ((t (:foreground "gray70"))))
    '(region ((t (:background "dark blue"))))
-   '(semantic-highlight-func-current-tag-face ((t (:background "gray20"))))
-   '(semantic-tag-boundary-face ((t (:overline "gray20"))))
+   '(semantic-highlight-func-current-tag-face ((t (:background "gray10"))))
+   '(semantic-tag-boundary-face ((t (:inherit default))))
    '(senator-momentary-highlight-face ((t (:background "dark blue"))))
    '(sh-heredoc ((t (:foreground "light sea green"))))
    '(show-paren-match-face ((t (:foreground "black" :background "green"))))
@@ -169,4 +169,4 @@
     (add-to-list 'ac-sources 'ac-source-semantic-raw)))
 
 ;; local
-(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs-local-*.el"))) (load-file path))
+(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs/local/*.el"))) (load-file path))
