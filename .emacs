@@ -60,8 +60,8 @@
    '(linum ((t (:foreground "DeepSkyBlue3" :background "black"))))
    '(minibuffer-prompt ((t (:foreground "gray70"))))
    '(region ((t (:background "dark blue"))))
-   '(semantic-highlight-func-current-tag-face ((t (:background "gray10"))))
-   '(semantic-tag-boundary-face ((t (:inherit default))))
+   '(semantic-highlight-func-current-tag-face ((t ())))
+   '(semantic-tag-boundary-face ((t ())))
    '(senator-momentary-highlight-face ((t (:background "dark blue"))))
    '(sh-heredoc ((t (:foreground "light sea green"))))
    '(show-paren-match-face ((t (:foreground "black" :background "green"))))
@@ -153,6 +153,7 @@
 
   (local-set-key "\C-q" 'semantic-analyze-proto-impl-toggle)
   (local-set-key "\M-q" 'ff-find-other-file)
+  (local-set-key "\C-j\ s" 'semantic-ia-show-summary)
   (local-set-key "\C-j\ c" 'semantic-ia-complete-symbol)
   (local-set-key "\C-j\ j" 'semantic-ia-fast-jump))
 
