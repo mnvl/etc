@@ -153,8 +153,8 @@
 
   (local-set-key "\C-q" 'semantic-analyze-proto-impl-toggle)
   (local-set-key "\M-q" 'ff-find-other-file)
-  (local-set-key "\C-i" 'semantic-ia-complete-symbol-menu)
-  (local-set-key "\C-j" 'semantic-ia-fast-jump))
+  (local-set-key "\C-j\ c" 'semantic-ia-complete-symbol)
+  (local-set-key "\C-j\ j" 'semantic-ia-fast-jump))
 
 (add-hook 'c++-mode-hook 'my-cedet-hook)
 
@@ -166,9 +166,7 @@
 
   (defun my-use-semantic-in-auto-complete-mode-hook ()
     (add-to-list 'ac-sources 'ac-source-semantic)
-    (add-to-list 'ac-sources 'ac-source-semantic-raw))
-
-  (add-hook 'c-mode-common-hook 'my-use-semantic-in-auto-complete-mode-hook))
+    (add-to-list 'ac-sources 'ac-source-semantic-raw)))
 
 ;; local
 (dolist (path (file-expand-wildcards (expand-file-name "~/.emacs-local-*.el"))) (load-file path))
