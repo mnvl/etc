@@ -4,14 +4,15 @@
 
 ;; global settings
 (tool-bar-mode nil)
-(if (not window-system) (menu-bar-mode nil))
-(setq transient-mark-mode t)
 (global-font-lock-mode t)
-(setq inhibit-splash-screen t)
-(setq gdb-many-windows t)
+(global-linum-mode t)
+(if (not window-system) (menu-bar-mode nil))
 (setq compilation-scroll-output 'first-error)
-(fset 'yes-or-no-p 'y-or-n-p)
+(setq gdb-many-windows t)
+(setq inhibit-splash-screen t)
+(setq transient-mark-mode t)
 (setq x-select-enable-clipboard t)
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; save place
 (require 'saveplace)
@@ -34,35 +35,37 @@
 (defconst my-font-lock-faces
   (list
    '(default ((t (:foreground "gray80" :background "black"))))
+   '(ac-candidate-face ((t (:foreground "gray75" :background "DodgerBlue4"))))
+   '(ac-completion-face ((t (:foreground "gray80" :background "DeepSkyBlue4"))))
+   '(ac-selection-face ((t (:foreground "gray80" :background "SlateGray4"))))
+   '(cperl-array-face ((t (:foreground "light cyan"))))
+   '(cperl-hash-face ((t (:foreground "light cyan"))))
    '(font-lock-builtin-face ((t (:foreground "sky blue"))))
-   '(font-lock-comment-face ((t (:foreground "sea green"))))
    '(font-lock-comment-delimiter-face ((t (:foreground "sea green"))))
-   '(font-lock-constant-face ((t (:foreground "turquoise"))))
+   '(font-lock-comment-face ((t (:foreground "sea green"))))
+   '(font-lock-constant-face ((t (:foreground "coral3"))))
    '(font-lock-doc-string-face ((t (:foreground "sea green"))))
    '(font-lock-function-name-face ((t (:foreground "medium purple"))))
    '(font-lock-keyword-face ((t (:foreground "goldenrod"))))
-   '(font-lock-preprocessor-face ((t (:foreground "lightblue"))))
+   '(font-lock-preprocessor-face ((t (:foreground "light blue"))))
    '(font-lock-reference-face ((t (:foreground "plum"))))
    '(font-lock-regexp-grouping-backslash ((t (:foreground "magneta"))))
    '(font-lock-regexp-grouping-construct ((t (:foreground "magneta"))))
    '(font-lock-string-face ((t (:foreground "gray"))))
    '(font-lock-type-face ((t (:foreground "steel blue"))))
-   '(font-lock-variable-name-face ((t (:foreground "cyan4"))))
+   '(font-lock-variable-name-face ((t (:foreground "turquoise4"))))
    '(font-lock-warning-face ((t (:foreground "red"))))
    '(font-lock-warning-name-face ((t (:foreground "red"))))
-   '(show-paren-match-face ((t (:foreground "black" :background "green"))))
-   '(show-paren-mismatch-face ((t (:foreground "red" :background "green" :bold t))))
-   '(cperl-hash-face ((t (:foreground "lightcyan" :background "black"))))
-   '(cperl-array-face ((t (:foreground "lightcyan" :background "black"))))
    '(link ((t (:foreground "CadetBlue1" :underline t))))
-   '(minibuffer-prompt ((t (:foreground "gray70"))))
-   '(senator-momentary-highlight-face ((t (:background "black"))))
-   (if window-system '(which-func ((t (:background "gray" :foreground "black")))) '(which-func ((t (:background "black")))))
    '(linum ((t (:foreground "DeepSkyBlue3" :background "black"))))
-   '(semantic-tag-boundary-face ((t (:background "dark")) (t (:background "")) (t (:background "light"))))
-   '(ac-completion-face ((t (:background "gray10"))))
-   '(ac-candidate-face ((t (:background "gray10"))))
-   '(ac-selection-face ((t (:background "dark blue"))))))
+   '(minibuffer-prompt ((t (:foreground "gray70"))))
+   '(region ((t (:background "dark blue"))))
+   '(semantic-highlight-func-current-tag-face ((t (:background "gray20"))))
+   '(semantic-tag-boundary-face ((t (:overline "gray20"))))
+   '(senator-momentary-highlight-face ((t (:background "dark blue"))))
+   '(sh-heredoc ((t (:foreground "light sea green"))))
+   '(show-paren-match-face ((t (:foreground "black" :background "green"))))
+   '(show-paren-mismatch-face ((t (:foreground "red" :background "green" :bold t))))))
 
 (apply 'custom-set-faces my-font-lock-faces)
 
@@ -103,21 +106,23 @@
 
 (defun my-c-mode-common-hook ()
   (c-add-style "my-c-style" my-c-style)
-  (line-number-mode t)
   (column-number-mode t)
-  (setq compilation-scroll-output 'first-error)
   (apply 'custom-set-faces my-font-lock-faces))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 ;; python-mode
 (defun my-python-mode-hook ()
-  (linum-mode t)
   (apply 'custom-set-faces my-font-lock-faces))
 
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 
-;; keys
+;; remember recent files
+(require 'recentf)
+(recentf-mode t)
+(setq recentf-max-menu-items 100)
+
+;; global key bindings
 (global-set-key "\C-s" 'isearch-forward-regexp)
 (global-set-key "\C-r" 'isearch-backward-regexp)
 (global-set-key "\M-r" 'replace-regexp)
@@ -125,7 +130,7 @@
 (global-set-key "\M-o" 'occur)
 (global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\M-n" 'forward-paragraph)
-(global-set-key "\C-v" 'clipboard-yank)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 ;; semantic
 (require 'cedet)
@@ -147,15 +152,11 @@
   (semantic-mode t)
 
   (local-set-key "\C-q" 'semantic-analyze-proto-impl-toggle)
-  (local-set-key "\M-q" 'eassist-switch-h-cpp)
-  (local-set-key "\M-j" 'semantic-ia-fast-jump)
-  (local-set-key "\M-c" 'semantic-ia-complete-symbol)
-  (local-set-key "\M-v" 'semantic-ia-complete-symbol-menu)
-  (local-set-key "\M-i" 'semantic-complete-analyze-inline))
+  (local-set-key "\M-q" 'ff-find-other-file)
+  (local-set-key "\C-i" 'semantic-ia-complete-symbol-menu)
+  (local-set-key "\C-j" 'semantic-ia-fast-jump))
 
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
-(add-hook 'python-mode-hook 'my-cedet-hook)
-(add-hook 'java-mode-hook 'my-cedet-hook)
+(add-hook 'c++-mode-hook 'my-cedet-hook)
 
 ;; auto-complete-mode
 (when (require 'auto-complete-config nil 'noerror)
@@ -163,10 +164,11 @@
   (ac-config-default)
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 
-  (defun my-use-semantic-in-autocomplete-hook ()
-    (setq ac-sources (append ac-sources '(ac-source-semantic ac-source-semantic-raw))))
+  (defun my-use-semantic-in-auto-complete-mode-hook ()
+    (add-to-list 'ac-sources 'ac-source-semantic)
+    (add-to-list 'ac-sources 'ac-source-semantic-raw))
 
-  (add-hook 'c-mode-common-hook 'my-use-semantic-in-autocomplete-hook))
+  (add-hook 'c-mode-common-hook 'my-use-semantic-in-auto-complete-mode-hook))
 
 ;; local
-(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs-local-*"))) (load-file path))
+(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs-local-*.el"))) (load-file path))
