@@ -173,7 +173,11 @@
   (local-set-key "\C-c\ s" 'semantic-ia-show-summary)
   (local-set-key "\C-c\ t" 'semantic-analyze-proto-impl-toggle))
 
+(add-hook 'c-mode-hook 'my-cedet-hook)
 (add-hook 'c++-mode-hook 'my-cedet-hook)
+(add-hook 'lisp-mode-hook 'my-cedet-hook)
+(add-hook 'python-mode-hook 'my-cedet-hook)
+(add-hook 'java-mode-hook 'my-cedet-hook)
 
 ;; auto-complete mode
 (when (require 'auto-complete-config nil t)
@@ -188,7 +192,8 @@
 
 ;; yasnippet mode
 (when (require 'yasnippet nil t)
-  (yas-global-mode t))
+  (yas-global-mode t)
+  (add-to-list 'ac-sources 'ac-source-yasnippet))
 
 ;; local
 (dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/local/*.el"))) (load-file path))
