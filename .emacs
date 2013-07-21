@@ -106,23 +106,21 @@
     (c-echo-syntactic-information-p . t))
   "my-c-style")
 
-(defun my-c-mode-common-hook ()
-  (c-add-style "my-c-style" my-c-style)
-  (apply 'custom-set-faces my-font-lock-faces)
+(add-hook 'c-mode-common-hook
+  (lambda ()
+    (c-add-style "my-c-style" my-c-style)
+    (apply 'custom-set-faces my-font-lock-faces)
 
-  (linum-mode t)
-  (column-number-mode t)
-  (which-function-mode t)
+    (linum-mode t)
+    (column-number-mode t)
+    (which-function-mode t)
 
-  (local-set-key "\C-c\ m" 'compile))
-
-(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+    (local-set-key "\C-c\ m" 'compile)))
 
 ;; python-mode
-(defun my-python-mode-hook ()
-  (apply 'custom-set-faces my-font-lock-faces))
-
-(add-hook 'python-mode-hook 'my-python-mode-hook)
+(add-hook 'python-mode-hook
+  (lambda ()
+    (apply 'custom-set-faces my-font-lock-faces)))
 
 ;; remember recent files
 (require 'recentf)
@@ -165,15 +163,14 @@
         global-semantic-idle-scheduler-mode
         global-semantic-mru-bookmark-mode))
 
-(defun my-cedet-hook ()
-  (semantic-mode t)
+(add-hook 'c-mode-common-hook
+  (lambda ()
+    (semantic-mode t)
 
-  (local-set-key "\C-c\ c" 'semantic-ia-complete-symbol-menu)
-  (local-set-key "\C-c\ j" 'semantic-ia-fast-jump)
-  (local-set-key "\C-c\ s" 'semantic-ia-show-summary)
-  (local-set-key "\C-c\ t" 'semantic-analyze-proto-impl-toggle))
-
-(add-hook 'c-mode-common-hook 'my-cedet-hook)
+    (local-set-key "\C-c\ c" 'semantic-ia-complete-symbol-menu)
+    (local-set-key "\C-c\ j" 'semantic-ia-fast-jump)
+    (local-set-key "\C-c\ s" 'semantic-ia-show-summary)
+    (local-set-key "\C-c\ t" 'semantic-analyze-proto-impl-toggle)))
 
 ;; auto-complete mode
 (when (require 'auto-complete-config nil t)
@@ -182,9 +179,9 @@
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 
   (add-hook 'c-mode-common-hook
-   (lambda ()
-     (add-to-list 'ac-sources 'ac-source-semantic)
-     (add-to-list 'ac-sources 'ac-source-semantic-raw))))
+    (lambda ()
+      (add-to-list 'ac-sources 'ac-source-semantic)
+      (add-to-list 'ac-sources 'ac-source-semantic-raw))))
 
 ;; yasnippet mode
 (when (require 'yasnippet nil t)
