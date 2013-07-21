@@ -2,7 +2,7 @@
 ;; path settings
 (setq load-path
       (append
-       (expand-file-name "~/.emacs.d/lisp/")
+       (list (expand-file-name "~/.emacs.d/lisp/"))
        (file-expand-wildcards (expand-file-name "~/.emacs.d/lisp/*/lisp"))
        load-path))
 
@@ -14,7 +14,6 @@
 (setq gdb-many-windows t)
 (setq inhibit-splash-screen t)
 (setq transient-mark-mode t)
-(setq x-select-enable-clipboard t)
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; save place
@@ -139,6 +138,7 @@
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 (global-set-key "\C-z\ c" 'capitalize-region)
 (global-set-key "\C-z\ i" 'indent-region)
+(global-set-key "\C-z\ k" 'clipboard-kill-region)
 (global-set-key "\C-z\ l" 'downcase-region)
 (global-set-key "\C-z\ o" 'occur)
 (global-set-key "\C-z\ r" 'replace-regexp)
@@ -174,10 +174,6 @@
   (local-set-key "\C-c\ t" 'semantic-analyze-proto-impl-toggle))
 
 (add-hook 'c++-mode-hook 'my-cedet-hook)
-
-;; jde
-(when (require 'jde nil t)
-  (add-to-list 'auto-mode-alist '("\\.java\\'" . jde-mode)))
 
 ;; auto-complete mode
 (when (require 'auto-complete-config nil t)
