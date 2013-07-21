@@ -107,20 +107,20 @@
   "my-c-style")
 
 (add-hook 'c-mode-common-hook
-  (lambda ()
-    (c-add-style "my-c-style" my-c-style)
-    (apply 'custom-set-faces my-font-lock-faces)
+	  (lambda ()
+	    (c-add-style "my-c-style" my-c-style)
+	    (apply 'custom-set-faces my-font-lock-faces)
 
-    (linum-mode t)
-    (column-number-mode t)
-    (which-function-mode t)
+	    (linum-mode t)
+	    (column-number-mode t)
+	    (which-function-mode t)
 
-    (local-set-key "\C-c\ m" 'compile)))
+	    (local-set-key "\C-c\ m" 'compile)))
 
 ;; python-mode
 (add-hook 'python-mode-hook
-  (lambda ()
-    (apply 'custom-set-faces my-font-lock-faces)))
+	  (lambda ()
+	    (apply 'custom-set-faces my-font-lock-faces)))
 
 ;; remember recent files
 (require 'recentf)
@@ -129,11 +129,11 @@
 
 ;; global key bindings
 (define-prefix-command 'my-keyboard-bindings)
-(global-set-key "\C-z" 'my-keyboard-bindings)
 
 (global-set-key "\C-r" 'isearch-backward-regexp)
 (global-set-key "\C-s" 'isearch-forward-regexp)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(global-set-key "\C-z" 'my-keyboard-bindings)
 (global-set-key "\C-z\ c" 'capitalize-region)
 (global-set-key "\C-z\ i" 'indent-region)
 (global-set-key "\C-z\ k" 'clipboard-kill-region)
@@ -141,11 +141,13 @@
 (global-set-key "\C-z\ o" 'occur)
 (global-set-key "\C-z\ r" 'replace-regexp)
 (global-set-key "\C-z\ s" 'replace-string)
+(global-set-key "\C-z\ \C-s" 'sort-lines)
 (global-set-key "\C-z\ u" 'upcase-region)
 (global-set-key "\C-z\ y" 'clipboard-yank)
 (global-set-key "\M-n" 'forward-paragraph)
 (global-set-key "\M-p" 'backward-paragraph)
 (global-set-key "\M-q" 'ff-find-other-file)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; semantic
 (require 'cedet)
@@ -157,12 +159,12 @@
 (global-ede-mode t)
 
 (setq semantic-default-submodes
-  '(global-semanticdb-minor-mode
-    global-semantic-decoration-mode
-    global-semantic-highlight-func-mode
-    global-semantic-idle-completions-mode
-    global-semantic-idle-scheduler-mode
-    global-semantic-mru-bookmark-mode))
+      '(global-semanticdb-minor-mode
+	global-semantic-decoration-mode
+	global-semantic-highlight-func-mode
+	global-semantic-idle-completions-mode
+	global-semantic-idle-scheduler-mode
+	global-semantic-mru-bookmark-mode))
 
 (global-set-key "\C-c\ c" 'semantic-ia-complete-symbol-menu)
 (global-set-key "\C-c\ j" 'semantic-ia-fast-jump)
@@ -177,14 +179,22 @@
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 
   (add-hook 'c-mode-common-hook
-    (lambda ()
-      (add-to-list 'ac-sources 'ac-source-semantic)
-      (add-to-list 'ac-sources 'ac-source-semantic-raw))))
+	    (lambda ()
+	      (setq ac-sources
+		    '(ac-source-abbrev
+		      ac-source-dictionary
+		      ac-source-dictionary
+		      ac-source-features
+		      ac-source-filename
+		      ac-source-files-in-current-dir
+		      ac-source-functions
+		      ac-source-semantic
+		      ac-source-semantic-raw
+		      ac-source-symbols
+		      ac-source-variables
+		      ac-source-words-in-same-mode-buffers))))
 
-;; yasnippet mode
-(when (require 'yasnippet nil t)
-  (yas-global-mode t)
-  (add-to-list 'ac-sources 'ac-source-yasnippet))
+  (global-set-key "\C-c\ a" 'auto-complete))
 
 ;; local
 (dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/local/*.el"))) (load-file path))
