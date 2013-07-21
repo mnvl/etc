@@ -153,29 +153,27 @@
 (require 'semantic/analyze/refs)
 (require 'semantic/ia)
 
+(semantic-mode t)
 (global-ede-mode t)
 
 (setq semantic-default-submodes
-      '(global-semanticdb-minor-mode
-        global-semantic-decoration-mode
-        global-semantic-highlight-func-mode
-        global-semantic-idle-completions-mode
-        global-semantic-idle-scheduler-mode
-        global-semantic-mru-bookmark-mode))
+  '(global-semanticdb-minor-mode
+    global-semantic-decoration-mode
+    global-semantic-highlight-func-mode
+    global-semantic-idle-completions-mode
+    global-semantic-idle-scheduler-mode
+    global-semantic-mru-bookmark-mode))
 
-(add-hook 'c-mode-common-hook
-  (lambda ()
-    (semantic-mode t)
-
-    (local-set-key "\C-c\ c" 'semantic-ia-complete-symbol-menu)
-    (local-set-key "\C-c\ j" 'semantic-ia-fast-jump)
-    (local-set-key "\C-c\ s" 'semantic-ia-show-summary)
-    (local-set-key "\C-c\ t" 'semantic-analyze-proto-impl-toggle)))
+(global-set-key "\C-c\ c" 'semantic-ia-complete-symbol-menu)
+(global-set-key "\C-c\ j" 'semantic-ia-fast-jump)
+(global-set-key "\C-c\ s" 'semantic-ia-show-summary)
+(global-set-key "\C-c\ t" 'semantic-analyze-proto-impl-toggle)
 
 ;; auto-complete mode
 (when (require 'auto-complete-config nil t)
   (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
   (ac-config-default)
+
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 
   (add-hook 'c-mode-common-hook
