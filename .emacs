@@ -1,11 +1,14 @@
 
 ;; path settings
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/"))
+(setq load-path
+      (append
+       (expand-file-name "~/.emacs.d/lisp/")
+       (file-expand-wildcards (expand-file-name "~/.emacs.d/lisp/*/lisp"))
+       load-path))
 
 ;; global settings
 (tool-bar-mode nil)
 (global-font-lock-mode t)
-(global-linum-mode t)
 (if (not window-system) (menu-bar-mode nil))
 (setq compilation-scroll-output 'first-error)
 (setq gdb-many-windows t)
@@ -59,7 +62,7 @@
    '(link ((t (:foreground "CadetBlue1" :underline t))))
    '(linum ((t (:foreground "DeepSkyBlue3" :background "black"))))
    '(minibuffer-prompt ((t (:foreground "gray70"))))
-   '(region ((t (:background "dark blue"))))
+   '(region ((t (:background "gray12"))))
    '(semantic-highlight-func-current-tag-face ((t ())))
    '(semantic-tag-boundary-face ((t ())))
    '(senator-momentary-highlight-face ((t (:background "dark blue"))))
@@ -106,8 +109,13 @@
 
 (defun my-c-mode-common-hook ()
   (c-add-style "my-c-style" my-c-style)
+  (apply 'custom-set-faces my-font-lock-faces)
+
+  (linum-mode t)
   (column-number-mode t)
-  (apply 'custom-set-faces my-font-lock-faces))
+  (which-function-mode t)
+
+  (local-set-key "\C-c\ m" 'compile))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
@@ -123,14 +131,23 @@
 (setq recentf-max-menu-items 100)
 
 ;; global key bindings
-(global-set-key "\C-s" 'isearch-forward-regexp)
+(define-prefix-command 'my-keyboard-bindings)
+(global-set-key "\C-z" 'my-keyboard-bindings)
+
 (global-set-key "\C-r" 'isearch-backward-regexp)
-(global-set-key "\M-r" 'replace-regexp)
-(global-set-key "\C-\M-r" 'replace-string)
-(global-set-key "\M-o" 'occur)
-(global-set-key "\M-p" 'backward-paragraph)
-(global-set-key "\M-n" 'forward-paragraph)
+(global-set-key "\C-s" 'isearch-forward-regexp)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(global-set-key "\C-z\ c" 'capitalize-region)
+(global-set-key "\C-z\ i" 'indent-region)
+(global-set-key "\C-z\ l" 'downcase-region)
+(global-set-key "\C-z\ o" 'occur)
+(global-set-key "\C-z\ r" 'replace-regexp)
+(global-set-key "\C-z\ s" 'replace-string)
+(global-set-key "\C-z\ u" 'upcase-region)
+(global-set-key "\C-z\ y" 'clipboard-yank)
+(global-set-key "\M-n" 'forward-paragraph)
+(global-set-key "\M-p" 'backward-paragraph)
+(global-set-key "\M-q" 'ff-find-other-file)
 
 ;; semantic
 (require 'cedet)
@@ -151,23 +168,31 @@
 (defun my-cedet-hook ()
   (semantic-mode t)
 
-  (local-set-key "\C-q" 'semantic-analyze-proto-impl-toggle)
-  (local-set-key "\M-q" 'ff-find-other-file)
-  (local-set-key "\C-j\ s" 'semantic-ia-show-summary)
-  (local-set-key "\C-j\ c" 'semantic-ia-complete-symbol)
-  (local-set-key "\C-j\ j" 'semantic-ia-fast-jump))
+  (local-set-key "\C-c\ c" 'semantic-ia-complete-symbol-menu)
+  (local-set-key "\C-c\ j" 'semantic-ia-fast-jump)
+  (local-set-key "\C-c\ s" 'semantic-ia-show-summary)
+  (local-set-key "\C-c\ t" 'semantic-analyze-proto-impl-toggle))
 
 (add-hook 'c++-mode-hook 'my-cedet-hook)
 
-;; auto-complete-mode
-(when (require 'auto-complete-config nil 'noerror)
+;; jde
+(when (require 'jde nil t)
+  (add-to-list 'auto-mode-alist '("\\.java\\'" . jde-mode)))
+
+;; auto-complete mode
+(when (require 'auto-complete-config nil t)
   (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
   (ac-config-default)
   (add-to-list 'ac-dictionary-directories "~/.emacs.d/ac-dict")
 
-  (defun my-use-semantic-in-auto-complete-mode-hook ()
-    (add-to-list 'ac-sources 'ac-source-semantic)
-    (add-to-list 'ac-sources 'ac-source-semantic-raw)))
+  (add-hook 'c-mode-common-hook
+   (lambda ()
+     (add-to-list 'ac-sources 'ac-source-semantic)
+     (add-to-list 'ac-sources 'ac-source-semantic-raw))))
+
+;; yasnippet mode
+(when (require 'yasnippet nil t)
+  (yas-global-mode t))
 
 ;; local
-(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs/local/*.el"))) (load-file path))
+(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/local/*.el"))) (load-file path))
