@@ -134,8 +134,6 @@
 (define-prefix-command 'my-keyboard-bindings)
 (global-set-key (kbd "C-z") 'my-keyboard-bindings)
 
-(global-set-key (kbd "C-,") 'previous-buffer)
-(global-set-key (kbd "C-.") 'next-buffer)
 (global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
@@ -153,10 +151,12 @@
 (global-set-key (kbd "C-z s") 'replace-string)
 (global-set-key (kbd "C-z u") 'upcase-region)
 (global-set-key (kbd "C-z y") 'clipboard-yank)
+(global-set-key (kbd "M-<left>") 'previous-buffer)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-q") 'ff-find-other-file)
+(global-set-key (kbd "M-<right>") 'next-buffer)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; semantic
