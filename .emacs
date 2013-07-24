@@ -7,22 +7,25 @@
        load-path))
 
 ;; global settings
-(tool-bar-mode nil)
+(require 'saveplace)
+(require 'paren)
+
+(fset 'yes-or-no-p 'y-or-n-p)
 (global-font-lock-mode t)
 (if (not window-system) (menu-bar-mode nil))
 (setq compilation-scroll-output 'first-error)
 (setq gdb-many-windows t)
 (setq inhibit-splash-screen t)
 (setq transient-mark-mode t)
-(fset 'yes-or-no-p 'y-or-n-p)
-
-;; save place
-(require 'saveplace)
 (setq-default save-place t)
-
-;; show paren mode
-(require 'paren)
 (show-paren-mode t)
+(tool-bar-mode nil)
+
+;; desktop save mode
+(desktop-save-mode t)
+(setq deskop-save t)
+(setq desktop-dirname (expand-file-name "~/"))
+(setq desktop-base-file-name ".emacs-desktop")
 
 ;; coding system and input method
 (prefer-coding-system 'utf-8)
@@ -61,7 +64,7 @@
    '(link ((t (:foreground "CadetBlue1" :underline t))))
    '(linum ((t (:foreground "DeepSkyBlue3" :background "black"))))
    '(minibuffer-prompt ((t (:foreground "gray70"))))
-   '(region ((t (:background "gray12"))))
+   '(region ((t (:background "gray20"))))
    '(semantic-highlight-func-current-tag-face ((t ())))
    '(semantic-tag-boundary-face ((t ())))
    '(senator-momentary-highlight-face ((t (:background "dark blue"))))
@@ -115,7 +118,7 @@
 	    (column-number-mode t)
 	    (which-function-mode t)
 
-	    (local-set-key "\C-c\ m" 'compile)))
+	    (local-set-key "C-c m" 'compile)))
 
 ;; python-mode
 (add-hook 'python-mode-hook
@@ -129,24 +132,31 @@
 
 ;; global key bindings
 (define-prefix-command 'my-keyboard-bindings)
+(global-set-key (kbd "C-z") 'my-keyboard-bindings)
 
-(global-set-key "\C-r" 'isearch-backward-regexp)
-(global-set-key "\C-s" 'isearch-forward-regexp)
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
-(global-set-key "\C-z" 'my-keyboard-bindings)
-(global-set-key "\C-z\ c" 'capitalize-region)
-(global-set-key "\C-z\ i" 'indent-region)
-(global-set-key "\C-z\ k" 'clipboard-kill-region)
-(global-set-key "\C-z\ l" 'downcase-region)
-(global-set-key "\C-z\ o" 'occur)
-(global-set-key "\C-z\ r" 'replace-regexp)
-(global-set-key "\C-z\ s" 'replace-string)
-(global-set-key "\C-z\ \C-s" 'sort-lines)
-(global-set-key "\C-z\ u" 'upcase-region)
-(global-set-key "\C-z\ y" 'clipboard-yank)
-(global-set-key "\M-n" 'forward-paragraph)
-(global-set-key "\M-p" 'backward-paragraph)
-(global-set-key "\M-q" 'ff-find-other-file)
+(global-set-key (kbd "C-,") 'previous-buffer)
+(global-set-key (kbd "C-.") 'next-buffer)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+(global-set-key (kbd "C-z ,") 'beginning-of-buffer)
+(global-set-key (kbd "C-z .") 'end-of-buffer)
+(global-set-key (kbd "C-z C-s") 'sort-lines)
+(global-set-key (kbd "C-z C-w") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-z c") 'capitalize-region)
+(global-set-key (kbd "C-z g") 'goto-line)
+(global-set-key (kbd "C-z i") 'indent-region)
+(global-set-key (kbd "C-z k") 'clipboard-kill-region)
+(global-set-key (kbd "C-z l") 'downcase-region)
+(global-set-key (kbd "C-z o") 'occur)
+(global-set-key (kbd "C-z r") 'replace-regexp)
+(global-set-key (kbd "C-z s") 'replace-string)
+(global-set-key (kbd "C-z u") 'upcase-region)
+(global-set-key (kbd "C-z y") 'clipboard-yank)
+(global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-q") 'ff-find-other-file)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; semantic
@@ -166,10 +176,11 @@
 	global-semantic-idle-scheduler-mode
 	global-semantic-mru-bookmark-mode))
 
-(global-set-key "\C-c\ c" 'semantic-ia-complete-symbol-menu)
-(global-set-key "\C-c\ j" 'semantic-ia-fast-jump)
-(global-set-key "\C-c\ s" 'semantic-ia-show-summary)
-(global-set-key "\C-c\ t" 'semantic-analyze-proto-impl-toggle)
+(global-set-key (kbd "C-c C-s") 'speedbar)
+(global-set-key (kbd "C-c c") 'semantic-ia-complete-symbol-menu)
+(global-set-key (kbd "C-c j") 'semantic-ia-fast-jump)
+(global-set-key (kbd "C-c s") 'semantic-ia-show-summary)
+(global-set-key (kbd "C-c t") 'semantic-analyze-proto-impl-toggle)
 
 ;; auto-complete mode
 (when (require 'auto-complete-config nil t)
@@ -194,7 +205,10 @@
 		      ac-source-variables
 		      ac-source-words-in-same-mode-buffers))))
 
-  (global-set-key "\C-c\ a" 'auto-complete))
+  (global-set-key (kbd "C-c a") 'auto-complete)
+  (define-key ac-completing-map (kbd "RET") 'ac-expand)
+
+  (setq ac-auto-show-menu 0.1))
 
 ;; local
 (dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/local/*.el"))) (load-file path))
