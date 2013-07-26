@@ -130,35 +130,6 @@
 (recentf-mode t)
 (setq recentf-max-menu-items 100)
 
-;; global key bindings
-(define-prefix-command 'my-keyboard-bindings)
-(global-set-key (kbd "C-z") 'my-keyboard-bindings)
-
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
-(global-set-key (kbd "C-z ,") 'beginning-of-buffer)
-(global-set-key (kbd "C-z .") 'end-of-buffer)
-(global-set-key (kbd "C-z C-s") 'sort-lines)
-(global-set-key (kbd "C-z C-w") 'delete-trailing-whitespace)
-(global-set-key (kbd "C-z c") 'capitalize-region)
-(global-set-key (kbd "C-z g") 'goto-line)
-(global-set-key (kbd "C-z i") 'indent-region)
-(global-set-key (kbd "C-z k") 'clipboard-kill-region)
-(global-set-key (kbd "C-z l") 'downcase-region)
-(global-set-key (kbd "C-z o") 'occur)
-(global-set-key (kbd "C-z r") 'replace-regexp)
-(global-set-key (kbd "C-z s") 'replace-string)
-(global-set-key (kbd "C-z u") 'upcase-region)
-(global-set-key (kbd "C-z y") 'clipboard-yank)
-(global-set-key (kbd "M-<left>") 'previous-buffer)
-(global-set-key (kbd "M-n") 'forward-paragraph)
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "M-p") 'backward-paragraph)
-(global-set-key (kbd "M-q") 'ff-find-other-file)
-(global-set-key (kbd "M-<right>") 'next-buffer)
-(global-set-key (kbd "RET") 'newline-and-indent)
-
 ;; semantic
 (require 'cedet)
 (require 'semantic)
@@ -175,12 +146,6 @@
 	global-semantic-idle-completions-mode
 	global-semantic-idle-scheduler-mode
 	global-semantic-mru-bookmark-mode))
-
-(global-set-key (kbd "C-c C-s") 'speedbar)
-(global-set-key (kbd "C-c c") 'semantic-ia-complete-symbol-menu)
-(global-set-key (kbd "C-c j") 'semantic-ia-fast-jump)
-(global-set-key (kbd "C-c s") 'semantic-ia-show-summary)
-(global-set-key (kbd "C-c t") 'semantic-analyze-proto-impl-toggle)
 
 ;; auto-complete mode
 (when (require 'auto-complete-config nil t)
@@ -209,6 +174,44 @@
   (define-key ac-completing-map (kbd "RET") 'ac-expand)
 
   (setq ac-auto-show-menu 0.1))
+
+;; global key bindings
+(define-prefix-command 'my-keyboard-bindings)
+(global-set-key (kbd "C-z") 'my-keyboard-bindings)
+
+(global-set-key (kbd "C-<left>") 'previous-buffer)
+(global-set-key (kbd "C-<right>") 'next-buffer)
+(global-set-key (kbd "C-c ;") 'comment-region)
+(global-set-key (kbd "C-c '") 'uncomment-region)
+(global-set-key (kbd "C-c C-s") 'speedbar)
+(global-set-key (kbd "C-c TAB") 'indent-region)
+(global-set-key (kbd "C-c c") 'semantic-ia-complete-symbol-menu)
+(global-set-key (kbd "C-c j") 'semantic-ia-fast-jump)
+(global-set-key (kbd "C-c s") 'semantic-ia-show-summary)
+(global-set-key (kbd "C-c t") 'semantic-analyze-proto-impl-toggle)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
+(global-set-key (kbd "C-z ,") 'beginning-of-buffer)
+(global-set-key (kbd "C-z .") 'end-of-buffer)
+(global-set-key (kbd "C-z C-d") 'dired-current-directory)
+(global-set-key (kbd "C-z C-s") 'sort-lines)
+(global-set-key (kbd "C-z C-w") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-z c") 'capitalize-region)
+(global-set-key (kbd "C-z g") 'goto-line)
+(global-set-key (kbd "C-z k") 'clipboard-kill-ring-save)
+(global-set-key (kbd "C-z l") 'downcase-region)
+(global-set-key (kbd "C-z o") 'occur)
+(global-set-key (kbd "C-z r") 'replace-regexp)
+(global-set-key (kbd "C-z s") 'replace-string)
+(global-set-key (kbd "C-z u") 'upcase-region)
+(global-set-key (kbd "C-z y") 'clipboard-yank)
+(global-set-key (kbd "M-<left>") 'next-multiframe-window)
+(global-set-key (kbd "M-<right>") 'previous-multiframe-window)
+(global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-q") 'ff-find-other-file)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 ;; local
 (dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/local/*.el"))) (load-file path))
