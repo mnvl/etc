@@ -21,12 +21,6 @@
 (show-paren-mode t)
 (tool-bar-mode nil)
 
-;; desktop save mode
-(desktop-save-mode t)
-(setq deskop-save t)
-(setq desktop-dirname (expand-file-name "~/"))
-(setq desktop-base-file-name ".emacs-desktop")
-
 ;; coding system and input method
 (prefer-coding-system 'utf-8)
 
@@ -62,7 +56,7 @@
    '(font-lock-warning-face ((t (:foreground "red"))))
    '(font-lock-warning-name-face ((t (:foreground "red"))))
    '(link ((t (:foreground "CadetBlue1" :underline t))))
-   '(linum ((t (:foreground "DeepSkyBlue3" :background "black"))))
+   '(linum ((t (:foreground "SkyBlue4" :background "black"))))
    '(minibuffer-prompt ((t (:foreground "gray70"))))
    '(region ((t (:background "gray20"))))
    '(semantic-highlight-func-current-tag-face ((t ())))
@@ -109,21 +103,16 @@
     (c-echo-syntactic-information-p . t))
   "my-c-style")
 
-(add-hook 'c-mode-common-hook
-	  (lambda ()
-	    (c-add-style "my-c-style" my-c-style)
-	    (apply 'custom-set-faces my-font-lock-faces)
+(defun my-programming-mode-hook ()
+  (c-add-style "my-c-style" my-c-style)
+  (apply 'custom-set-faces my-font-lock-faces)
 
-	    (linum-mode t)
-	    (column-number-mode t)
-	    (which-function-mode t)
+  (linum-mode t)
+  (column-number-mode t)
+  (which-function-mode t))
 
-	    (local-set-key "C-c m" 'compile)))
-
-;; python-mode
-(add-hook 'python-mode-hook
-	  (lambda ()
-	    (apply 'custom-set-faces my-font-lock-faces)))
+(add-hook 'c-mode-common-hook 'my-programming-mode-hook)
+(add-hook 'python-mode-hook 'my-programming-mode-hook)
 
 ;; remember recent files
 (require 'recentf)
@@ -179,10 +168,8 @@
 (define-prefix-command 'my-keyboard-bindings)
 (global-set-key (kbd "C-z") 'my-keyboard-bindings)
 
-(global-set-key (kbd "C-<left>") 'previous-buffer)
-(global-set-key (kbd "C-<right>") 'next-buffer)
-(global-set-key (kbd "C-c ;") 'comment-region)
 (global-set-key (kbd "C-c '") 'uncomment-region)
+(global-set-key (kbd "C-c ;") 'comment-region)
 (global-set-key (kbd "C-c C-s") 'speedbar)
 (global-set-key (kbd "C-c TAB") 'indent-region)
 (global-set-key (kbd "C-c c") 'semantic-ia-complete-symbol-menu)
@@ -206,9 +193,12 @@
 (global-set-key (kbd "C-z s") 'replace-string)
 (global-set-key (kbd "C-z u") 'upcase-region)
 (global-set-key (kbd "C-z y") 'clipboard-yank)
+(global-set-key (kbd "M-<down>") 'next-buffer)
 (global-set-key (kbd "M-<left>") 'next-multiframe-window)
 (global-set-key (kbd "M-<right>") 'previous-multiframe-window)
+(global-set-key (kbd "M-<up>") 'previous-buffer)
 (global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-o") 'next-multiframe-window)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-q") 'ff-find-other-file)
 (global-set-key (kbd "RET") 'newline-and-indent)
