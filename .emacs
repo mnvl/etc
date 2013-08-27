@@ -162,7 +162,9 @@
   (global-set-key (kbd "C-c a") 'auto-complete)
   (define-key ac-completing-map (kbd "RET") 'ac-expand)
 
-  (setq ac-auto-show-menu 0.1))
+  (setq ac-auto-show-menu 0.1)
+
+  (add-to-list 'ac-modes 'sh-mode))
 
 ;; global key bindings
 (define-prefix-command 'my-keyboard-bindings)
