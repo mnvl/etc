@@ -1,25 +1,21 @@
 
 ;; path settings
-(setq load-path
-      (append
-       (list (expand-file-name "~/.emacs.d/lisp/"))
-       (file-expand-wildcards (expand-file-name "~/.emacs.d/lisp/*/lisp"))
-       load-path))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp/"))
 
 ;; global settings
 (require 'saveplace)
 (require 'paren)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-(global-font-lock-mode t)
-(if (not window-system) (menu-bar-mode nil))
+(global-font-lock-mode 1)
+(if (not window-system) (menu-bar-mode 0))
 (setq compilation-scroll-output 'first-error)
-(setq gdb-many-windows t)
-(setq inhibit-splash-screen t)
-(setq transient-mark-mode t)
-(setq-default save-place t)
-(show-paren-mode t)
-(tool-bar-mode nil)
+(setq gdb-many-windows 1)
+(setq inhibit-splash-screen 1)
+(setq transient-mark-mode 1)
+(setq-default save-place 1)
+(show-paren-mode 1)
+(tool-bar-mode 0)
 
 ;; coding system and input method
 (prefer-coding-system 'utf-8)
@@ -100,23 +96,23 @@
                                    (access-label          . -)
                                    (inclass               . +)
                                    (innamespace           . 0)))
-    (c-echo-syntactic-information-p . t))
+    (c-echo-syntactic-information-p . 1))
   "my-c-style")
 
 (defun my-programming-mode-hook ()
   (c-add-style "my-c-style" my-c-style)
   (apply 'custom-set-faces my-font-lock-faces)
 
-  (linum-mode t)
-  (column-number-mode t)
-  (which-function-mode t))
+  (linum-mode 1)
+  (column-number-mode 1)
+  (which-function-mode 1))
 
 (add-hook 'c-mode-common-hook 'my-programming-mode-hook)
 (add-hook 'python-mode-hook 'my-programming-mode-hook)
 
 ;; remember recent files
 (require 'recentf)
-(recentf-mode t)
+(recentf-mode 1)
 (setq recentf-max-menu-items 100)
 
 ;; semantic
@@ -125,8 +121,8 @@
 (require 'semantic/analyze/refs)
 (require 'semantic/ia)
 
-(semantic-mode t)
-(global-ede-mode t)
+(semantic-mode 1)
+(global-ede-mode 1)
 
 (setq semantic-default-submodes
       '(global-semanticdb-minor-mode
@@ -137,7 +133,7 @@
 	global-semantic-mru-bookmark-mode))
 
 ;; auto-complete mode
-(when (require 'auto-complete-config nil t)
+(when (require 'auto-complete-config nil 1)
   (setq ac-comphist-file  "~/.emacs.d/ac-comphist.dat")
   (ac-config-default)
 
@@ -148,7 +144,6 @@
 	      (setq ac-sources
 		    '(ac-source-abbrev
 		      ac-source-dictionary
-		      ac-source-dictionary
 		      ac-source-features
 		      ac-source-filename
 		      ac-source-files-in-current-dir
@@ -157,53 +152,62 @@
 		      ac-source-semantic-raw
 		      ac-source-symbols
 		      ac-source-variables
-		      ac-source-words-in-same-mode-buffers))))
+		      ac-source-words-in-all-buffer))))
 
   (global-set-key (kbd "C-c a") 'auto-complete)
   (define-key ac-completing-map (kbd "RET") 'ac-expand)
 
   (setq ac-auto-show-menu 0.1)
 
-  (add-to-list 'ac-modes 'sh-mode))
+  (add-to-list 'ac-modes 'sh-mode)
+  (add-to-list 'ac-modes 'conf-colon-mode))
 
-;; global key bindings
-(define-prefix-command 'my-keyboard-bindings)
-(global-set-key (kbd "C-z") 'my-keyboard-bindings)
-
-(global-set-key (kbd "C-c '") 'uncomment-region)
-(global-set-key (kbd "C-c ;") 'comment-region)
-(global-set-key (kbd "C-c C-s") 'speedbar)
-(global-set-key (kbd "C-c TAB") 'indent-region)
-(global-set-key (kbd "C-c c") 'semantic-ia-complete-symbol-menu)
-(global-set-key (kbd "C-c j") 'semantic-ia-fast-jump)
-(global-set-key (kbd "C-c s") 'semantic-ia-show-summary)
-(global-set-key (kbd "C-c t") 'semantic-analyze-proto-impl-toggle)
-(global-set-key (kbd "C-r") 'isearch-backward-regexp)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+;; key bindings
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
-(global-set-key (kbd "C-z ,") 'beginning-of-buffer)
-(global-set-key (kbd "C-z .") 'end-of-buffer)
-(global-set-key (kbd "C-z C-d") 'dired-current-directory)
-(global-set-key (kbd "C-z C-s") 'sort-lines)
-(global-set-key (kbd "C-z C-w") 'delete-trailing-whitespace)
-(global-set-key (kbd "C-z c") 'capitalize-region)
-(global-set-key (kbd "C-z g") 'goto-line)
-(global-set-key (kbd "C-z k") 'clipboard-kill-ring-save)
-(global-set-key (kbd "C-z l") 'downcase-region)
-(global-set-key (kbd "C-z o") 'occur)
-(global-set-key (kbd "C-z r") 'replace-regexp)
-(global-set-key (kbd "C-z s") 'replace-string)
-(global-set-key (kbd "C-z u") 'upcase-region)
-(global-set-key (kbd "C-z y") 'clipboard-yank)
-(global-set-key (kbd "M-<down>") 'next-buffer)
-(global-set-key (kbd "M-<left>") 'next-multiframe-window)
-(global-set-key (kbd "M-<right>") 'previous-multiframe-window)
-(global-set-key (kbd "M-<up>") 'previous-buffer)
-(global-set-key (kbd "M-n") 'forward-paragraph)
-(global-set-key (kbd "M-o") 'next-multiframe-window)
-(global-set-key (kbd "M-p") 'backward-paragraph)
-(global-set-key (kbd "M-q") 'ff-find-other-file)
-(global-set-key (kbd "RET") 'newline-and-indent)
+
+(define-prefix-command 'my-key-bindings)
+(defvar my-keys-mode-map (make-keymap) "my-keys-mode-map")
+(define-key my-keys-mode-map (kbd "C-z") 'my-key-bindings)
+(define-key my-keys-mode-map (kbd "C-c '") 'uncomment-region)
+(define-key my-keys-mode-map (kbd "C-c ;") 'comment-region)
+(define-key my-keys-mode-map (kbd "C-c C-s") 'speedbar)
+(define-key my-keys-mode-map (kbd "C-c TAB") 'indent-region)
+(define-key my-keys-mode-map (kbd "C-c c") 'semantic-ia-complete-symbol-menu)
+(define-key my-keys-mode-map (kbd "C-c j") 'semantic-ia-fast-jump)
+(define-key my-keys-mode-map (kbd "C-c s") 'semantic-ia-show-summary)
+(define-key my-keys-mode-map (kbd "C-c 1") 'semantic-analyze-proto-impl-toggle)
+(define-key my-keys-mode-map (kbd "C-r") 'isearch-backward-regexp)
+(define-key my-keys-mode-map (kbd "C-s") 'isearch-forward-regexp)
+(define-key my-keys-mode-map (kbd "C-z ,") 'beginning-of-buffer)
+(define-key my-keys-mode-map (kbd "C-z .") 'end-of-buffer)
+(define-key my-keys-mode-map (kbd "C-z C-d") 'dired-current-directory)
+(define-key my-keys-mode-map (kbd "C-z C-k") 'clipboard-kill-ring-save)
+(define-key my-keys-mode-map (kbd "C-z C-s") 'sort-lines)
+(define-key my-keys-mode-map (kbd "C-z C-w") 'delete-trailing-whitespace)
+(define-key my-keys-mode-map (kbd "C-z C-y") 'clipboard-yank)
+(define-key my-keys-mode-map (kbd "C-z c") 'capitalize-region)
+(define-key my-keys-mode-map (kbd "C-z g") 'goto-line)
+(define-key my-keys-mode-map (kbd "C-z l") 'downcase-region)
+(define-key my-keys-mode-map (kbd "C-z o") 'occur)
+(define-key my-keys-mode-map (kbd "C-z r") 'replace-regexp)
+(define-key my-keys-mode-map (kbd "C-z s") 'replace-string)
+(define-key my-keys-mode-map (kbd "C-z u") 'upcase-region)
+(define-key my-keys-mode-map (kbd "M-<down>") 'next-buffer)
+(define-key my-keys-mode-map (kbd "M-<left>") 'next-multiframe-window)
+(define-key my-keys-mode-map (kbd "M-<right>") 'previous-multiframe-window)
+(define-key my-keys-mode-map (kbd "M-<up>") 'previous-buffer)
+(define-key my-keys-mode-map (kbd "M-n") 'forward-paragraph)
+(define-key my-keys-mode-map (kbd "M-o") 'next-multiframe-window)
+(define-key my-keys-mode-map (kbd "M-p") 'backward-paragraph)
+(define-key my-keys-mode-map (kbd "M-q") 'ff-find-other-file)
+(define-key my-keys-mode-map (kbd "RET") 'newline-and-indent)
+
+(define-minor-mode my-keys-minor-mode "my-keys-minor-mode" nil " my-keys" my-keys-mode-map)
+
+(add-hook 'c-mode-common-hook (lambda () (my-keys-minor-mode 1)))
+(add-hook 'python-mode-hook (lambda () (my-keys-minor-mode 1)))
+(add-hook 'sh-mode-hook (lambda () (my-keys-minor-mode 1)))
+(add-hook 'conf-mode-hook (lambda () (my-keys-minor-mode 1)))
 
 ;; local
-(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/local/*.el"))) (load-file path))
+(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/auto/*.el"))) (load-file path))
