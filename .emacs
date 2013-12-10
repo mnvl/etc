@@ -185,6 +185,7 @@
 (global-set-key (kbd "C-z C-s") 'sort-lines)
 (global-set-key (kbd "C-z C-w") 'delete-trailing-whitespace)
 (global-set-key (kbd "C-z C-y") 'clipboard-yank)
+(global-set-key (kbd "C-z b") 'regexp-builder)
 (global-set-key (kbd "C-z c") 'capitalize-region)
 (global-set-key (kbd "C-z g") 'goto-line)
 (global-set-key (kbd "C-z l") 'downcase-region)
