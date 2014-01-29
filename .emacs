@@ -52,7 +52,7 @@
    '(font-lock-warning-face ((t (:foreground "red"))))
    '(font-lock-warning-name-face ((t (:foreground "red"))))
    '(link ((t (:foreground "CadetBlue1" :underline t))))
-   '(linum ((t (:foreground "SkyBlue4" :background "black"))))
+   '(linum ((t (:foreground "gray40" :background "gray20"))))
    '(minibuffer-prompt ((t (:foreground "gray70"))))
    '(region ((t (:background "gray20"))))
    '(semantic-highlight-func-current-tag-face ((t ())))
@@ -106,6 +106,8 @@
   (linum-mode 1)
   (column-number-mode 1)
   (which-function-mode 1)
+
+  (setq-local linum-format "%4d")
 
   (local-set-key (kbd "C-c C-c") 'comment-region)
   (local-set-key (kbd "C-c C-s") 'speedbar)
@@ -202,4 +204,4 @@
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
 ;; local
-(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/auto/*.el"))) (load-file path))
+(dolist (path (file-expand-wildcards (expand-file-name "~/.emacs.d/include/*.el"))) (load-file path))
