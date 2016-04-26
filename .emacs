@@ -36,13 +36,14 @@
   (load-theme 'tango-dark))
 
 ;; programming modes
-(require 'cc-mode)
-
 ;; irony-mode is the only one which supports compilation databases
-;; (install irony and company-irony from melpa)
+;; sudo apt install libclang-dev clang-format
+;; install irony, company-irony and clang-format from melpa
+(require 'cc-mode)
 (require 'company)
 (require 'irony)
 (require 'company-irony)
+(require 'clang-format)
 
 (add-to-list 'auto-mode-alist '("\\CMakeLists.txt\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . c-mode))
@@ -51,7 +52,8 @@
 
 (defun my-prog-mode-hook ()
   (setq-local linum-format (if window-system "%4d" "%4d "))
-  (setq c-default-style "my-c-style")
+
+  (setq c-basic-offset 2)
 
   (column-number-mode 1)
   (which-function-mode 1)
@@ -62,7 +64,6 @@
   (setq compilation-scroll-output 'first-error)
 
   (company-mode 1)
-
   (when (member major-mode irony-supported-major-modes)
     (irony-mode 1)
     (add-to-list 'company-backends 'company-irony))
@@ -70,9 +71,8 @@
   (local-set-key (kbd "M-q") 'ff-find-other-file)
   (local-set-key (kbd "C-c # c") 'comment-region)
   (local-set-key (kbd "C-c # u") 'uncomment-region)
-  (local-set-key (kbd "C-c c") 'semantic-ia-complete-symbol-menu)
-  (local-set-key (kbd "C-c j") 'semantic-ia-fast-jump)
-  (local-set-key (kbd "C-c x") 'semantic-ia-show-summary)
+  (local-set-key (kbd "C-c c") 'company-complete)
+  (local-set-key (kbd "C-c f") 'clang-format)
   (local-set-key (kbd "RET") 'newline-and-indent))
 
 (add-hook 'c-mode-common-hook 'my-prog-mode-hook)
