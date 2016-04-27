@@ -73,7 +73,8 @@
   (push 'company-rtags company-backends)
   (delete 'company-clang company-backends)
 
-  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 1)
+  (setq company-idle-delay 0.1)
   (company-mode 1)
   (flycheck-mode 1)
 
