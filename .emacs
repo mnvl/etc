@@ -31,19 +31,22 @@
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
-(if (window-system)
-    (load-theme 'tango)
-  (load-theme 'tango-dark))
+(if (window-system) (load-theme 'tango))
 
 ;; programming modes
-;; irony-mode is the only one which supports compilation databases
-;; sudo apt install libclang-dev clang-format
-;; install irony, company-irony and clang-format from melpa
 (require 'cc-mode)
+
+;; sudo apt install libclang-dev clang clang-format libncurses5-dev liblua5.3-dev
+;; clone from github.com and compile company-mode and rtags in ~/.emacs.d/lisp
+;; M-x package-install clang-format & flycheck
+;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
+(add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
-(require 'irony)
-(require 'company-irony)
-(require 'clang-format)
+
+(setq rtags-path "~/.emacs.d/lisp/rtags/bin/")
+(add-to-list 'load-path "~/.emacs.d/lisp/rtags/src/")
+(require 'rtags)
+(require 'flycheck-rtags)
 
 (add-to-list 'auto-mode-alist '("\\CMakeLists.txt\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.proto\\'" . c-mode))
@@ -55,6 +58,7 @@
 
   (setq c-basic-offset 2)
 
+  (setq-default indent-tabs-mode nil)
   (column-number-mode 1)
   (which-function-mode 1)
 
@@ -63,15 +67,26 @@
 
   (setq compilation-scroll-output 'first-error)
 
+  (rtags-start-process-unless-running)
+  (setq rtags-autostart-diagnostics 1)
+  (setq rtags-completions-enabled 1)
+  (push 'company-rtags company-backends)
+  (delete 'company-clang company-backends)
+
+  (setq company-idle-delay 0)
   (company-mode 1)
-  (when (member major-mode irony-supported-major-modes)
-    (irony-mode 1)
-    (add-to-list 'company-backends 'company-irony))
+  (flycheck-mode 1)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file)
   (local-set-key (kbd "C-c # c") 'comment-region)
   (local-set-key (kbd "C-c # u") 'uncomment-region)
   (local-set-key (kbd "C-c c") 'company-complete)
+  (local-set-key (kbd "C-c s") 'rtags-print-symbol-info)
+  (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point)
+  (local-set-key (kbd "C-c j") 'rtags-find-symbol-at-point)
+  (local-set-key (kbd "C-c m") 'rtags-imenu)
+  (local-set-key (kbd "C-c p") 'rtags-previous-match)
+  (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c f") 'clang-format)
   (local-set-key (kbd "RET") 'newline-and-indent))
 
@@ -91,6 +106,8 @@
 ;; navigation key bindings
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
+
+(global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "C-<up>") 'windmove-up)
 (global-set-key (kbd "C-<down>") 'windmove-down)
