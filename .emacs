@@ -69,12 +69,15 @@
 
   (rtags-start-process-unless-running)
   (setq rtags-autostart-diagnostics 1)
+  (rtags-diagnostics)
   (setq rtags-completions-enabled 1)
+  (setq rtags-display-current-error-as-tooltip 1)
   (push 'company-rtags company-backends)
   (delete 'company-clang company-backends)
 
   (setq company-minimum-prefix-length 1)
   (setq company-idle-delay 0.1)
+  (setq company-rtags-begin-after-member-access 1)
   (company-mode 1)
   (flycheck-mode 1)
 
