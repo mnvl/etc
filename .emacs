@@ -38,33 +38,32 @@
 
 ;; sudo apt install libclang-dev clang clang-format libncurses5-dev liblua5.3-dev
 ;; clone from github.com and compile company-mode and rtags in ~/.emacs.d/lisp
-;; M-x package-install clang-format & flycheck
+;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
+(setq company-minimum-prefix-length 1)
+(setq company-idle-delay 0.1)
+(setq company-rtags-begin-after-member-access 1)
+(global-company-mode 1)
 
 (setq rtags-path "~/.emacs.d/lisp/rtags/bin/")
 (add-to-list 'load-path "~/.emacs.d/lisp/rtags/src/")
 (require 'rtags)
 (require 'flycheck-rtags)
 
-(add-to-list 'auto-mode-alist '("\\CMakeLists.txt\\'" . c-mode))
-(add-to-list 'auto-mode-alist '("\\.proto\\'" . c-mode))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
 
-(defun my-prog-mode-hook ()
+(defun my-c-mode-common-hook ()
   (setq-local linum-format (if window-system "%4d" "%4d "))
-
-  (setq c-basic-offset 2)
-
   (setq-default indent-tabs-mode nil)
   (column-number-mode 1)
-  (which-function-mode 1)
-
   (setq-local whitespace-style '(face trailing tabs))
-  (whitespace-mode 1)
+  (whitespace-mode 1))
 
+(defun my-c-c++-mode-hook ()
+  (setq c-basic-offset 2)
   (setq compilation-scroll-output 'first-error)
 
   (rtags-start-process-unless-running)
@@ -75,10 +74,6 @@
   (push 'company-rtags company-backends)
   (delete 'company-clang company-backends)
 
-  (setq company-minimum-prefix-length 1)
-  (setq company-idle-delay 0.1)
-  (setq company-rtags-begin-after-member-access 1)
-  (company-mode 1)
   (flycheck-mode 1)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file)
@@ -94,12 +89,16 @@
   (local-set-key (kbd "C-c f") 'clang-format)
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-(add-hook 'c-mode-common-hook 'my-prog-mode-hook)
-(add-hook 'emacs-lisp-mode-hook 'my-prog-mode-hook)
-(add-hook 'lisp-mode-hook 'my-prog-mode-hook)
-(add-hook 'python-mode-hook 'my-prog-mode-hook)
-(add-hook 'sh-mode-hook 'my-prog-mode-hook)
-(add-hook 'text-mode-hook 'my-prog-mode-hook)
+;; sudo apt install vertualenv
+;; M-x package install jedi company-jedi
+(defun my-python-mode-hook ()
+  (jedi:setup)
+  (push 'company-jedi company-backends))
+
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c-mode-hook 'my-c-c++-mode-hook)
+(add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
+(add-hook 'python-mode-hook 'my-python-mode-hook)
 
 ;; ido
 (ido-mode 1)
@@ -135,3 +134,4 @@
 (global-set-key (kbd "M-r") 'my-replace-bindings)
 (global-set-key (kbd "M-r r") 'replace-regexp)
 (global-set-key (kbd "M-r s") 'replace-string)
+(put 'upcase-region 'disabled nil)
