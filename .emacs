@@ -92,12 +92,15 @@
 ;; sudo apt install vertualenv
 ;; M-x package install jedi company-jedi
 (defun my-python-mode-hook ()
+  (setq python-indent-offset 2)
   (jedi:setup)
   (push 'company-jedi company-backends))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
+
+(add-hook 'python-mode-hook 'my-c-mode-common-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 
 ;; ido
