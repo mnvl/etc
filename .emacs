@@ -36,9 +36,11 @@
 ;; programming modes
 (require 'cc-mode)
 
-;; sudo apt install libclang-dev clang clang-format libncurses5-dev liblua5.3-dev
-;; clone from github.com and compile company-mode and rtags in ~/.emacs.d/lisp
-;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode
+;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev python*-virtualenv
+;; mkdir ~/.emacs.d/lisp; cd $_
+;; git clone https://github.com/company-mode/company-mode.git && cd company-mode && make && cd ..
+;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
+;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company-jedi
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
@@ -66,13 +68,14 @@
   (setq c-basic-offset 2)
   (setq compilation-scroll-output 'first-error)
 
+  (setq company-clang-arguments '("--std=c++14"))
+
   (rtags-start-process-unless-running)
   (setq rtags-autostart-diagnostics 1)
   (rtags-diagnostics)
   (setq rtags-completions-enabled 1)
   (setq rtags-display-current-error-as-tooltip 1)
   (push 'company-rtags company-backends)
-  (delete 'company-clang company-backends)
 
   (flycheck-mode 1)
 
