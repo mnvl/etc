@@ -1,5 +1,5 @@
 
-HISTFILE=/home/manvel/.zhistory
+HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
 SAVEHIST=1000000
 setopt SHARE_HISTORY

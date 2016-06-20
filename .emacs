@@ -3,8 +3,9 @@
 (require 'saveplace)
 (require 'paren)
 
-(if (not window-system) (menu-bar-mode 0))
-(tool-bar-mode 0)
+(if (window-system)
+    (tool-bar-mode 0)
+  (menu-bar-mode 0))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-font-lock-mode 1)
@@ -15,6 +16,10 @@
 (show-paren-mode 1)
 (setq frame-title-format (list "%f"))
 (global-subword-mode 1)
+
+(setq undo-limit (* 32 1024 1024))
+(setq undo-strong-limit (* 64 1024 1024))
+(setq undo-outer-limit (* 16 1024 1024))
 
 ;; melpa
 (require 'package)
@@ -35,6 +40,7 @@
 
 ;; programming modes
 (require 'cc-mode)
+(require 'gud)
 
 ;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev python*-virtualenv
 ;; mkdir ~/.emacs.d/lisp; cd $_
@@ -80,20 +86,19 @@
   (flycheck-mode 1)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file)
-  (local-set-key (kbd "C-c # c") 'comment-region)
-  (local-set-key (kbd "C-c # u") 'uncomment-region)
+  (local-set-key (kbd "C-c C") 'uncomment-region)
   (local-set-key (kbd "C-c c") 'company-complete)
-  (local-set-key (kbd "C-c s") 'rtags-print-symbol-info)
-  (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point)
+  (local-set-key (kbd "C-c f") 'clang-format)
+  (local-set-key (kbd "C-c g") 'gdb)
   (local-set-key (kbd "C-c j") 'rtags-find-symbol-at-point)
   (local-set-key (kbd "C-c m") 'rtags-imenu)
-  (local-set-key (kbd "C-c p") 'rtags-previous-match)
   (local-set-key (kbd "C-c n") 'rtags-next-match)
-  (local-set-key (kbd "C-c f") 'clang-format)
+  (local-set-key (kbd "C-c p") 'rtags-previous-match)
+  (local-set-key (kbd "C-c r") 'comment-region)
+  (local-set-key (kbd "C-c s") 'rtags-print-symbol-info)
+  (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point)
   (local-set-key (kbd "RET") 'newline-and-indent))
 
-;; sudo apt install vertualenv
-;; M-x package install jedi company-jedi
 (defun my-python-mode-hook ()
   (setq python-indent-offset 2)
   (jedi:setup)
@@ -125,19 +130,5 @@
 
 ;; search & replace key bindings
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(define-prefix-command 'my-search-bindings)
-(global-set-key (kbd "M-s") 'my-search-bindings)
-(global-set-key (kbd "M-s b") 'regexp-builder)
-(global-set-key (kbd "M-s g") 'grep)
-(global-set-key (kbd "M-s h") 'highlight-lines-matching-regexp)
-(global-set-key (kbd "M-s o") 'occur)
-(global-set-key (kbd "M-s r") 'isearch-forward-regexp)
-(global-set-key (kbd "M-s s") 'isearch-forward)
-(global-set-key (kbd "M-s w") 'isearch-forward-word)
-
+(global-set-key (kbd "M-s") 'isearch-backward-regexp)
 (global-set-key (kbd "C-r") 'query-replace-regexp)
-(define-prefix-command 'my-replace-bindings)
-(global-set-key (kbd "M-r") 'my-replace-bindings)
-(global-set-key (kbd "M-r r") 'replace-regexp)
-(global-set-key (kbd "M-r s") 'replace-string)
-(put 'upcase-region 'disabled nil)
