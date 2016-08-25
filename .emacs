@@ -42,10 +42,10 @@
 (require 'cc-mode)
 (require 'gud)
 
-;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev python*-virtualenv
+;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python3-virtualenv python3-jedi
 ;; mkdir ~/.emacs.d/lisp; cd $_
 ;; git clone https://github.com/company-mode/company-mode.git && cd company-mode && make && cd ..
-;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
+;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
 ;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company-jedi
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
@@ -101,6 +101,10 @@
 
 (defun my-python-mode-hook ()
   (setq python-indent-offset 2)
+  (setq jedi:environment-root "jedi")
+  (setq jedi:environment-virtualenv
+        (append python-environment-virtualenv
+                '("--python" "/usr/bin/python3")))
   (jedi:setup)
   (push 'company-jedi company-backends))
 
