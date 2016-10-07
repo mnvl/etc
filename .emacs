@@ -42,6 +42,12 @@
 (require 'cc-mode)
 (require 'gud)
 
+(defconst my-cc-style
+  '("cc-mode"
+    (c-offsets-alist . ((innamespace . [0])))))
+
+(c-add-style "my-cc-style" my-cc-style)
+
 ;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python3-virtualenv python3-jedi
 ;; mkdir ~/.emacs.d/lisp; cd $_
 ;; git clone https://github.com/company-mode/company-mode.git && cd company-mode && make && cd ..
@@ -73,6 +79,7 @@
 (defun my-c-c++-mode-hook ()
   (setq c-basic-offset 2)
   (setq compilation-scroll-output 'first-error)
+  (c-set-style "my-cc-style")
 
   (setq company-clang-arguments '("--std=c++14"))
 
@@ -128,9 +135,13 @@
 (global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "C-<up>") 'windmove-up)
+(global-set-key (kbd "M-[ a") 'windmove-up)
 (global-set-key (kbd "C-<down>") 'windmove-down)
+(global-set-key (kbd "M-[ b") 'windmove-down)
 (global-set-key (kbd "C-<left>") 'windmove-left)
+(global-set-key (kbd "M-[ d") 'windmove-left)
 (global-set-key (kbd "C-<right>") 'windmove-right)
+(global-set-key (kbd "M-[ c") 'windmove-right)
 
 ;; search & replace key bindings
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
