@@ -68,6 +68,7 @@
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
 (defun my-c-mode-common-hook ()
   (setq-local linum-format (if window-system "%4d" "%4d "))
@@ -88,8 +89,12 @@
   (rtags-diagnostics)
   (setq rtags-completions-enabled 1)
   (setq rtags-display-current-error-as-tooltip 1)
-  (push 'company-rtags company-backends)
-
+  (setq company-backends
+        '((company-files
+           company-keywords
+           company-rtags
+           company-yasnippet)
+          (company-abbrev company-dabbrev)))
   (flycheck-mode 1)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file)
