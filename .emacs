@@ -111,7 +111,7 @@
 
 ;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python3-virtualenv python3-jedi
 ;; mkdir ~/.emacs.d/lisp; cd $_
-;; git clone https://github.com/company-mode/company-mode.git && cd company-mode && make && cd ..
+;; git clone https://github.com/company-mode/company-mode.git && cd company-mode && git checkout tags/0.X.X  && make && cd ..
 ;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
 ;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company-jedi
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
