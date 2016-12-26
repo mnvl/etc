@@ -117,8 +117,8 @@
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
-(setq company-minimum-prefix-length 3)
-(setq company-idle-delay 0.1)
+(setq company-minimum-prefix-length 11)
+(setq company-idle-delay 0.7)
 (setq company-rtags-begin-after-member-access 1)
 (global-company-mode 1)
 
@@ -157,7 +157,9 @@
            company-rtags
            company-yasnippet)
           (company-abbrev company-dabbrev)))
-  (flycheck-mode 0)
+  (flycheck-mode 1)
+
+  (local-set-key (kbd "RET") 'newline-and-indent)
 
   (local-set-key (kbd "M-,") 'ff-find-other-file)
   (local-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
@@ -170,8 +172,7 @@
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
   (local-set-key (kbd "C-c r") 'comment-region)
   (local-set-key (kbd "C-c s") 'rtags-print-symbol-info)
-  (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point)
-  (local-set-key (kbd "RET") 'newline-and-indent))
+  (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point))
 
 (defun my-python-mode-hook ()
   (setq python-indent-offset 2)
