@@ -42,9 +42,70 @@
 (require 'cc-mode)
 (require 'gud)
 
+;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
-  '("cc-mode"
-    (c-offsets-alist . ((innamespace . [0])))))
+  `((c-recognize-knr-p . nil)
+    (c-enable-xemacs-performance-kludge-p . t)
+    (c-basic-offset . 2)
+    (indent-tabs-mode . nil)
+    (c-comment-only-line-offset . 0)
+    (c-hanging-braces-alist . ((defun-open after)
+                               (defun-close before after)
+                               (class-open after)
+                               (class-close before after)
+                               (inexpr-class-open after)
+                               (inexpr-class-close before)
+                               (namespace-open after)
+                               (inline-open after)
+                               (inline-close before after)
+                               (block-open after)
+                               (block-close . c-snug-do-while)
+                               (extern-lang-open after)
+                               (extern-lang-close after)
+                               (statement-case-open after)
+                               (substatement-open after)))
+    (c-hanging-colons-alist . ((case-label)
+                               (label after)
+                               (access-label after)
+                               (member-init-intro before)
+                               (inher-intro)))
+    (c-hanging-semi&comma-criteria
+     . (c-semi&comma-no-newlines-for-oneline-inliners
+        c-semi&comma-inside-parenlist
+        c-semi&comma-no-newlines-before-nonblanks))
+    (c-indent-comments-syntactically-p . t)
+    (comment-column . 40)
+    (c-indent-comment-alist . ((other . (space . 2))))
+    (c-cleanup-list . (brace-else-brace
+                       brace-elseif-brace
+                       brace-catch-brace
+                       empty-defun-braces
+                       defun-close-semi
+                       list-close-comma
+                       scope-operator))
+    (c-offsets-alist . ((arglist-intro . ++)
+                        (func-decl-cont . ++)
+                        (member-init-intro . ++)
+                        (inher-intro . ++)
+                        (comment-intro . 0)
+                        (arglist-close . c-lineup-arglist)
+                        (topmost-intro . 0)
+                        (block-open . 0)
+                        (inline-open . 0)
+                        (substatement-open . 0)
+                        (statement-cont
+                         .
+                         (,(when (fboundp 'c-no-indent-after-java-annotations)
+                             'c-no-indent-after-java-annotations)
+                          ,(when (fboundp 'c-lineup-assignments)
+                             'c-lineup-assignments)
+                          ++))
+                        (label . /)
+                        (case-label . +)
+                        (statement-case-open . +)
+                        (statement-case-intro . +) ; case w/o {
+                        (access-label . /)
+                        (innamespace . 0)))))
 
 (c-add-style "my-cc-style" my-cc-style)
 
@@ -56,7 +117,7 @@
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
-(setq company-minimum-prefix-length 1)
+(setq company-minimum-prefix-length 3)
 (setq company-idle-delay 0.1)
 (setq company-rtags-begin-after-member-access 1)
 (global-company-mode 1)
@@ -73,6 +134,7 @@
 (defun my-c-mode-common-hook ()
   (setq-local linum-format (if window-system "%4d" "%4d "))
   (setq-default indent-tabs-mode nil)
+  (setq tab-width 2)
   (column-number-mode 1)
   (setq-local whitespace-style '(face trailing tabs))
   (whitespace-mode 1))
@@ -95,14 +157,14 @@
            company-rtags
            company-yasnippet)
           (company-abbrev company-dabbrev)))
-  (flycheck-mode 1)
+  (flycheck-mode 0)
 
-  (local-set-key (kbd "M-q") 'ff-find-other-file)
+  (local-set-key (kbd "M-,") 'ff-find-other-file)
+  (local-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
+  (local-set-key (kbd "M-/") 'company-complete)
   (local-set-key (kbd "C-c C") 'uncomment-region)
-  (local-set-key (kbd "C-c c") 'company-complete)
   (local-set-key (kbd "C-c f") 'clang-format)
   (local-set-key (kbd "C-c g") 'gdb)
-  (local-set-key (kbd "C-c j") 'rtags-find-symbol-at-point)
   (local-set-key (kbd "C-c m") 'rtags-imenu)
   (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
