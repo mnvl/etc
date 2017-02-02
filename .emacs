@@ -46,7 +46,7 @@
 (defconst my-cc-style
   `((c-recognize-knr-p . nil)
     (c-enable-xemacs-performance-kludge-p . t)
-    (c-basic-offset . 2)
+    (c-basic-offset . 4)
     (indent-tabs-mode . nil)
     (c-comment-only-line-offset . 0)
     (c-hanging-braces-alist . ((defun-open after)
@@ -75,7 +75,7 @@
         c-semi&comma-no-newlines-before-nonblanks))
     (c-indent-comments-syntactically-p . t)
     (comment-column . 40)
-    (c-indent-comment-alist . ((other . (space . 2))))
+    (c-indent-comment-alist . ((other . (space . 4))))
     (c-cleanup-list . (brace-else-brace
                        brace-elseif-brace
                        brace-catch-brace
@@ -117,9 +117,6 @@
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
-(setq company-minimum-prefix-length 11)
-(setq company-idle-delay 0.7)
-(setq company-rtags-begin-after-member-access 1)
 (global-company-mode 1)
 
 (setq rtags-path "~/.emacs.d/lisp/rtags/bin/")
@@ -127,20 +124,25 @@
 (require 'rtags)
 (require 'flycheck-rtags)
 
+(setq whitespace-style '(face trailing tabs))
+(global-whitespace-mode 1)
+
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
 (defun my-c-mode-common-hook ()
   (setq-local linum-format (if window-system "%4d" "%4d "))
+
   (setq-default indent-tabs-mode nil)
-  (setq tab-width 2)
-  (column-number-mode 1)
-  (setq-local whitespace-style '(face trailing tabs))
-  (whitespace-mode 1))
+  (setq tab-width 4)
+
+  (column-number-mode 4)
+
+  (local-set-key (kbd "M-/") 'company-complete))
 
 (defun my-c-c++-mode-hook ()
-  (setq c-basic-offset 2)
+  (setq c-basic-offset 4)
   (setq compilation-scroll-output 'first-error)
   (c-set-style "my-cc-style")
 
@@ -156,38 +158,43 @@
            company-keywords
            company-rtags
            company-yasnippet)
-          (company-abbrev company-dabbrev)))
+          (company-abbrev
+           company-dabbrev)))
   (flycheck-mode 1)
+
+  (setq company-minimum-prefix-length 7)
+  (setq company-idle-delay 0.7)
+  (setq company-rtags-begin-after-member-access 1)
 
   (local-set-key (kbd "RET") 'newline-and-indent)
 
   (local-set-key (kbd "M-,") 'ff-find-other-file)
   (local-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
-  (local-set-key (kbd "M-/") 'company-complete)
-  (local-set-key (kbd "C-c C") 'uncomment-region)
   (local-set-key (kbd "C-c f") 'clang-format)
   (local-set-key (kbd "C-c g") 'gdb)
   (local-set-key (kbd "C-c m") 'rtags-imenu)
   (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
-  (local-set-key (kbd "C-c r") 'comment-region)
   (local-set-key (kbd "C-c s") 'rtags-print-symbol-info)
   (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point))
 
 (defun my-python-mode-hook ()
-  (setq python-indent-offset 2)
+  (my-c-mode-common-hook)
+
+  (setq python-indent-offset 4)
   (setq jedi:environment-root "jedi")
   (setq jedi:environment-virtualenv
         (append python-environment-virtualenv
                 '("--python" "/usr/bin/python3")))
   (jedi:setup)
-  (push 'company-jedi company-backends))
+  (push 'company-jedi company-backends)
+
+  (setq company-minimum-prefix-length 5)
+  (setq company-idle-delay 0.1))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
-
-(add-hook 'python-mode-hook 'my-c-mode-common-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 
 ;; ido
