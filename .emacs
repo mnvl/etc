@@ -34,6 +34,11 @@
 (if (eq system-type 'windows-nt) (set-frame-font "Consolas-12"))
 (if (eq system-type 'gnu/linux) (set-frame-font "Monospace-12"))
 
+;; remember recent files
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 100)
+
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
 (if (window-system) (load-theme 'tango))
@@ -46,7 +51,7 @@
 (defconst my-cc-style
   `((c-recognize-knr-p . nil)
     (c-enable-xemacs-performance-kludge-p . t)
-    (c-basic-offset . 4)
+    (c-basic-offset . 2)
     (indent-tabs-mode . nil)
     (c-comment-only-line-offset . 0)
     (c-hanging-braces-alist . ((defun-open after)
@@ -75,7 +80,7 @@
         c-semi&comma-no-newlines-before-nonblanks))
     (c-indent-comments-syntactically-p . t)
     (comment-column . 40)
-    (c-indent-comment-alist . ((other . (space . 4))))
+    (c-indent-comment-alist . ((other . (space . 2))))
     (c-cleanup-list . (brace-else-brace
                        brace-elseif-brace
                        brace-catch-brace
@@ -109,7 +114,7 @@
 
 (c-add-style "my-cc-style" my-cc-style)
 
-;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python3-virtualenv python3-jedi
+;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-jedi
 ;; mkdir ~/.emacs.d/lisp; cd $_
 ;; git clone https://github.com/company-mode/company-mode.git && cd company-mode && git checkout tags/0.X.X  && make && cd ..
 ;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
@@ -118,6 +123,8 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
 (global-company-mode 1)
+(setq company-minimum-prefix-length 1)
+(setq company-idle-delay 0.1)
 
 (setq rtags-path "~/.emacs.d/lisp/rtags/bin/")
 (add-to-list 'load-path "~/.emacs.d/lisp/rtags/src/")
@@ -135,14 +142,12 @@
   (setq-local linum-format (if window-system "%4d" "%4d "))
 
   (setq-default indent-tabs-mode nil)
-  (setq tab-width 4)
+  (setq tab-width 2)
 
-  (column-number-mode 4)
-
-  (local-set-key (kbd "M-/") 'company-complete))
+  (local-set-key (kbd "M-/") 'company-complete)
+  (local-set-key (kbd "C-c c") 'company-complete))
 
 (defun my-c-c++-mode-hook ()
-  (setq c-basic-offset 4)
   (setq compilation-scroll-output 'first-error)
   (c-set-style "my-cc-style")
 
@@ -162,8 +167,8 @@
            company-dabbrev)))
   (flycheck-mode 1)
 
-  (setq company-minimum-prefix-length 7)
-  (setq company-idle-delay 0.7)
+  (setq company-minimum-prefix-length 5)
+  (setq company-idle-delay 0.5)
   (setq company-rtags-begin-after-member-access 1)
 
   (local-set-key (kbd "RET") 'newline-and-indent)
@@ -181,16 +186,14 @@
 (defun my-python-mode-hook ()
   (my-c-mode-common-hook)
 
-  (setq python-indent-offset 4)
-  (setq jedi:environment-root "jedi")
-  (setq jedi:environment-virtualenv
-        (append python-environment-virtualenv
-                '("--python" "/usr/bin/python3")))
-  (jedi:setup)
-  (push 'company-jedi company-backends)
+  (setq python-indent-offset 2)
+  ;; (setq jedi:environment-root "jedi")
+  ;; (setq jedi:environment-virtualenv
+  ;;       (append python-environment-virtualenv
+  ;;               '("--python" "/usr/bin/python3")))
 
-  (setq company-minimum-prefix-length 5)
-  (setq company-idle-delay 0.1))
+  (jedi:setup)
+  (push 'company-jedi company-backends))
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
@@ -217,6 +220,8 @@
 (global-set-key (kbd "M-[ d") 'windmove-left)
 (global-set-key (kbd "C-<right>") 'windmove-right)
 (global-set-key (kbd "M-[ c") 'windmove-right)
+
+(global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 ;; search & replace key bindings
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
