@@ -41,7 +41,8 @@
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
-(if (window-system) (load-theme 'tango))
+(setq custom-safe-themes t)
+(if (window-system) (load-theme 'hemisu-light) (load-theme 'hemisu-dark))
 
 ;; programming modes
 (require 'cc-mode)
