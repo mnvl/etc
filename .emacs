@@ -32,7 +32,7 @@
 
 ;; fonts
 (if (eq system-type 'windows-nt) (set-frame-font "Consolas-12"))
-(if (eq system-type 'gnu/linux) (set-frame-font "Monospace-12"))
+(if (eq system-type 'gnu/linux) (set-frame-font "Inconsolata-12"))
 
 ;; remember recent files
 (require 'recentf)
@@ -42,7 +42,7 @@
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
 (setq custom-safe-themes t)
-(if (window-system) (load-theme 'hemisu-light) (load-theme 'hemisu-dark))
+(if (window-system) (load-theme 'leuven) (load-theme 'hemisu-dark))
 
 ;; programming modes
 (require 'cc-mode)
