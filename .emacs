@@ -119,7 +119,7 @@
 ;; mkdir ~/.emacs.d/lisp; cd $_
 ;; git clone https://github.com/company-mode/company-mode.git && cd company-mode && git checkout tags/0.X.X  && make && cd ..
 ;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
-;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company-jedi
+;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company-jedi, projectile
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
@@ -135,11 +135,13 @@
 (setq whitespace-style '(face trailing tabs))
 (global-whitespace-mode 1)
 
+(projectile-global-mode)
+
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
 
-(defun my-c-mode-common-hook ()
+(defun my-programming-modes-hook ()
   (setq-local linum-format (if window-system "%4d" "%4d "))
 
   (setq-default indent-tabs-mode nil)
@@ -174,31 +176,27 @@
 
   (local-set-key (kbd "RET") 'newline-and-indent)
 
-  (local-set-key (kbd "M-,") 'ff-find-other-file)
-  (local-set-key (kbd "M-.") 'rtags-find-symbol-at-point)
+  (local-set-key (kbd "M-q") 'ff-find-other-file)
   (local-set-key (kbd "C-c f") 'clang-format)
   (local-set-key (kbd "C-c g") 'gdb)
+  (local-set-key (kbd "C-c j") 'rtags-find-symbol-at-point)
   (local-set-key (kbd "C-c m") 'rtags-imenu)
   (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
   (local-set-key (kbd "C-c s") 'rtags-print-symbol-info)
+  (local-set-key (kbd "C-c t") 'projectile-find-test-file)
   (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point))
 
 (defun my-python-mode-hook ()
-  (my-c-mode-common-hook)
-
   (setq python-indent-offset 2)
-  ;; (setq jedi:environment-root "jedi")
-  ;; (setq jedi:environment-virtualenv
-  ;;       (append python-environment-virtualenv
-  ;;               '("--python" "/usr/bin/python3")))
 
   (jedi:setup)
   (push 'company-jedi company-backends))
 
-(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c-mode-common-hook 'my-programming-modes-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
+(add-hook 'python-mode-hook 'my-programming-modes-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 
 ;; ido
@@ -222,6 +220,8 @@
 (global-set-key (kbd "C-<right>") 'windmove-right)
 (global-set-key (kbd "M-[ c") 'windmove-right)
 
+(global-set-key (kbd "C-x g") 'projectile-grep)
+(global-set-key (kbd "C-x f") 'projectile-find-file)
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 ;; search & replace key bindings
