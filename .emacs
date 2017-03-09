@@ -31,8 +31,8 @@
 (prefer-coding-system 'utf-8)
 
 ;; fonts
-(if (eq system-type 'windows-nt) (set-frame-font "Consolas-12"))
-(if (eq system-type 'gnu/linux) (set-frame-font "Inconsolata-12"))
+(if (eq system-type 'windows-nt) (set-frame-font "Consolas-14"))
+(if (eq system-type 'gnu/linux) (set-frame-font "Inconsolata-14"))
 
 ;; remember recent files
 (require 'recentf)
@@ -42,7 +42,7 @@
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
 (setq custom-safe-themes t)
-(if (window-system) (load-theme 'leuven) (load-theme 'hemisu-dark))
+(if (window-system) (load-theme 'monokai) (load-theme 'monokai))
 
 ;; programming modes
 (require 'cc-mode)
