@@ -42,7 +42,7 @@
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
 (setq custom-safe-themes t)
-(if (window-system) (load-theme 'monokai) (load-theme 'monokai))
+(if (window-system) (load-theme 'monokai) (load-theme 'cyberpunk))
 
 ;; programming modes
 (require 'cc-mode)
@@ -148,7 +148,12 @@
   (setq tab-width 2)
 
   (local-set-key (kbd "M-/") 'company-complete)
-  (local-set-key (kbd "C-c c") 'company-complete))
+  (local-set-key (kbd "C-c c") 'company-complete)
+
+  (local-set-key (kbd "C-c #") 'comment-region)
+  (local-set-key (kbd "C-c 3") 'comment-region)
+  (local-set-key (kbd "C-c $") 'uncomment-region)
+  (local-set-key (kbd "C-c 4") 'uncomment-region))
 
 (defun my-c-c++-mode-hook ()
   (setq compilation-scroll-output 'first-error)
@@ -228,4 +233,5 @@
 ;; search & replace key bindings
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "M-s") 'isearch-backward-regexp)
-(global-set-key (kbd "C-r") 'query-replace-regexp)
+(global-set-key (kbd "C-r") 'replace-regexp)
+(global-set-key (kbd "M-r") 'replace-string)
