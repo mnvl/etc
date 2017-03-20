@@ -193,8 +193,8 @@
   (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point))
 
 (defun my-python-mode-hook ()
-  (setq python-indent-offset 4)
-  (setq tab-width 4)
+  (setq python-indent-offset 2)
+  (setq tab-width 2)
 
   (jedi:setup)
   (push 'company-jedi company-backends))
