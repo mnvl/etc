@@ -195,6 +195,7 @@
   (setq tab-width 2)
 
   (jedi:setup)
+  (setq jedi:complete-on-dot 1)
 
   (push 'company-jedi company-backends))
 
