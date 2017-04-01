@@ -117,11 +117,9 @@
 
 ;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-jedi
 ;; mkdir ~/.emacs.d/lisp; cd $_
-;; git clone https://github.com/company-mode/company-mode.git && cd company-mode && git checkout tags/0.X.X  && make && cd ..
 ;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
-;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company-jedi, projectile
+;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company, company-jedi, projectile
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
-(add-to-list 'load-path "~/.emacs.d/lisp/company-mode/")
 (require 'company)
 (global-company-mode 1)
 (setq company-minimum-prefix-length 1)
@@ -197,6 +195,7 @@
   (setq tab-width 2)
 
   (jedi:setup)
+
   (push 'company-jedi company-backends))
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
