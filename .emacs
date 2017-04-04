@@ -115,10 +115,10 @@
 
 (c-add-style "my-cc-style" my-cc-style)
 
-;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-jedi python\*-\*pep8
+;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
 ;; mkdir ~/.emacs.d/lisp; cd $_
 ;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
-;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company, company-jedi, projectile, anaconda-mode
+;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company, projectile, anaconda-mode, company-anaconda
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (require 'company)
 (global-company-mode 1)
@@ -196,14 +196,13 @@
   (setq python-indent-offset 4)
   (setq tab-width 4)
 
-  (jedi:setup)
-  (setq jedi:complete-on-dot 1)
+  (push 'company-anaconda company-backends)
 
-  (push 'company-jedi company-backends)
-
+  (local-set-key (kbd "C-c a") 'anaconda-mode-find-assignments)
   (local-set-key (kbd "C-c f") 'py-autopep8)
   (local-set-key (kbd "C-c h") 'anaconda-mode-show-doc)
   (local-set-key (kbd "C-c j") 'anaconda-mode-find-definitions)
+  (local-set-key (kbd "C-c p") 'anaconda-mode-go-back)
   (local-set-key (kbd "C-c s") 'anaconda-mode-complete)
   (local-set-key (kbd "C-c x") 'anaconda-mode-find-references))
 
