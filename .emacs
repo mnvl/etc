@@ -42,7 +42,7 @@
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
 (setq custom-safe-themes t)
-(if (window-system) (load-theme 'monokai) (load-theme 'cyberpunk))
+(if (window-system) (load-theme 'monokai) (load-theme 'distinguished))
 
 ;; programming modes
 (require 'cc-mode)
@@ -115,7 +115,7 @@
 
 (c-add-style "my-cc-style" my-cc-style)
 
-;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-jedi
+;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-jedi python\*-\*pep8
 ;; mkdir ~/.emacs.d/lisp; cd $_
 ;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
 ;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company, company-jedi, projectile
@@ -191,13 +191,15 @@
   (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point))
 
 (defun my-python-mode-hook ()
-  (setq python-indent-offset 2)
-  (setq tab-width 2)
+  (setq python-indent-offset 4)
+  (setq tab-width 4)
 
   (jedi:setup)
   (setq jedi:complete-on-dot 1)
 
-  (push 'company-jedi company-backends))
+  (push 'company-jedi company-backends)
+
+  (local-set-key (kbd "C-c f") 'py-autopep8))
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
