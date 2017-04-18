@@ -44,7 +44,7 @@ mp3fy_audios_in_directory() {
     mkdir -p $output_dir
 
     find $input_dir -type d -exec mkdir -p $output_dir/{} \;
-    find $input_dir -type f -exec sh -c 'flac -cd "{}" | lame -b 320 -q 0 - "'"$output_dir"'/{}.mp3";' \;
+    find $input_dir -type f -name "*.flac" -exec sh -c 'flac -cd "{}" | lame -b 320 -q 0 - "'"$output_dir"'/{}.mp3";' \;
 }
 
 downscale_videos_in_directory() {
