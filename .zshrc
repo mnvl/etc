@@ -38,5 +38,5 @@ downscale_videos_in_directory() {
     input_dir=$1
     output_dir=$2
     find $input_dir -type d -exec mkdir -p $output_dir/{} \;
-    find $input_dir -type f -exec ffmpeg -i {} -vf scale="iw*.5:ih*.5" -vcodec libx264 -acodec copy $output_dir/{} \;
+    find $input_dir -type f -exec ffmpeg -i {} -vf scale="640:-1" -vcodec libx264 -acodec copy $output_dir/{} \;
 }
