@@ -199,8 +199,8 @@
   (push 'company-anaconda company-backends)
 
   (local-set-key (kbd "C-c a") 'anaconda-mode-find-assignments)
+  (local-set-key (kbd "C-c d") 'anaconda-mode-show-doc)
   (local-set-key (kbd "C-c f") 'py-autopep8)
-  (local-set-key (kbd "C-c h") 'anaconda-mode-show-doc)
   (local-set-key (kbd "C-c j") 'anaconda-mode-find-definitions)
   (local-set-key (kbd "C-c p") 'anaconda-mode-go-back)
   (local-set-key (kbd "C-c s") 'anaconda-mode-complete)
@@ -238,7 +238,7 @@
 (global-set-key (kbd "C-x C-r") 'recentf-open-files)
 
 ;; search & replace key bindings
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "M-s") 'isearch-backward-regexp)
 (global-set-key (kbd "C-r") 'replace-regexp)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "M-r") 'replace-string)
+(global-set-key (kbd "M-s") 'isearch-backward-regexp)
