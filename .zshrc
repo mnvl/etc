@@ -66,3 +66,8 @@ downscale_videos_in_directory() {
 image_to_palette() {
     convert "$@"  -format %c  -depth 8  histogram:info:- | sort -n -k 1 -t :
 }
+
+flatten_current_directory() {
+    find . -type f -exec rename 's|(?<!\.)/|_|g' -- {} \;
+    find . -maxdepth 1 -mindepth 1 -type d -exec rm -R {} \;
+}
