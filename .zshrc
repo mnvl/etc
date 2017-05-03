@@ -57,7 +57,10 @@ downscale_videos_in_directory() {
     output_dir=$2
 
     find $input_dir -type d -exec mkdir -p $output_dir/{} \;
-    find $input_dir -type f -exec ffmpeg -i {} -vf scale="640:-1" -acodec copy $output_dir/{} \;
+    find $input_dir -type f -exec ffmpeg -n -i {} -vf scale="640:-1" -acodec copy $output_dir/{} \;
+
+    find $input_dir -type f -exec mediainfo --Inform="General;%Duration%" "{}" \; 2>/dev/null | awk '{s+=$1/1000} END {h=s/3600; s=s%3600; printf "%.2d:%.2d\n", int(h), int(s/60)}'
+    find $output_dir -type f -exec mediainfo --Inform="General;%Duration%" "{}" \; 2>/dev/null | awk '{s+=$1/1000} END {h=s/3600; s=s%3600; printf "%.2d:%.2d\n", int(h), int(s/60)}'
 }
 
 image_to_palette() {
