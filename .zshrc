@@ -49,7 +49,7 @@ mp3fy_audios_in_directory() {
 
 downscale_videos_in_directory() {
     if [ "$#" -ne 2 ]; then
-	echo "usage: downscale_videos_in_directory input_dir output_dir" >/dev/stderr
+	echo "usage: $0 input_dir output_dir" >/dev/stderr
 	return 1
     fi
 
@@ -57,9 +57,31 @@ downscale_videos_in_directory() {
     output_dir=$2
 
     find $input_dir -type d -exec mkdir -p $output_dir/{} \;
-    find $input_dir -type f -exec ffmpeg -i {} -vf scale="640:-1" -acodec copy $output_dir/{} \;
+    find $input_dir -type f -exec ffmpeg -n -i {} -vf scale="640:-1" -acodec copy $output_dir/{} \;
+
+    find $input_dir -type f -exec mediainfo --Inform="General;%Duration%" "{}" \; 2>/dev/null | awk '{s+=$1/1000} END {h=s/3600; s=s%3600; printf "%.2d:%.2d\n", int(h), int(s/60)}'
+    find $output_dir -type f -exec mediainfo --Inform="General;%Duration%" "{}" \; 2>/dev/null | awk '{s+=$1/1000} END {h=s/3600; s=s%3600; printf "%.2d:%.2d\n", int(h), int(s/60)}'
+}
+
+extract_audios_from_videos_in_directory() {
+    if [ "$#" -ne 3 ]; then
+	echo "usage: $0 input_dir output_dir output_files_extension" >/dev/stderr
+	return 1
+    fi
+
+    input_dir=$1
+    output_dir=$2
+    extension=$3
+
+    find $input_dir -type d -exec mkdir -p $output_dir/{} \;
+    find $input_dir -type f -exec ffmpeg -n -i {} -vf none -acodec copy $output_dir/{}.$extension \;
 }
 
 image_to_palette() {
     convert "$@"  -format %c  -depth 8  histogram:info:- | sort -n -k 1 -t :
+}
+
+flatten_current_directory() {
+    find . -type f -exec rename 's|(?<!\.)/|_|g' -- {} \;
+    find . -maxdepth 1 -mindepth 1 -type d -exec rm -R {} \;
 }
