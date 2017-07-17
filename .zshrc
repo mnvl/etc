@@ -34,7 +34,7 @@ export PATH=/usr/local/cuda-8.0/bin:/usr/local/bin/:${PATH:+:${PATH}}
 
 mp3fy_audios_in_directory() {
     if [ "$#" -ne 2 ]; then
-	echo "usage: mp3fy_audios_in_directory input_dir output_dir" >/dev/stderr
+	echo "usage: $0 input_dir output_dir" >/dev/stderr
 	return 1
     fi
 
@@ -45,6 +45,19 @@ mp3fy_audios_in_directory() {
 
     find $input_dir -type d -exec mkdir -p $output_dir/{} \;
     find $input_dir -type f -name "*.flac" -exec sh -c 'flac -cd "{}" | lame -b 320 -q 0 - "'"$output_dir"'/{}.mp3";' \;
+}
+
+# sudo apt-get install cuetools shntool flac
+split_flac_with_cue() {
+    if [ "$#" -ne 2 ]; then
+	echo "usage: $0 flac_file cue_file" >/dev/stderr
+	return 1
+    fi
+
+    flac_file=$1
+    cue_file=$2
+
+    shnsplit -f $cue_file -t "%n %t" -o flac $flac_file && rm $cue_file && rm $flac_file
 }
 
 downscale_videos_in_directory() {
