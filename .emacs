@@ -3,9 +3,9 @@
 (require 'saveplace)
 (require 'paren)
 
-(if (window-system)
-    (tool-bar-mode 0)
-  (menu-bar-mode 0))
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-font-lock-mode 1)
@@ -42,7 +42,8 @@
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
 (setq custom-safe-themes t)
-(if (window-system) (load-theme 'monokai) (load-theme 'distinguished))
+(setq monokai-background "#000000")
+(load-theme 'monokai)
 
 ;; programming modes
 (require 'cc-mode)
