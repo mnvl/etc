@@ -41,9 +41,9 @@
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
-(setq custom-safe-themes t)
-(setq monokai-background "#000000")
-(load-theme 'monokai)
+(add-to-list 'custom-theme-load-path "~/etc/darkokai")
+(setq darkokai-mode-line-padding 1)
+(load-theme 'darkokai t)
 
 ;; programming modes
 (require 'cc-mode)

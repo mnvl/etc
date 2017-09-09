@@ -1,0 +1,4 @@
+[submodule "darkokai"]
+	path = darkokai
+	url = https://github.com/mnvl/darkokai.git
+	branch = master
