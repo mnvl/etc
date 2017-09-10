@@ -4,8 +4,10 @@
 (require 'paren)
 
 (menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
+(if window-system
+    (progn
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)))
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (global-font-lock-mode 1)
