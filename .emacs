@@ -245,3 +245,7 @@
 (global-set-key (kbd "C-s") 'isearch-forward-regexp)
 (global-set-key (kbd "M-r") 'replace-string)
 (global-set-key (kbd "M-s") 'isearch-backward-regexp)
+
+;; local
+(if (file-exists-p "~/.emacs-local")
+    (load-file "~/.emacs-local"))
