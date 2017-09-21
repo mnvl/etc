@@ -48,8 +48,13 @@
 (load-theme 'darkokai t)
 
 ;; programming modes
+;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
+;; mkdir ~/.emacs.d/lisp; cd $_
+;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
+;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company, projectile, anaconda-mode, company-anaconda, realgud
+;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (require 'cc-mode)
-(require 'gud)
+(require 'realgud)
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
@@ -118,11 +123,6 @@
 
 (c-add-style "my-cc-style" my-cc-style)
 
-;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
-;; mkdir ~/.emacs.d/lisp; cd $_
-;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
-;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company, projectile, anaconda-mode, company-anaconda
-;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (require 'company)
 (global-company-mode 1)
 (setq company-minimum-prefix-length 1)
@@ -183,13 +183,13 @@
   (local-set-key (kbd "RET") 'newline-and-indent)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file)
+  (local-set-key (kbd "C-c d") 'realgud:gdb)
   (local-set-key (kbd "C-c f") 'clang-format)
-  (local-set-key (kbd "C-c g") 'gdb)
+  (local-set-key (kbd "C-c i") 'rtags-print-symbol-info)
   (local-set-key (kbd "C-c j") 'rtags-find-symbol-at-point)
   (local-set-key (kbd "C-c m") 'rtags-imenu)
   (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
-  (local-set-key (kbd "C-c s") 'rtags-print-symbol-info)
   (local-set-key (kbd "C-c t") 'projectile-find-test-file)
   (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point))
 
@@ -202,11 +202,11 @@
   (push 'company-anaconda company-backends)
 
   (local-set-key (kbd "C-c a") 'anaconda-mode-find-assignments)
-  (local-set-key (kbd "C-c d") 'anaconda-mode-show-doc)
+  (local-set-key (kbd "C-c d") 'realgud:pdb)
   (local-set-key (kbd "C-c f") 'py-autopep8)
+  (local-set-key (kbd "C-c i") 'anaconda-mode-show-doc)
   (local-set-key (kbd "C-c j") 'anaconda-mode-find-definitions)
   (local-set-key (kbd "C-c p") 'anaconda-mode-go-back)
-  (local-set-key (kbd "C-c s") 'anaconda-mode-complete)
   (local-set-key (kbd "C-c x") 'anaconda-mode-find-references))
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
