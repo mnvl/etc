@@ -64,6 +64,9 @@
 (setq ivy-height 30)
 (setq enable-recursive-minibuffers t)
 
+(define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
+(define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
+
 ;; key bindings
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
@@ -91,6 +94,7 @@
 ;; mkdir ~/.emacs.d/lisp; cd $_
 ;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
+(require 'cl)
 (require 'cc-mode)
 
 (use-package clang-format)
@@ -183,6 +187,7 @@
 (global-whitespace-mode 1)
 
 (projectile-global-mode)
+(setq projectile-completion-system 'ivy)
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
