@@ -1,5 +1,18 @@
 
-;; global settings
+;; install packages automatically on startup
+(require 'package)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
+
+(package-initialize)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(require 'use-package)
+(setq use-package-always-ensure t)
+
+;; basic settings
 (require 'saveplace)
 (require 'paren)
 
@@ -23,12 +36,6 @@
 (setq undo-strong-limit (* 64 1024 1024))
 (setq undo-outer-limit (* 16 1024 1024))
 
-;; melpa
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
-(package-initialize)
-
 ;; coding system and input method
 (prefer-coding-system 'utf-8)
 
@@ -51,10 +58,20 @@
 ;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
 ;; mkdir ~/.emacs.d/lisp; cd $_
 ;; git clone --recursive https://github.com/Andersbakken/rtags.git && cd rtags && git checkout tags/vX.X && cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 . && make && cd ..
-;; M-x package-install clang-format, flycheck, cmake-mode, protobuf-mode, company, projectile, anaconda-mode, company-anaconda, realgud
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
 (require 'cc-mode)
-(require 'realgud)
+
+(use-package clang-format)
+(use-package flycheck)
+(use-package cmake-mode)
+(use-package protobuf-mode)
+(use-package company)
+(use-package anaconda-mode)
+(use-package company-anaconda)
+(use-package projectile)
+(use-package realgud)
+(use-package rtags)
+(use-package flycheck-rtags)
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
@@ -123,15 +140,12 @@
 
 (c-add-style "my-cc-style" my-cc-style)
 
-(require 'company)
 (global-company-mode 1)
 (setq company-minimum-prefix-length 1)
 (setq company-idle-delay 0.1)
 
 (setq rtags-path "~/.emacs.d/lisp/rtags/bin/")
 (add-to-list 'load-path "~/.emacs.d/lisp/rtags/src/")
-(require 'rtags)
-(require 'flycheck-rtags)
 
 (setq whitespace-style '(face trailing tabs))
 (global-whitespace-mode 1)
