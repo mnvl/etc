@@ -54,6 +54,38 @@
 (setq darkokai-mode-line-padding 1)
 (load-theme 'darkokai t)
 
+;; ivy, swiper, and counsel
+(use-package ivy)
+(use-package swiper)
+(use-package counsel)
+
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq ivy-height 30)
+(setq enable-recursive-minibuffers t)
+
+;; key bindings
+(global-set-key (kbd "M-n") 'forward-paragraph)
+(global-set-key (kbd "M-p") 'backward-paragraph)
+
+(global-set-key (kbd "M-o") 'other-window)
+
+(global-set-key (kbd "C-<up>") 'windmove-up)
+(global-set-key (kbd "M-[ a") 'windmove-up)
+(global-set-key (kbd "C-<down>") 'windmove-down)
+(global-set-key (kbd "M-[ b") 'windmove-down)
+(global-set-key (kbd "C-<left>") 'windmove-left)
+(global-set-key (kbd "M-[ d") 'windmove-left)
+(global-set-key (kbd "C-<right>") 'windmove-right)
+(global-set-key (kbd "M-[ c") 'windmove-right)
+
+(global-set-key (kbd "C-x f") 'projectile-find-file)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "C-x C-r") 'counsel-recentf)
+
+(global-set-key (kbd "C-r") 'swiper-query-replace)
+(global-set-key (kbd "C-s") 'swiper)
+
 ;; programming modes
 ;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
 ;; mkdir ~/.emacs.d/lisp; cd $_
@@ -165,10 +197,7 @@
   (local-set-key (kbd "M-/") 'company-complete)
   (local-set-key (kbd "C-c c") 'company-complete)
 
-  (local-set-key (kbd "C-c #") 'comment-region)
-  (local-set-key (kbd "C-c 3") 'comment-region)
-  (local-set-key (kbd "C-c $") 'uncomment-region)
-  (local-set-key (kbd "C-c 4") 'uncomment-region))
+  (local-set-key (kbd "C-c g") 'counsel-git-grep))
 
 (defun my-c-c++-mode-hook ()
   (setq compilation-scroll-output 'first-error)
@@ -228,37 +257,6 @@
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'python-mode-hook 'my-programming-modes-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
-
-;; ido
-(ido-mode 1)
-(setq ido-everywhere 1)
-(setq ido-enable-flex-matching 1)
-(setq ido-use-filename-at-point 'guess)
-
-;; navigation key bindings
-(global-set-key (kbd "M-n") 'forward-paragraph)
-(global-set-key (kbd "M-p") 'backward-paragraph)
-
-(global-set-key (kbd "M-o") 'other-window)
-
-(global-set-key (kbd "C-<up>") 'windmove-up)
-(global-set-key (kbd "M-[ a") 'windmove-up)
-(global-set-key (kbd "C-<down>") 'windmove-down)
-(global-set-key (kbd "M-[ b") 'windmove-down)
-(global-set-key (kbd "C-<left>") 'windmove-left)
-(global-set-key (kbd "M-[ d") 'windmove-left)
-(global-set-key (kbd "C-<right>") 'windmove-right)
-(global-set-key (kbd "M-[ c") 'windmove-right)
-
-(global-set-key (kbd "C-x g") 'projectile-grep)
-(global-set-key (kbd "C-x f") 'projectile-find-file)
-(global-set-key (kbd "C-x C-r") 'recentf-open-files)
-
-;; search & replace key bindings
-(global-set-key (kbd "C-r") 'replace-regexp)
-(global-set-key (kbd "C-s") 'isearch-forward-regexp)
-(global-set-key (kbd "M-r") 'replace-string)
-(global-set-key (kbd "M-s") 'isearch-backward-regexp)
 
 ;; local
 (if (file-exists-p "~/.emacs-local")
