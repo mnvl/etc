@@ -1,5 +1,6 @@
-#! /bin/sh
-ln -f -s ~/etc/.zshrc ~/
-ln -f -s ~/etc/.emacs ~/
-ln -f -s ~/etc/.jupyter ~/
-ln -f -s ~/etc/.gdbinit ~/
+#! /bin/sh -ex
+
+for x in .zshrc .emacs .jupyter .gdbinit .tmux.conf
+do
+    ln -f -s ~/etc/$x ~/
+done
