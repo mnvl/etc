@@ -61,7 +61,7 @@
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
-(setq ivy-height 30)
+(setq ivy-height 10)
 (setq enable-recursive-minibuffers t)
 
 (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
@@ -108,6 +108,7 @@
 (use-package realgud)
 (use-package rtags)
 (use-package flycheck-rtags)
+(use-package geiser)
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
@@ -204,11 +205,23 @@
 
   (local-set-key (kbd "C-c g") 'counsel-git-grep))
 
+(defun my-scheme-mode-hook ()
+  (geiser-mode 1)
+
+  (setq geiser-active-implementations '(guile))
+  (setq geiser-repl-history-filename "~/.emacs.d/geiser-history")
+
+  (setq company-backends
+        '((company-files
+           company-keywords
+           geiser-company-backend
+           company-yasnippet)
+          (company-abbrev
+           company-dabbrev))))
+
 (defun my-c-c++-mode-hook ()
   (setq compilation-scroll-output 'first-error)
   (c-set-style "my-cc-style")
-
-  (setq company-clang-arguments '("--std=c++14"))
 
   (rtags-start-process-unless-running)
   (setq rtags-autostart-diagnostics 1)
@@ -258,6 +271,7 @@
   (local-set-key (kbd "C-c x") 'anaconda-mode-find-references))
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
+(add-hook 'scheme-mode-hook 'my-scheme-mode-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'python-mode-hook 'my-programming-modes-hook)
