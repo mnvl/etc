@@ -2,3 +2,7 @@
 	path = darkokai
 	url = https://github.com/mnvl/darkokai.git
 	branch = master
+[submodule "rtags"]
+	path = rtags
+	url = https://github.com/Andersbakken/rtags.git
+	branch = master
