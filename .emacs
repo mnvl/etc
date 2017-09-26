@@ -207,11 +207,12 @@
   (setq compilation-scroll-output 'first-error)
   (c-set-style "my-cc-style")
 
-  (rtags-start-process-unless-running)
   (setq rtags-autostart-diagnostics 1)
-  (rtags-diagnostics)
   (setq rtags-completions-enabled 1)
   (setq rtags-display-current-error-as-tooltip 1)
+  (setq rtags-display-result-backend 'ivy)
+  (rtags-start-process-unless-running)
+  (rtags-diagnostics)
   (setq company-backends
         '((company-files
            company-keywords
