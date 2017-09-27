@@ -60,9 +60,10 @@
 (use-package counsel)
 
 (ivy-mode 1)
+(setq enable-recursive-minibuffers t)
 (setq ivy-use-virtual-buffers t)
 (setq ivy-height 20)
-(setq enable-recursive-minibuffers t)
+(setq ivy-wrap t)
 
 (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
 (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
@@ -86,7 +87,7 @@
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
 
-(global-set-key (kbd "C-r") 'swiper-query-replace)
+(global-set-key (kbd "C-r") 'ivy-resume)
 (global-set-key (kbd "C-s") 'swiper)
 
 ;; programming modes
