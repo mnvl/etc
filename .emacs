@@ -61,7 +61,7 @@
 
 (ivy-mode 1)
 (setq ivy-use-virtual-buffers t)
-(setq ivy-height 10)
+(setq ivy-height 20)
 (setq enable-recursive-minibuffers t)
 
 (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
