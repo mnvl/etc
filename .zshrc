@@ -25,7 +25,8 @@ alias tmux='tmux -2'
 
 alias uri_escape='perl -MURI::Escape -e "while(<STDIN>) { print uri_escape(\$_) };"'
 alias uri_unescape='perl -MURI::Escape -e "while(<STDIN>) { print uri_unescape(\$_) };"'
-alias gplines="feedgnuplot --lines"
+alias gplines='feedgnuplot --lines'
+alias sshx='ssh -X -L 7000:127.0.0.1:7000 -L 7001:127.0.0.1:7001 -L 7002:127.0.0.1:7002 -L 7003:127.0.0.1:7003 -L 7004:127.0.0.1:7004 -L 7005:127.0.0.1:7005'
 
 export EDITOR='emacs -nw --no-desktop'
 export DIFF='ediff -nw --no-desktop'
@@ -34,8 +35,8 @@ export PATH=/usr/local/cuda-8.0/bin:/usr/local/bin/:${PATH:+:${PATH}}
 
 mp3fy_audios_in_directory() {
     if [ "$#" -ne 2 ]; then
-	echo "usage: $0 input_dir output_dir" >/dev/stderr
-	return 1
+        echo "usage: $0 input_dir output_dir" >/dev/stderr
+        return 1
     fi
 
     input_dir=$1
@@ -50,8 +51,8 @@ mp3fy_audios_in_directory() {
 # sudo apt-get install cuetools shntool flac
 split_flac_with_cue() {
     if [ "$#" -ne 2 ]; then
-	echo "usage: $0 flac_file cue_file" >/dev/stderr
-	return 1
+        echo "usage: $0 flac_file cue_file" >/dev/stderr
+        return 1
     fi
 
     flac_file=$1
@@ -62,8 +63,8 @@ split_flac_with_cue() {
 
 downscale_videos_in_directory() {
     if [ "$#" -ne 2 ]; then
-	echo "usage: $0 input_dir output_dir" >/dev/stderr
-	return 1
+        echo "usage: $0 input_dir output_dir" >/dev/stderr
+        return 1
     fi
 
     input_dir=$1
@@ -78,8 +79,8 @@ downscale_videos_in_directory() {
 
 extract_audios_from_videos_in_directory() {
     if [ "$#" -ne 3 ]; then
-	echo "usage: $0 input_dir output_dir output_files_extension" >/dev/stderr
-	return 1
+        echo "usage: $0 input_dir output_dir output_files_extension" >/dev/stderr
+        return 1
     fi
 
     input_dir=$1

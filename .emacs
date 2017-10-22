@@ -261,6 +261,7 @@
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'python-mode-hook 'my-programming-modes-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
+(add-hook 'sh-mode-hook 'my-programming-modes-hook)
 
 ;; local
 (if (file-exists-p "~/.emacs-local")
