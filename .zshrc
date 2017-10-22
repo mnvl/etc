@@ -12,7 +12,7 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
-PS1='$ '
+PS1='ζ '
 
 preexec () {
   [ -n "$STY" ] && echo -ne "\ek${1%% *}\e\\"
