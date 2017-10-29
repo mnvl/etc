@@ -26,7 +26,9 @@ alias tmux='tmux -2'
 alias uri_escape='perl -MURI::Escape -e "while(<STDIN>) { print uri_escape(\$_) };"'
 alias uri_unescape='perl -MURI::Escape -e "while(<STDIN>) { print uri_unescape(\$_) };"'
 alias gplines='feedgnuplot --lines'
-alias sshx='ssh -X -L 7000:127.0.0.1:7000 -L 7001:127.0.0.1:7001 -L 7002:127.0.0.1:7002 -L 7003:127.0.0.1:7003 -L 7004:127.0.0.1:7004 -L 7005:127.0.0.1:7005'
+
+FORWARD_PORTS=`awk 'BEGIN { for (i = 7000; i <= 7010; i++) printf " -L %d:127.0.0.1:%d", i, i }'`
+alias sshx="ssh -X $FORWARD_PORTS"
 
 export EDITOR='emacs -nw --no-desktop'
 export DIFF='ediff -nw --no-desktop'
