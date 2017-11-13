@@ -100,7 +100,6 @@
 (use-package clang-format)
 (use-package flycheck)
 (use-package cmake-mode)
-(use-package protobuf-mode)
 (use-package company)
 (use-package anaconda-mode)
 (use-package company-anaconda)
@@ -238,7 +237,8 @@
   (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
   (local-set-key (kbd "C-c t") 'projectile-find-test-file)
-  (local-set-key (kbd "C-c x") 'rtags-find-all-references-at-point))
+  (local-set-key (kbd "C-c v") 'rtags-find-virtuals-at-point)
+  (local-set-key (kbd "C-c x") 'rtags-find-references-at-point))
 
 (defun my-python-mode-hook ()
   (anaconda-mode 1)
