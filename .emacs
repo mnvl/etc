@@ -93,20 +93,22 @@
 ;; programming modes
 ;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
 ;; cd ~/etc/rtags && cmake . && make
-;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/.emacs.d/lisp/rtags/bin/rc -J .
+;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/etc/rtags/bin/rc -J .
+;; tip: add SET(CMAKE_CXX_STANDARD 17) in CMakeLists.txt if you see strange errors.
 (require 'cl)
 (require 'cc-mode)
 
-(use-package clang-format)
-(use-package flycheck)
-(use-package cmake-mode)
-(use-package company)
 (use-package anaconda-mode)
-(use-package company-anaconda)
+(use-package cmake-mode)
+
+(use-package clang-format)
 (use-package projectile)
+
+(use-package company)
+(use-package company-anaconda)
 (use-package realgud)
 (use-package rtags)
-(use-package flycheck-rtags)
+(use-package popup)
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
@@ -207,20 +209,17 @@
   (setq compilation-scroll-output 'first-error)
   (c-set-style "my-cc-style")
 
-  (setq rtags-autostart-diagnostics 1)
   (setq rtags-completions-enabled 1)
   (setq rtags-display-current-error-as-tooltip 1)
   (setq rtags-display-result-backend 'ivy)
   (rtags-start-process-unless-running)
   (rtags-diagnostics)
   (setq company-backends
-        '((company-files
-           company-keywords
-           company-rtags
-           company-yasnippet)
-          (company-abbrev
-           company-dabbrev)))
-  (flycheck-mode 1)
+        '(company-files
+          company-keywords
+          company-rtags
+          company-cmake
+          company-yasnippet))
 
   (setq company-minimum-prefix-length 5)
   (setq company-idle-delay 0.5)
