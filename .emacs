@@ -180,7 +180,7 @@
 (c-add-style "my-cc-style" my-cc-style)
 
 (global-company-mode 1)
-(setq company-minimum-prefix-length 1)
+(setq company-minimum-prefix-length 3)
 (setq company-idle-delay 0.1)
 
 (setq rtags-path "~/etc/rtags/bin/")
