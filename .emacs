@@ -90,8 +90,7 @@
 (global-set-key (kbd "C-r") 'ivy-resume)
 (global-set-key (kbd "C-s") 'swiper)
 
-;; programming modes
-;; sudo apt install git cmake libclang-dev clang clang-format libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
+;; sudo apt install git cmake libclang-dev clang clang-format exuberant-ctags global libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
 ;; cd ~/etc/rtags && cmake . && make
 ;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/etc/rtags/bin/rc -J .
 ;; tip: add SET(CMAKE_CXX_STANDARD 17) in CMakeLists.txt if you see strange errors.
@@ -105,11 +104,13 @@
 (use-package projectile)
 (use-package counsel-projectile)
 
+(use-package rtags)
+(use-package realgud)
+(use-package popup)
+
 (use-package company)
 (use-package company-anaconda)
-(use-package realgud)
-(use-package rtags)
-(use-package popup)
+(use-package company-rtags)
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
@@ -205,9 +206,7 @@
   (local-set-key (kbd "TAB") 'company-indent-or-complete-common)
   (local-set-key (kbd "RET") 'newline-and-indent)
 
-  (local-set-key (kbd "M-/") 'company-complete)
   (local-set-key (kbd "C-c c") 'company-complete)
-
   (local-set-key (kbd "C-c g") 'counsel-git-grep))
 
 (defun my-c-c++-mode-hook ()
@@ -233,6 +232,7 @@
   (local-set-key (kbd "C-c m") 'rtags-imenu)
   (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
+  (local-set-key (kbd "C-c t") 'porjectile-regenerate-tags)
   (local-set-key (kbd "C-c v") 'rtags-find-virtuals-at-point)
   (local-set-key (kbd "C-c x") 'rtags-find-references-at-point))
 
