@@ -50,8 +50,6 @@
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
-(use-package color-theme-approximate)
-(color-theme-approximate-on)
 (add-to-list 'custom-theme-load-path "~/etc/darkokai")
 (setq darkokai-mode-line-padding 1)
 (load-theme 'darkokai t)
@@ -105,6 +103,7 @@
 
 (use-package clang-format)
 (use-package projectile)
+(use-package counsel-projectile)
 
 (use-package company)
 (use-package company-anaconda)
@@ -189,8 +188,9 @@
 (setq whitespace-style '(face trailing tabs))
 (global-whitespace-mode 1)
 
-(projectile-global-mode)
+(projectile-global-mode 1)
 (setq projectile-completion-system 'ivy)
+(define-key projectile-mode-map (kbd "M-c") 'projectile-command-map)
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
@@ -216,12 +216,7 @@
   (setq rtags-display-result-backend 'ivy)
   (rtags-start-process-unless-running)
   (rtags-diagnostics)
-  (setq company-backends
-        '(company-files
-          company-keywords
-          company-rtags
-          company-cmake
-          company-yasnippet))
+  (push 'company-rtags company-backends)
 
   (setq company-minimum-prefix-length 5)
   (setq company-idle-delay 0.5)
@@ -237,7 +232,6 @@
   (local-set-key (kbd "C-c m") 'rtags-imenu)
   (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
-  (local-set-key (kbd "C-c t") 'projectile-find-test-file)
   (local-set-key (kbd "C-c v") 'rtags-find-virtuals-at-point)
   (local-set-key (kbd "C-c x") 'rtags-find-references-at-point))
 
