@@ -190,7 +190,7 @@
 
 (projectile-global-mode 1)
 (setq projectile-completion-system 'ivy)
-(define-key projectile-mode-map (kbd "M-c") 'projectile-command-map)
+(global-set-key (kbd "M-c") 'projectile-command-map)
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
@@ -201,6 +201,9 @@
 
   (setq-default indent-tabs-mode nil)
   (setq tab-width 2)
+
+  (local-set-key (kbd "TAB") 'company-indent-or-complete-common)
+  (local-set-key (kbd "RET") 'newline-and-indent)
 
   (local-set-key (kbd "M-/") 'company-complete)
   (local-set-key (kbd "C-c c") 'company-complete)
@@ -221,8 +224,6 @@
   (setq company-minimum-prefix-length 5)
   (setq company-idle-delay 0.5)
   (setq company-rtags-begin-after-member-access 1)
-
-  (local-set-key (kbd "RET") 'newline-and-indent)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file)
   (local-set-key (kbd "C-c d") 'realgud:gdb)
