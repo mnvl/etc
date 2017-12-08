@@ -105,6 +105,8 @@
 (use-package counsel-projectile)
 
 (use-package rtags)
+(use-package ggtags)
+
 (use-package realgud)
 (use-package popup)
 
@@ -206,8 +208,13 @@
   (local-set-key (kbd "TAB") 'company-indent-or-complete-common)
   (local-set-key (kbd "RET") 'newline-and-indent)
 
+  (ggtags-mode 1)
+  (push 'company-gtags company-backends)
+
+  (local-set-key (kbd "M-q") 'ff-find-other-file)
   (local-set-key (kbd "C-c c") 'company-complete)
-  (local-set-key (kbd "C-c g") 'counsel-git-grep))
+  (local-set-key (kbd "C-c g") 'counsel-git-grep)
+  (local-set-key (kbd "C-c t") 'projectile-regenerate-tags))
 
 (defun my-c-c++-mode-hook ()
   (setq compilation-scroll-output 'first-error)
@@ -224,7 +231,6 @@
   (setq company-idle-delay 0.5)
   (setq company-rtags-begin-after-member-access 1)
 
-  (local-set-key (kbd "M-q") 'ff-find-other-file)
   (local-set-key (kbd "C-c d") 'realgud:gdb)
   (local-set-key (kbd "C-c f") 'clang-format)
   (local-set-key (kbd "C-c i") 'rtags-print-symbol-info)
@@ -232,7 +238,6 @@
   (local-set-key (kbd "C-c m") 'rtags-imenu)
   (local-set-key (kbd "C-c n") 'rtags-next-match)
   (local-set-key (kbd "C-c p") 'rtags-previous-match)
-  (local-set-key (kbd "C-c t") 'porjectile-regenerate-tags)
   (local-set-key (kbd "C-c v") 'rtags-find-virtuals-at-point)
   (local-set-key (kbd "C-c x") 'rtags-find-references-at-point))
 
