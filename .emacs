@@ -212,9 +212,10 @@
   (push 'company-gtags company-backends)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file)
-  (local-set-key (kbd "C-c c") 'company-complete)
+  (local-set-key (kbd "C-c c") 'comment-region)
   (local-set-key (kbd "C-c g") 'counsel-git-grep)
   (local-set-key (kbd "C-c t") 'projectile-regenerate-tags))
+  (local-set-key (kbd "C-c u") 'uncomment-region)
 
 (defun my-c-c++-mode-hook ()
   (setq compilation-scroll-output 'first-error)
