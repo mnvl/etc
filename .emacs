@@ -44,7 +44,7 @@
 (setq undo-limit (* 32 1024 1024))
 (setq undo-outer-limit (* 16 1024 1024))
 (setq undo-strong-limit (* 64 1024 1024))
-(setq uniquify-buffer-name-style 'forward)
+(setq uniquify-buffer-name-style 'post-forward)
 (setq-default save-place 1)
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
