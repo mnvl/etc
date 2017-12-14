@@ -30,6 +30,7 @@
 (setq-default save-place 1)
 (show-paren-mode 1)
 (savehist-mode 1)
+(setq history-length 1000)
 (global-subword-mode 1)
 
 (setq frame-title-format (list "%f"))
