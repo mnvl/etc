@@ -12,44 +12,40 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; basic settings
-(require 'saveplace)
-(require 'paren)
-
+;; interface
 (menu-bar-mode -1)
-(if window-system
-    (progn
-      (tool-bar-mode -1)
-      (scroll-bar-mode -1)))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(when (fboundp 'horizontal-scroll-bar-mode) (horizontal-scroll-bar-mode -1))
 
-(fset 'yes-or-no-p 'y-or-n-p)
-(global-font-lock-mode 1)
-(setq gdb-many-windows 1)
-(setq inhibit-splash-screen 1)
-(setq transient-mark-mode 1)
-(setq-default save-place 1)
-(show-paren-mode 1)
-(savehist-mode 1)
-(setq history-length 1000)
-(global-subword-mode 1)
-
-(setq frame-title-format (list "%f"))
-
-(setq undo-limit (* 32 1024 1024))
-(setq undo-strong-limit (* 64 1024 1024))
-(setq undo-outer-limit (* 16 1024 1024))
-
-;; coding system and input method
-(prefer-coding-system 'utf-8)
-
-;; fonts
 (if (eq system-type 'windows-nt) (set-frame-font "Consolas-14"))
 (if (eq system-type 'gnu/linux) (set-frame-font "Inconsolata-14"))
 
-;; remember recent files
+;; text editing
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(require 'saveplace)
+(require 'paren)
+(require 'uniquify)
 (require 'recentf)
+
+(global-font-lock-mode 1)
+(global-subword-mode 1)
 (recentf-mode 1)
+(savehist-mode 1)
+(show-paren-mode 1)
+(transient-mark-mode 1)
+
+(prefer-coding-system 'utf-8)
+(setq frame-title-format (list "%f"))
+(setq history-length 1000)
+(setq inhibit-splash-screen 1)
 (setq recentf-max-menu-items 100)
+(setq undo-limit (* 32 1024 1024))
+(setq undo-outer-limit (* 16 1024 1024))
+(setq undo-strong-limit (* 64 1024 1024))
+(setq uniquify-buffer-name-style 'forward)
+(setq-default save-place 1)
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
