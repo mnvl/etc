@@ -29,8 +29,10 @@
 (setq transient-mark-mode 1)
 (setq-default save-place 1)
 (show-paren-mode 1)
-(setq frame-title-format (list "%f"))
+(savehist-mode 1)
 (global-subword-mode 1)
+
+(setq frame-title-format (list "%f"))
 
 (setq undo-limit (* 32 1024 1024))
 (setq undo-strong-limit (* 64 1024 1024))
@@ -193,6 +195,7 @@
 
 (projectile-global-mode 1)
 (setq projectile-completion-system 'ivy)
+(global-set-key (kbd "<f7>") 'projectile-compile-project)
 (global-set-key (kbd "M-c") 'projectile-command-map)
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
@@ -211,11 +214,11 @@
   (ggtags-mode 1)
   (push 'company-gtags company-backends)
 
-  (local-set-key (kbd "M-q") 'ff-find-other-file)
   (local-set-key (kbd "C-c c") 'comment-region)
   (local-set-key (kbd "C-c g") 'counsel-git-grep)
-  (local-set-key (kbd "C-c t") 'projectile-regenerate-tags))
+  (local-set-key (kbd "C-c t") 'projectile-regenerate-tags)
   (local-set-key (kbd "C-c u") 'uncomment-region)
+  (local-set-key (kbd "M-q") 'ff-find-other-file))
 
 (defun my-c-c++-mode-hook ()
   (setq compilation-scroll-output 'first-error)
