@@ -211,6 +211,7 @@
   (ggtags-mode 1)
   (push 'company-gtags company-backends)
 
+  (local-set-key (kbd "M-/") 'company-complete)
   (local-set-key (kbd "C-c c") 'comment-region)
   (local-set-key (kbd "C-c g") 'counsel-git-grep)
   (local-set-key (kbd "C-c t") 'projectile-regenerate-tags)
@@ -261,6 +262,7 @@
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-hook 'my-c-c++-mode-hook)
+(add-hook 'lisp-mode-hook 'my-programming-modes-hook)
 (add-hook 'python-mode-hook 'my-programming-modes-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (add-hook 'sh-mode-hook 'my-programming-modes-hook)
