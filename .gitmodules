@@ -6,3 +6,6 @@
 	path = rtags
 	url = https://github.com/Andersbakken/rtags.git
 	branch = master
+[submodule "tpm"]
+	path = tpm
+	url = https://github.com/tmux-plugins/tpm
