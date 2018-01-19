@@ -9,6 +9,8 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
+source ~/etc/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
 SAVEHIST=1000000
