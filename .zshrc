@@ -9,7 +9,6 @@ zstyle ':prezto:load' pmodule \
        'directory' \
        'spectrum' \
        'utility' \
-       'prompt' \
        'completion' \
        'history-substring-search' \
        'autosuggestions' \
@@ -25,16 +24,14 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 zstyle ':prezto:*:*' case-sensitive 'yes'
 zstyle ':prezto:*:*' color 'yes'
 
-zstyle ':prezto:module:prompt' theme 'powerlevel9k'
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator vcs virtualenv background_jobs history time)
-
 zstyle ':prezto:module:terminal' auto-title 'yes'
 zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 
 source ~/etc/prezto/init.zsh
+
+export PS1='$ '
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
