@@ -20,7 +20,6 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
        'brackets' \
        'pattern' \
        'line' \
-       'cursor' \
        'root'
 
 zstyle ':prezto:*:*' case-sensitive 'yes'
