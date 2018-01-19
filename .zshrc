@@ -1,15 +1,43 @@
 
+# git clone https://github.com/powerline/fonts.git --depth=1 && cd fonts && ./install.sh
+
+zstyle ':prezto:load' pmodule \
+       'environment' \
+       'terminal' \
+       'editor' \
+       'history' \
+       'directory' \
+       'spectrum' \
+       'utility' \
+       'prompt' \
+       'completion' \
+       'history-substring-search' \
+       'autosuggestions' \
+       'syntax-highlighting'
+
+zstyle ':prezto:module:syntax-highlighting' highlighters \
+       'main' \
+       'brackets' \
+       'pattern' \
+       'line' \
+       'cursor' \
+       'root'
+
+zstyle ':prezto:*:*' case-sensitive 'yes'
+zstyle ':prezto:*:*' color 'yes'
+
+zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' pwd-length 'short'
+zstyle ':prezto:module:prompt' show-return-val 'yes'
+
+zstyle ':prezto:module:terminal' auto-title 'yes'
+zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
+
+source ~/etc/prezto/init.zsh
+
 export PS1='$ '
-
-source ~/etc/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/etc/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/etc/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-fpath=(~/etc/zsh-completions $fpath)
-compinit
-
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
