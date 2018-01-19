@@ -26,9 +26,7 @@ zstyle ':prezto:module:syntax-highlighting' highlighters \
 zstyle ':prezto:*:*' case-sensitive 'yes'
 zstyle ':prezto:*:*' color 'yes'
 
-zstyle ':prezto:module:prompt' theme 'sorin'
-zstyle ':prezto:module:prompt' pwd-length 'short'
-zstyle ':prezto:module:prompt' show-return-val 'yes'
+zstyle ':prezto:module:prompt' theme 'powerlevel9k'
 
 zstyle ':prezto:module:terminal' auto-title 'yes'
 zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
@@ -36,8 +34,6 @@ zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 
 source ~/etc/prezto/init.zsh
-
-export PS1='$ '
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
