@@ -1,15 +1,15 @@
 
-# git clone https://github.com/powerline/fonts.git --depth=1 && cd fonts && ./install.sh
-# switch to powerline font
-export ZSH=~/etc/oh-my-zsh
-ZSH_THEME="agnoster"
-plugins=(
-    git
-    tmux
-)
-source $ZSH/oh-my-zsh.sh
+export PS1='$ '
 
 source ~/etc/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/etc/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/etc/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+fpath=(~/etc/zsh-completions $fpath)
+compinit
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
