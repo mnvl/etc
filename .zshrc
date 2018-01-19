@@ -33,7 +33,7 @@ alias sshx="ssh -X $FORWARD_PORTS"
 export EDITOR='emacs -nw --no-desktop'
 export DIFF='ediff -nw --no-desktop'
 
-export PATH=/usr/local/cuda-8.0/bin:/usr/local/bin/:${PATH:+:${PATH}}
+export PATH=~/.local/bin:/usr/local/bin/:${PATH:+:${PATH}}
 
 mp3fy_audios_in_directory() {
     if [ "$#" -ne 2 ]; then
