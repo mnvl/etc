@@ -31,7 +31,8 @@ zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 
 source ~/etc/prezto/init.zsh
 
-export PS1='$ '
+export PROMPT='$ '
+export RPROMPT='%F{239}%~ %?%f'
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
