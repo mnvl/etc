@@ -46,6 +46,7 @@ autoload -U select-word-style
 select-word-style bash
 
 alias tmux='tmux -2'
+alias mc='SHELL=bash mc'
 
 SSHX_PORTS=`awk 'BEGIN { for (i = 7000; i <= 7010; i++) printf " -L %d:127.0.0.1:%d", i, i }'`
 alias sshx="ssh -X $SSHX_PORTS"
