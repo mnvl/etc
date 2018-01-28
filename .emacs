@@ -1,4 +1,5 @@
 
+
 ;; install packages automatically on startup
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -71,16 +72,14 @@
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
-(global-set-key (kbd "M-o") 'other-window)
-
+(global-set-key (kbd "C-<down>") 'windmove-down)
+(global-set-key (kbd "C-<left>") 'windmove-left)
+(global-set-key (kbd "C-<right>") 'windmove-right)
 (global-set-key (kbd "C-<up>") 'windmove-up)
 (global-set-key (kbd "M-[ a") 'windmove-up)
-(global-set-key (kbd "C-<down>") 'windmove-down)
 (global-set-key (kbd "M-[ b") 'windmove-down)
-(global-set-key (kbd "C-<left>") 'windmove-left)
-(global-set-key (kbd "M-[ d") 'windmove-left)
-(global-set-key (kbd "C-<right>") 'windmove-right)
 (global-set-key (kbd "M-[ c") 'windmove-right)
+(global-set-key (kbd "M-[ d") 'windmove-left)
 
 (global-set-key (kbd "C-x f") 'projectile-find-file)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -88,6 +87,21 @@
 
 (global-set-key (kbd "C-r") 'ivy-resume)
 (global-set-key (kbd "C-s") 'swiper)
+
+;; org mode
+(require 'org)
+(define-prefix-command 'my-org-mode-map)
+(global-set-key (kbd "C-o") 'my-org-mode-map)
+(global-set-key (kbd "C-o a") 'org-agenda)
+(global-set-key (kbd "C-o c") 'org-capture)
+(global-set-key (kbd "C-o l") 'org-store-link)
+(global-set-key (kbd "C-o t") 'org-todo-list)
+
+(setq org-directory "~/org")
+(setq org-default-notes-file (concat org-directory "/capture.org"))
+(setq org-list-description-max-indent 5)
+(setq org-adapt-indentation nil)
+(setq org-log-done 'time)
 
 ;; sudo apt install git cmake libclang-dev clang clang-format exuberant-ctags global libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
 ;; cd ~/etc/rtags && cmake . && make
