@@ -2,8 +2,8 @@
 
 ;; install packages automatically on startup
 (require 'package)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("melpa" . "http://melpa.org/packages/")))
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")))
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -110,15 +110,17 @@
 (require 'cl)
 (require 'cc-mode)
 
-(use-package anaconda-mode)
 (use-package cmake-mode)
 
 (use-package clang-format)
 (use-package projectile)
 (use-package counsel-projectile)
+(use-package magit)
 
 (use-package rtags)
 (use-package ggtags)
+
+(use-package anaconda-mode)
 
 (use-package realgud)
 (use-package popup)
@@ -280,7 +282,3 @@
 (add-hook 'python-mode-hook 'my-programming-modes-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (add-hook 'sh-mode-hook 'my-programming-modes-hook)
-
-;; local
-(if (file-exists-p "~/.emacs-local")
-    (load-file "~/.emacs-local"))

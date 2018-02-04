@@ -31,8 +31,11 @@ zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 
 source ~/etc/prezto/init.zsh
 
+# prezto has an alias rm="rm -i"
+unalias rm
+
 export PROMPT='$ '
-export RPROMPT='%F{239}%~ %?%f'
+export RPROMPT='%F{239}%~%f %(?.%F{239}.%F{red})%?%f'
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
@@ -53,5 +56,3 @@ alias sshx="ssh -X $SSHX_PORTS"
 
 export EDITOR='emacs -nw --no-desktop'
 export DIFF='ediff -nw --no-desktop'
-
-export PATH=~/.local/bin:/usr/local/bin/:${PATH:+:${PATH}}
