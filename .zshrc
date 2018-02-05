@@ -56,3 +56,5 @@ alias sshx="ssh -X $SSHX_PORTS"
 
 export EDITOR='emacs -nw --no-desktop'
 export DIFF='ediff -nw --no-desktop'
+
+source ~/etc/snippets.sh
