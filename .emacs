@@ -29,6 +29,7 @@
 (require 'paren)
 (require 'uniquify)
 (require 'recentf)
+(use-package expand-region)
 
 (global-font-lock-mode 1)
 (global-subword-mode 1)
@@ -80,6 +81,8 @@
 (global-set-key (kbd "M-[ b") 'windmove-down)
 (global-set-key (kbd "M-[ c") 'windmove-right)
 (global-set-key (kbd "M-[ d") 'windmove-left)
+
+(global-set-key (kbd "M-=") 'er/expand-region)
 
 (global-set-key (kbd "C-x f") 'projectile-find-file)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
@@ -282,3 +285,17 @@
 (add-hook 'python-mode-hook 'my-programming-modes-hook)
 (add-hook 'python-mode-hook 'my-python-mode-hook)
 (add-hook 'sh-mode-hook 'my-programming-modes-hook)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (expand-region use-package realgud popup magit ggtags counsel-projectile company-rtags company-anaconda cmake-mode cmake-ide clang-format))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
