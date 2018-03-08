@@ -135,8 +135,7 @@
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
   `((c-recognize-knr-p . nil)
-    (c-enable-xemacs-performance-kludge-p . t)
-    (c-basic-offset . 2)
+    (c-basic-offset . 4)
     (indent-tabs-mode . nil)
     (c-comment-only-line-offset . 0)
     (c-hanging-braces-alist . ((defun-open after)
@@ -190,11 +189,11 @@
                           ,(when (fboundp 'c-lineup-assignments)
                              'c-lineup-assignments)
                           ++))
-                        (label . /)
-                        (case-label . +)
+                        (label . -)
+                        (case-label . 0)
                         (statement-case-open . +)
                         (statement-case-intro . +) ; case w/o {
-                        (access-label . /)
+                        (access-label . -)
                         (innamespace . 0)))))
 
 (c-add-style "my-cc-style" my-cc-style)
