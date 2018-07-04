@@ -41,7 +41,7 @@ downscale_videos_in_directory() {
     output_dir=$2
 
     find $input_dir -type d -exec mkdir -p $output_dir/{} \;
-    find $input_dir -type f -exec ffmpeg -n -i {} -f matroska -c:v libx265 -vf scale="640:-1" -preset slow -crf 24 -acodec copy $output_dir/{}.mkv \;
+    find $input_dir -type f -exec ffmpeg -n -i {} -f matroska -c:v libx265 -vf scale="640:-1" -crf 21 -acodec copy $output_dir/{}.mkv \;
 
     find $input_dir -type f -exec mediainfo --Inform="General;%Duration%" "{}" \; 2>/dev/null | awk '{s+=$1/1000} END {h=s/3600; s=s%3600; printf "%.2d:%.2d\n", int(h), int(s/60)}'
     find $output_dir -type f -exec mediainfo --Inform="General;%Duration%" "{}" \; 2>/dev/null | awk '{s+=$1/1000} END {h=s/3600; s=s%3600; printf "%.2d:%.2d\n", int(h), int(s/60)}'
