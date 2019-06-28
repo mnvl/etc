@@ -174,9 +174,6 @@
   (local-set-key (kbd "TAB") 'company-indent-or-complete-common)
   (local-set-key (kbd "RET") 'newline-and-indent)
 
-  (ggtags-mode 1)
-  (push 'company-gtags company-backends)
-
   (local-set-key (kbd "C-c i") 'lsp-describe-thing-at-point)
   (local-set-key (kbd "C-c f") 'lsp-format-buffer)
   (local-set-key (kbd "C-c g") 'lsp-goto-implementation)
