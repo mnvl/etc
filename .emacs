@@ -1,5 +1,4 @@
 
-
 ;; install packages automatically on startup
 (require 'package)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -51,6 +50,7 @@
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
+;; tip: select "linux console" color theme in terminal if background is grey
 (add-to-list 'custom-theme-load-path "~/etc/darkokai")
 (setq darkokai-mode-line-padding 1)
 (load-theme 'darkokai t)
@@ -91,46 +91,12 @@
 (global-set-key (kbd "C-r") 'ivy-resume)
 (global-set-key (kbd "C-s") 'swiper)
 
-;; org mode
-(require 'org)
-(define-prefix-command 'my-org-mode-map)
-(global-set-key (kbd "C-o") 'my-org-mode-map)
-(global-set-key (kbd "C-o a") 'org-agenda)
-(global-set-key (kbd "C-o c") 'org-capture)
-(global-set-key (kbd "C-o l") 'org-store-link)
-(global-set-key (kbd "C-o t") 'org-todo-list)
-
-(setq org-directory "~/org")
-(setq org-default-notes-file (concat org-directory "/capture.org"))
-(setq org-list-description-max-indent 5)
-(setq org-adapt-indentation nil)
-(setq org-log-done 'time)
-
-;; sudo apt install git cmake libclang-dev clang clang-format exuberant-ctags global libncurses5-dev liblua5.3-dev libssl-dev python\*-virtualenv python\*-\*pep8
-;; cd ~/etc/rtags && cmake . && make
-;; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ./ && ~/etc/rtags/bin/rc -J .
-;; tip: add SET(CMAKE_CXX_STANDARD 17) in CMakeLists.txt if you see strange errors.
-(require 'cl)
-(require 'cc-mode)
-
-(use-package cmake-mode)
-
-(use-package clang-format)
-(use-package projectile)
-(use-package counsel-projectile)
-(use-package magit)
-
-(use-package rtags)
-(use-package ggtags)
-
-(use-package anaconda-mode)
-
-(use-package realgud)
-(use-package popup)
-
-(use-package company)
-(use-package company-anaconda)
-(use-package company-rtags)
+;; sudo apt-get install clang-tools-6.0
+;; pip install python-language-server
+(use-package lsp-mode :commands lsp)
+(use-package lsp-ui :commands lsp-ui-mode)
+(use-package company-lsp :commands company-lsp)
+(use-package yasnippet)
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
@@ -198,84 +164,36 @@
 
 (c-add-style "my-cc-style" my-cc-style)
 
-(global-company-mode 1)
-(setq company-minimum-prefix-length 3)
-(setq company-idle-delay 0.1)
-
-(setq rtags-path "~/etc/rtags/bin/")
-(add-to-list 'load-path "~/etc/rtags/src/")
-
-(setq whitespace-style '(face trailing tabs))
-(global-whitespace-mode 1)
-
-(projectile-global-mode 1)
-(setq projectile-completion-system 'ivy)
-(global-set-key (kbd "<f7>") 'projectile-compile-project)
-(global-set-key (kbd "M-c") 'projectile-command-map)
-
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.cc\\'" . c++-mode))
-(add-to-list 'auto-mode-alist '("\\.m\\'" . octave-mode))
-
 (defun my-programming-modes-hook ()
   (setq-local linum-format (if window-system "%4d" "%4d "))
 
   (setq-default indent-tabs-mode nil)
   (setq tab-width 2)
 
+  (lsp)
   (local-set-key (kbd "TAB") 'company-indent-or-complete-common)
   (local-set-key (kbd "RET") 'newline-and-indent)
 
   (ggtags-mode 1)
   (push 'company-gtags company-backends)
 
-  (local-set-key (kbd "M-/") 'company-complete)
-  (local-set-key (kbd "C-c c") 'comment-region)
-  (local-set-key (kbd "C-c g") 'counsel-git-grep)
-  (local-set-key (kbd "C-c t") 'projectile-regenerate-tags)
-  (local-set-key (kbd "C-c u") 'uncomment-region)
+  (local-set-key (kbd "C-c i") 'lsp-describe-thing-at-point)
+  (local-set-key (kbd "C-c f") 'lsp-format-buffer)
+  (local-set-key (kbd "C-c g") 'lsp-goto-implementation)
+  (local-set-key (kbd "C-c j") 'lsp-goto-type-definition)
+  (local-set-key (kbd "C-c r") 'lsp-rename)
+  (local-set-key (kbd "C-c h") 'lsp-symbol-highlight)
+  (local-set-key (kbd "C-c f") 'lsp-find-definition)
+  (local-set-key (kbd "C-c x") 'lsp-find-references)
+
   (local-set-key (kbd "M-q") 'ff-find-other-file))
 
 (defun my-c-c++-mode-hook ()
   (setq compilation-scroll-output 'first-error)
-  (c-set-style "my-cc-style")
-
-  (setq rtags-completions-enabled 1)
-  (setq rtags-display-current-error-as-tooltip 1)
-  (setq rtags-display-result-backend 'ivy)
-  (rtags-start-process-unless-running)
-  (rtags-diagnostics)
-  (push 'company-rtags company-backends)
-
-  (setq company-minimum-prefix-length 5)
-  (setq company-idle-delay 0.5)
-  (setq company-rtags-begin-after-member-access 1)
-
-  (local-set-key (kbd "C-c d") 'realgud:gdb)
-  (local-set-key (kbd "C-c f") 'clang-format)
-  (local-set-key (kbd "C-c i") 'rtags-print-symbol-info)
-  (local-set-key (kbd "C-c j") 'rtags-find-symbol-at-point)
-  (local-set-key (kbd "C-c m") 'rtags-imenu)
-  (local-set-key (kbd "C-c n") 'rtags-next-match)
-  (local-set-key (kbd "C-c p") 'rtags-previous-match)
-  (local-set-key (kbd "C-c v") 'rtags-find-virtuals-at-point)
-  (local-set-key (kbd "C-c x") 'rtags-find-references-at-point))
+  (c-set-style "my-cc-style"))
 
 (defun my-python-mode-hook ()
-  (anaconda-mode 1)
-
-  (setq python-indent-offset 4)
-  (setq tab-width 4)
-
-  (push 'company-anaconda company-backends)
-
-  (local-set-key (kbd "C-c a") 'anaconda-mode-find-assignments)
-  (local-set-key (kbd "C-c d") 'realgud:pdb)
-  (local-set-key (kbd "C-c f") 'py-autopep8)
-  (local-set-key (kbd "C-c i") 'anaconda-mode-show-doc)
-  (local-set-key (kbd "C-c j") 'anaconda-mode-find-definitions)
-  (local-set-key (kbd "C-c p") 'anaconda-mode-go-back)
-  (local-set-key (kbd "C-c x") 'anaconda-mode-find-references))
+  )
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
