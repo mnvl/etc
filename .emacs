@@ -174,13 +174,14 @@
   (local-set-key (kbd "TAB") 'company-indent-or-complete-common)
   (local-set-key (kbd "RET") 'newline-and-indent)
 
-  (local-set-key (kbd "C-c i") 'lsp-describe-thing-at-point)
+  (local-set-key (kbd "C-c c") 'company-complete)
+  (local-set-key (kbd "C-c d") 'lsp-find-definition)
   (local-set-key (kbd "C-c f") 'lsp-format-buffer)
   (local-set-key (kbd "C-c g") 'lsp-goto-implementation)
+  (local-set-key (kbd "C-c h") 'lsp-symbol-highlight)
+  (local-set-key (kbd "C-c i") 'lsp-describe-thing-at-point)
   (local-set-key (kbd "C-c j") 'lsp-goto-type-definition)
   (local-set-key (kbd "C-c r") 'lsp-rename)
-  (local-set-key (kbd "C-c h") 'lsp-symbol-highlight)
-  (local-set-key (kbd "C-c f") 'lsp-find-definition)
   (local-set-key (kbd "C-c x") 'lsp-find-references)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file))
@@ -190,6 +191,7 @@
   (c-set-style "my-cc-style"))
 
 (defun my-python-mode-hook ()
+  (local-set-key (kbd "C-c p") 'py-autopep8)
   )
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
