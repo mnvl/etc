@@ -92,7 +92,7 @@
 (global-set-key (kbd "C-s") 'swiper)
 
 ;; sudo apt-get install clang-tools-6.0
-;; pip install python-language-server
+;; pip3 install 'python-language-server[all]'
 (use-package lsp-mode :commands lsp)
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
@@ -177,11 +177,11 @@
   (local-set-key (kbd "C-c c") 'company-complete)
   (local-set-key (kbd "C-c d") 'lsp-find-definition)
   (local-set-key (kbd "C-c f") 'lsp-format-buffer)
-  (local-set-key (kbd "C-c g") 'lsp-goto-implementation)
   (local-set-key (kbd "C-c h") 'lsp-symbol-highlight)
-  (local-set-key (kbd "C-c i") 'lsp-describe-thing-at-point)
+  (local-set-key (kbd "C-c i") 'lsp-goto-implementation)
   (local-set-key (kbd "C-c j") 'lsp-goto-type-definition)
   (local-set-key (kbd "C-c r") 'lsp-rename)
+  (local-set-key (kbd "C-c w") 'lsp-describe-thing-at-point)
   (local-set-key (kbd "C-c x") 'lsp-find-references)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file))
