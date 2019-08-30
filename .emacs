@@ -28,7 +28,6 @@
 (require 'paren)
 (require 'uniquify)
 (require 'recentf)
-(use-package expand-region)
 
 (global-font-lock-mode 1)
 (global-subword-mode 1)
@@ -82,8 +81,6 @@
 (global-set-key (kbd "M-[ c") 'windmove-right)
 (global-set-key (kbd "M-[ d") 'windmove-left)
 
-(global-set-key (kbd "M-=") 'er/expand-region)
-
 (global-set-key (kbd "C-x f") 'projectile-find-file)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "C-x C-r") 'counsel-recentf)
@@ -91,7 +88,7 @@
 (global-set-key (kbd "C-r") 'ivy-resume)
 (global-set-key (kbd "C-s") 'swiper)
 
-;; sudo apt-get install clang-tools-6.0
+;; sudo apt-get install clang-tools
 ;; pip3 install 'python-language-server[all]'
 (use-package lsp-mode :commands lsp)
 (use-package lsp-ui :commands lsp-ui-mode)
@@ -191,8 +188,9 @@
   (c-set-style "my-cc-style"))
 
 (defun my-python-mode-hook ()
-  (local-set-key (kbd "C-c p") 'py-autopep8)
-  )
+  (local-set-key (kbd "C-c <") 'python-indent-shift-left)
+  (local-set-key (kbd "C-c >") 'python-indent-shift-right)
+  (local-set-key (kbd "C-c p") 'py-autopep8))
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)
