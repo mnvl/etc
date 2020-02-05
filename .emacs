@@ -1,8 +1,9 @@
 
 ;; install packages automatically on startup
+;; tip: M-x package-list-packages in case of "error: Package ‘use-package-’ is unavailable"
 (require 'package)
-(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+(add-to-list 'package-archives
+	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -11,6 +12,10 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+;; gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40
+;; gpg --homedir ~/.emacs.d/elpa/gnupg --quick-set-expire 474F05837FBDEF9B 1y
+(use-package gnu-elpa-keyring-update)
 
 ;; interface
 (menu-bar-mode -1)
@@ -171,6 +176,7 @@
   (local-set-key (kbd "TAB") 'company-indent-or-complete-common)
   (local-set-key (kbd "RET") 'newline-and-indent)
 
+  (local-set-key (kbd "C-c S") 'lsp-describe-session)
   (local-set-key (kbd "C-c c") 'company-complete)
   (local-set-key (kbd "C-c d") 'lsp-find-definition)
   (local-set-key (kbd "C-c f") 'lsp-format-buffer)
