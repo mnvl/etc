@@ -1,6 +1,5 @@
 
 ;; install packages automatically on startup
-;; tip: M-x package-list-packages in case of "error: Package ‘use-package-’ is unavailable"
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
