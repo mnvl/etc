@@ -1,6 +1,6 @@
 #! /bin/sh -ex
 
-for x in .zshrc .emacs .jupyter .gdbinit .tmux.conf
+for x in .zshrc .emacs .jupyter .gdbinit .tmux.conf .gitconfig
 do
     ln -f -s ~/etc/$x ~/$x
 done
