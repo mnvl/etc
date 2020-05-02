@@ -35,7 +35,6 @@ source ~/etc/prezto/init.zsh
 unalias rm
 
 export PROMPT='$ '
-export RPROMPT='%F{239}%~%f %(?.%F{239}.%F{red})%?%f'
 
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
