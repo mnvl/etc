@@ -56,6 +56,7 @@ alias sshx="ssh -D 1080 -X $SSHX_PORTS"
 export EDITOR='emacs -nw --no-desktop'
 export DIFF='ediff -nw --no-desktop'
 
+export LC_ALL=ru_RU.UTF-8
 export LESSCHARSET=utf-8
 
 source ~/etc/snippets.sh

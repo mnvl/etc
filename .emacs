@@ -98,6 +98,7 @@
 (use-package lsp-ui :commands lsp-ui-mode)
 (use-package company-lsp :commands company-lsp)
 (use-package yasnippet)
+(use-package py-autopep8)
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
