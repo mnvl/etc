@@ -22,6 +22,8 @@
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (when (fboundp 'horizontal-scroll-bar-mode) (horizontal-scroll-bar-mode -1))
 
+;; sudo apt-get install fonts-inconsolata -y
+;; sudo fc-cache -fv
 (if (eq system-type 'windows-nt) (set-frame-font "Consolas-14"))
 (if (eq system-type 'gnu/linux) (set-frame-font "Inconsolata-14"))
 
