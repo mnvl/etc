@@ -2,6 +2,3 @@
 	path = darkokai
 	url = https://github.com/mnvl/darkokai.git
 	branch = master
-[submodule "tpm"]
-	path = tpm
-	url = https://github.com/tmux-plugins/tpm
