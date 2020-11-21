@@ -19,7 +19,7 @@ export DIFF='ediff -nw --no-desktop'
 export LC_ALL=ru_RU.UTF-8
 export LESSCHARSET=utf-8
 
-export ZSH="/home/mel/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 PROMPT="$ "
 
