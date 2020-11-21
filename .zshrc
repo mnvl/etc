@@ -26,6 +26,11 @@ PROMPT="$ "
 plugins=(
     git
     history
+
+    zsh-autosuggestions
+    zsh-completions
+    zsh-history-substring-search
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
