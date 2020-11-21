@@ -5,6 +5,3 @@
 [submodule "tpm"]
 	path = tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "prezto"]
-	path = prezto
-	url = https://github.com/sorin-ionescu/prezto.git
