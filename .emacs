@@ -95,12 +95,14 @@
 (global-set-key (kbd "C-s") 'swiper)
 
 ;; sudo apt-get install clang-tools
-;; pip3 install 'python-language-server[all]'
-(use-package lsp-mode :commands lsp)
-(use-package lsp-ui :commands lsp-ui-mode)
-(use-package company-lsp :commands company-lsp)
+;; pip3 install 'python-lsp-server[all]'
+(use-package company)
+(use-package lsp-mode)
+(use-package lsp-ui)
 (use-package yasnippet)
 (use-package py-autopep8)
+
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
