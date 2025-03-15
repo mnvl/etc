@@ -24,7 +24,7 @@ do
     ln -f -s $HOME/etc/$x $HOME/$x
 done
 
-ln -f -s $HOME/etc/$x $HOME/.config/fish
+ln -f -s $HOME/etc/fish $HOME/.config/fish
 
 # need to use virtual envs now
 # pip3 install 'python-lsp-server[all]'
