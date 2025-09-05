@@ -4,18 +4,8 @@
 (add-to-list 'package-archives
 	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
-(when (< emacs-major-version 29)
-  (unless (package-installed-p 'use-package)
-    (unless package-archive-contents
-      (package-refresh-contents))
-    (package-install 'use-package)))
-
 (require 'use-package)
 (setq use-package-always-ensure t)
-
-;; gpg --homedir ~/.emacs.d/elpa/gnupg --receive-keys 066DAFCB81E42C40
-;; gpg --homedir ~/.emacs.d/elpa/gnupg --quick-set-expire 474F05837FBDEF9B 1y
-(use-package gnu-elpa-keyring-update)
 
 ;; interface
 (menu-bar-mode -1)
@@ -198,6 +188,7 @@
   (local-set-key (kbd "C-c c") 'company-complete)
   (local-set-key (kbd "C-c d") 'xref-find-definitions)
   (local-set-key (kbd "C-c f") 'eglot-format-buffer)
+  (local-set-key (kbd "C-c g") 'counsel-imenu)
   (local-set-key (kbd "C-c i") 'eglot-find-implementation)
   (local-set-key (kbd "C-c j") 'eglot-find-declaration)
   (local-set-key (kbd "C-c r") 'eglot-rename)
