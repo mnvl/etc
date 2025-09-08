@@ -25,8 +25,8 @@
 },
 
 {
-    "key": "cmd+h",
-    "command": "editor.action.startFindReplaceAction",
+    "key": "ctrl+y",
+    "command": "paste",
     "when": "editorTextFocus"
 },
 
@@ -92,4 +92,12 @@
     "key": "alt+down",
     "command": "workbench.action.focusBelowGroup",
     "when": "editorTextFocus"
-}]
+},
+
+{
+    "key": "cmd+h",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "editorTextFocus"
+},
+
+]
