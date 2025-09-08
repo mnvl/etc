@@ -23,6 +23,12 @@
 },
 
 {
+    "key": "cmd+h",
+    "command": "editor.action.startFindReplaceAction",
+    "when": "editorTextFocus"
+}
+
+{
     "key": "ctrl+x s",
     "command": "workbench.action.files.save",
     "when": "editorTextFocus"
