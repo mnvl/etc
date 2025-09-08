@@ -44,4 +44,34 @@
     "key": "ctrl+x b",
     "command":"workbench.action.quickOpen",
     "when": "editorTextFocus",
+},
+
+{
+    "key": "ctrl+x 2",
+    "command": "workbench.action.splitEditor",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "alt+left",
+    "command": "workbench.action.focusLeftGroup",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "alt+right",
+    "command": "workbench.action.focusRightGroup",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "alt+up",
+    "command": "workbench.action.focusAboveGroup",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "alt+down",
+    "command": "workbench.action.focusBelowGroup",
+    "when": "editorTextFocus"
 }]
