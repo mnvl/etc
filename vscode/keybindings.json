@@ -1,4 +1,6 @@
-[{
+[
+// basic posix-like editing
+{
     "key": "alt+b",
     "command": "cursorWordLeft",
     "when": "editorTextFocus"
@@ -11,13 +13,13 @@
 },
 
 {
-    "key": "ctrl+s",
+    "key": "alt+s",
     "command": "actions.find",
     "when": "editorTextFocus"
 },
 
 {
-    "key": "ctrl+r",
+    "key": "alt+r",
     "command": "editor.action.startFindReplaceAction",
     "when": "editorTextFocus"
 },
@@ -26,32 +28,48 @@
     "key": "cmd+h",
     "command": "editor.action.startFindReplaceAction",
     "when": "editorTextFocus"
-}
+},
 
+// emacs-like C-x ...
 {
-    "key": "ctrl+x s",
+    "key": "meta+x s",
     "command": "workbench.action.files.save",
     "when": "editorTextFocus"
 },
 
 {
-    "key": "ctrl+x ctrl+s",
-    "command": "workbench.action.files.save",
-    "when": "editorTextFocus"
-},
-
-{
-    "key": "ctrl+x b",
+    "key": "meta+x b",
     "command":"workbench.action.quickOpen",
-    "when": "editorTextFocus",
+    "when": "editorTextFocus"
 },
 
 {
-    "key": "ctrl+x 2",
+    "key": "meta+x 2",
     "command": "workbench.action.splitEditor",
     "when": "editorTextFocus"
 },
 
+// make meta key on linux behave like meta key in mac os
+{
+    "key": "meta+s",
+    "command": "workbench.action.files.save",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "meta+y",
+    "command": "paste",
+    "when": "editorTextFocus"
+},
+
+// gsettings set org.gnome.mutter.keybindings switch-monitor "[]"
+{
+    "key": "meta+p",
+    "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus"
+},
+
+// bindings from emacs config
 {
     "key": "alt+left",
     "command": "workbench.action.focusLeftGroup",
