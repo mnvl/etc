@@ -32,19 +32,19 @@
 
 // emacs-like C-x ...
 {
-    "key": "meta+x s",
+    "key": "ctrl+x s",
     "command": "workbench.action.files.save",
     "when": "editorTextFocus"
 },
 
 {
-    "key": "meta+x b",
+    "key": "ctrl+x b",
     "command":"workbench.action.quickOpen",
     "when": "editorTextFocus"
 },
 
 {
-    "key": "meta+x 2",
+    "key": "ctrl+x 2",
     "command": "workbench.action.splitEditor",
     "when": "editorTextFocus"
 },
