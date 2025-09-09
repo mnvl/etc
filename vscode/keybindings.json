@@ -38,14 +38,32 @@
 },
 
 {
+    "key": "ctrl+x ctrl+s",
+    "command": "workbench.action.files.save",
+    "when": "editorTextFocus"
+},
+
+{
     "key": "ctrl+x b",
     "command":"workbench.action.quickOpen",
     "when": "editorTextFocus"
 },
 
 {
+    "key": "ctrl+x 1",
+    "command": "workbench.action.joinTwoGroups",
+    "when": "editorTextFocus"
+},
+
+{
     "key": "ctrl+x 2",
     "command": "workbench.action.splitEditor",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+x 3",
+    "command": "workbench.action.splitEditorDown",
     "when": "editorTextFocus"
 },
 
@@ -99,5 +117,11 @@
     "command": "editor.action.startFindReplaceAction",
     "when": "editorTextFocus"
 },
+
+{
+    "key": "ctrl+o",
+    "command": "workbench.action.focusNextGroup",
+    "when": "editorTextFocus"
+}
 
 ]
