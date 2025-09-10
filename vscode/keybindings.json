@@ -25,55 +25,30 @@
 },
 
 {
-    "key": "ctrl+y",
-    "command": "paste",
+    "key": "alt+w",
+    "command": "editor.action.clipboardCutAction",
     "when": "editorTextFocus"
 },
 
-// emacs-like C-x ...
+// make meta and ctrl act the same way on linux and macos
 {
-    "key": "meta+x f",
-    "command": "workbench.action.quickOpen",
-    "when": "editorTextFocus"
-},
-
-{
-    "key": "meta+x s",
-    "command": "workbench.action.files.save",
+    "key": "meta+x",
+    "command": "editor.action.clipboardCutAction",
     "when": "editorTextFocus"
 },
 
 {
-    "key": "meta+x ctrl+s",
-    "command": "workbench.action.files.save",
+    "key": "meta+c",
+    "command": "editor.action.clipboardCopyAction",
     "when": "editorTextFocus"
 },
 
 {
-    "key": "meta+x b",
-    "command":"workbench.action.quickOpen",
+    "key": "meta+v",
+    "command": "editor.action.clipboardPasteAction",
     "when": "editorTextFocus"
 },
 
-{
-    "key": "meta+x 1",
-    "command": "workbench.action.joinTwoGroups",
-    "when": "editorTextFocus"
-},
-
-{
-    "key": "meta+x 2",
-    "command": "workbench.action.splitEditor",
-    "when": "editorTextFocus"
-},
-
-{
-    "key": "meta+x 3",
-    "command": "workbench.action.splitEditorDown",
-    "when": "editorTextFocus"
-},
-
-// make meta key on linux behave like meta key in mac os
 {
     "key": "meta+s",
     "command": "workbench.action.files.save",
@@ -81,8 +56,8 @@
 },
 
 {
-    "key": "meta+y",
-    "command": "paste",
+    "key": "cmd+h",
+    "command": "editor.action.startFindReplaceAction",
     "when": "editorTextFocus"
 },
 
@@ -90,6 +65,49 @@
 {
     "key": "meta+p",
     "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus"
+},
+
+// emacs-like C-x ...
+{
+    "key": "ctrl+x f",
+    "command": "workbench.action.quickOpen",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+x s",
+    "command": "workbench.action.files.save",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+x ctrl+s",
+    "command": "workbench.action.files.save",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+x b",
+    "command":"workbench.action.quickOpen",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+x 1",
+    "command": "workbench.action.joinTwoGroups",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+x 2",
+    "command": "workbench.action.splitEditor",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+x 3",
+    "command": "workbench.action.splitEditorDown",
     "when": "editorTextFocus"
 },
 
@@ -115,12 +133,6 @@
 {
     "key": "alt+down",
     "command": "workbench.action.focusBelowGroup",
-    "when": "editorTextFocus"
-},
-
-{
-    "key": "cmd+h",
-    "command": "editor.action.startFindReplaceAction",
     "when": "editorTextFocus"
 },
 
