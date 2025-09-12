@@ -25,8 +25,20 @@
 },
 
 {
-    "key": "alt+w",
+    "key": "ctrl+w",
     "command": "editor.action.clipboardCutAction",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "alt+w",
+    "command": "editor.action.clipboardCopyAction",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+y",
+    "command": "editor.action.clipboardPasteAction",
     "when": "editorTextFocus"
 },
 
@@ -58,6 +70,12 @@
 {
     "key": "cmd+h",
     "command": "editor.action.startFindReplaceAction",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "meta+b",
+    "command": "workbench.action.toggleSidebarVisibility",
     "when": "editorTextFocus"
 },
 
@@ -111,7 +129,7 @@
     "when": "editorTextFocus"
 },
 
-// bindings from emacs config
+// more muscle memory bindings from emacs config
 {
     "key": "alt+left",
     "command": "workbench.action.focusLeftGroup",
