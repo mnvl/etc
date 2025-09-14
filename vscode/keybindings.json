@@ -86,7 +86,7 @@
     "when": "editorTextFocus"
 },
 
-// emacs-like C-x ...
+// emacs-like C-x ... and C-c ... bindings
 {
     "key": "ctrl+x f",
     "command": "workbench.action.quickOpen",
@@ -128,6 +128,25 @@
     "command": "workbench.action.splitEditorDown",
     "when": "editorTextFocus"
 },
+
+{
+    "key": "ctrl+c g",
+    "command": "workbench.action.gotoSymbol",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+c d",
+    "command": "editor.action.revealDefinition",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+c x",
+    "command": "editor.action.referenceSearch.trigger",
+    "when": "editorTextFocus"
+},
+
 
 // more muscle memory bindings from emacs config
 {
