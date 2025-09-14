@@ -147,6 +147,17 @@
     "when": "editorTextFocus"
 },
 
+{
+    "key": "ctrl+c t",
+    "command": "testing.debugAtCursor",
+    "when": "editorTextFocus"
+},
+
+{
+    "key": "ctrl+c b",
+    "command": "editor.debug.action.toggleBreakpoint",
+    "when": "editorTextFocus"
+},
 
 // more muscle memory bindings from emacs config
 {
