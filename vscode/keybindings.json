@@ -154,6 +154,12 @@
 },
 
 {
+    "key": "ctrl+c shift+t",
+    "command": "testing.runCurrentFile",
+    "when": "editorTextFocus"
+},
+
+{
     "key": "ctrl+c b",
     "command": "editor.debug.action.toggleBreakpoint",
     "when": "editorTextFocus"
