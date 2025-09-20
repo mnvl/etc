@@ -1,0 +1,24 @@
+{
+    "editor.fontSize": 17,
+    "security.workspace.trust.untrustedFiles": "open",
+    "git.openRepositoryInParentFolders": "always",
+    "editor.cursorStyle": "block",
+    "debug.console.fontSize": 17,
+    "terminal.integrated.fontSize": 17,
+    "explorer.confirmDragAndDrop": false,
+    "python.analysis.typeCheckingMode": "standard",
+    "jupyter.interactiveWindow.creationMode": "perFile",
+    "remote.SSH.useLocalServer": false,
+    "workbench.editor.empty.hint": "hidden",
+    "terminal.integrated.macOptionIsMeta": true,
+    "editor.renderWhitespace": "trailing",
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.defaultColorDecorators": "never"
+    },
+    "editor.minimap.enabled": false,
+    "workbench.colorTheme": "Monokai Night",
+    "testing.automaticallyOpenPeekView": "failureInVisibleDocument",
+    "testing.automaticallyOpenTestResults": "openOnTestFailure",
+    "testing.showAllMessages": true
+}
