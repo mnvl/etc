@@ -3,106 +3,89 @@
 {
     "key": "alt+b",
     "command": "cursorWordLeft",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+f",
     "command": "cursorWordRight",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+s",
     "command": "actions.find",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+r",
     "command": "editor.action.startFindReplaceAction",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "ctrl+w",
     "command": "editor.action.clipboardCutAction",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+w",
     "command": "editor.action.clipboardCopyAction",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "ctrl+y",
     "command": "editor.action.clipboardPasteAction",
-    "when": "editorTextFocus"
 },
 
 // make meta and ctrl act the same way on linux and macos
 {
     "key": "meta+x",
     "command": "editor.action.clipboardCutAction",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "meta+c",
     "command": "editor.action.clipboardCopyAction",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "meta+v",
     "command": "editor.action.clipboardPasteAction",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "meta+s",
     "command": "workbench.action.files.save",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "meta+h",
     "command": "editor.action.startFindReplaceAction",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "meta+b",
     "command": "workbench.action.toggleSidebarVisibility",
-    "when": "editorTextFocus"
 },
 
 // gsettings set org.gnome.mutter.keybindings switch-monitor "[]"
 {
     "key": "meta+p",
     "command": "workbench.action.quickOpen",
-    "when": "editorTextFocus"
 },
 
 // emacs-like C-x ... and C-c ... bindings
 {
     "key": "alt+x f",
     "command": "workbench.action.quickOpen",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+x s",
     "command": "workbench.action.files.save",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+x b",
     "command":"workbench.action.quickOpen",
-    "when": "editorTextFocus"
 },
 
 {
@@ -163,31 +146,26 @@
 {
     "key": "alt+left",
     "command": "workbench.action.focusLeftGroup",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+right",
     "command": "workbench.action.focusRightGroup",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+up",
     "command": "workbench.action.focusAboveGroup",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+down",
     "command": "workbench.action.focusBelowGroup",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "ctrl+o",
     "command": "workbench.action.focusNextGroup",
-    "when": "editorTextFocus"
 }
 
 ]
