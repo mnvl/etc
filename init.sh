@@ -2,6 +2,9 @@
 
 case "$(uname -s)" in
     Linux*)
+        gsettings list-keys org.gnome.settings-daemon.plugins.media-keys | grep brightness \
+            | xargs -I KEY gsettings set org.gnome.settings-daemon.plugins.media-keys KEY "[]"
+
         sudo apt-get install fish mc emacs tmux clangd git-gui
     ;;
 
