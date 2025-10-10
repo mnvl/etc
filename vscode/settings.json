@@ -1,5 +1,5 @@
 {
-    "editor.fontSize": 17,
+    "editor.fontSize": 18,
     "security.workspace.trust.untrustedFiles": "open",
     "git.openRepositoryInParentFolders": "always",
     "editor.cursorStyle": "block",
@@ -20,5 +20,7 @@
     "workbench.colorTheme": "Monokai Night",
     "testing.automaticallyOpenPeekView": "failureInVisibleDocument",
     "testing.automaticallyOpenTestResults": "openOnTestFailure",
-    "testing.showAllMessages": true
+    "testing.showAllMessages": true,
+    "editor.fontFamily": "Iosevka, 'Droid Sans Mono', 'monospace', monospace",
+    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons"
 }

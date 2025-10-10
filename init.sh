@@ -6,10 +6,16 @@ case "$(uname -s)" in
             | xargs -I KEY gsettings set org.gnome.settings-daemon.plugins.media-keys KEY "[]"
 
         sudo apt-get install fish mc emacs tmux clangd git-gui
+
+        curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep 'PkgTTC-Iosevka-.*zip' | xargs -n 1 curl -L -O --fail --silent --show-error
+        unzip PkgTTC-Iosevka-*.zip
+        cp *.ttc ~/.fonts
+        fc-cache
     ;;
 
     Darwin*)
         brew install fish mc emacs tmux llvm git-gui
+        brew install --cask font-iosevka
     ;;
 
     *)
