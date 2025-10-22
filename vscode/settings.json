@@ -22,5 +22,10 @@
     "testing.automaticallyOpenTestResults": "openOnTestFailure",
     "testing.showAllMessages": true,
     "editor.fontFamily": "Iosevka, 'Droid Sans Mono', 'monospace', monospace",
-    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons"
+    "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
+    "remote.SSH.remotePlatform": {
+        "192.168.1.11": "linux",
+        "10.8.0.6": "linux",
+        "192.168.1.12": "linux"
+    }
 }
