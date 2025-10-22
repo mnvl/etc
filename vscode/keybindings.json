@@ -125,18 +125,6 @@
 },
 
 {
-    "key": "alt+c t",
-    "command": "testing.debugAtCursor",
-    "when": "editorTextFocus"
-},
-
-{
-    "key": "alt+c shift+t",
-    "command": "testing.runCurrentFile",
-    "when": "editorTextFocus"
-},
-
-{
     "key": "alt+c b",
     "command": "editor.debug.action.toggleBreakpoint",
     "when": "editorTextFocus"
@@ -147,6 +135,21 @@
   "command": "workbench.action.debug.stop",
   "when": "inDebugMode && !focusedSessionIsAttach"
 },
+
+{
+    "key": "alt+t c",
+    "command": "testing.debugAtCursor",
+},
+
+{
+    "key": "alt+t f",
+    "command": "testing.runCurrentFile",
+},
+
+{
+    "key": "alt+t l",
+    "command": "testing.debugLastRun",
+}
 
 // more muscle memory bindings from emacs config
 {
