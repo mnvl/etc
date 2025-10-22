@@ -72,7 +72,7 @@
     "command": "workbench.action.quickOpen",
 },
 
-// emacs-like C-x ... and C-c ... bindings
+// *** alt+x ... ****
 {
     "key": "alt+x f",
     "command": "workbench.action.quickOpen",
@@ -91,51 +91,50 @@
 {
     "key": "alt+x 1",
     "command": "workbench.action.joinTwoGroups",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+x 2",
     "command": "workbench.action.splitEditor",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+x 3",
     "command": "workbench.action.splitEditorDown",
-    "when": "editorTextFocus"
 },
 
 {
+    "key": "alt+x 0",
+    "command": "workbench.action.closeAllEditors",
+},
+
+// *** alt+c ... ***
+{
     "key": "alt+c g",
     "command": "workbench.action.gotoSymbol",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+c d",
     "command": "editor.action.revealDefinition",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+c x",
     "command": "editor.action.referenceSearch.trigger",
-    "when": "editorTextFocus"
 },
 
 {
     "key": "alt+c b",
     "command": "editor.debug.action.toggleBreakpoint",
-    "when": "editorTextFocus"
 },
 
 {
   "key": "alt+c s",
   "command": "workbench.action.debug.stop",
-  "when": "inDebugMode && !focusedSessionIsAttach"
 },
 
+// *** alt+t ... ***
 {
     "key": "alt+t c",
     "command": "testing.debugAtCursor",
@@ -149,7 +148,7 @@
 {
     "key": "alt+t l",
     "command": "testing.debugLastRun",
-}
+},
 
 // more muscle memory bindings from emacs config
 {
