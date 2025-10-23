@@ -26,6 +26,7 @@
     "remote.SSH.remotePlatform": {
         "192.168.1.11": "linux",
         "10.8.0.6": "linux",
-        "192.168.1.12": "linux"
+        "192.168.1.12": "linux",
+        "192.168.1.27": "linux"
     }
 }
