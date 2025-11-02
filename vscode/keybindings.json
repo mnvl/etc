@@ -35,6 +35,11 @@
     "command": "editor.action.clipboardPasteAction",
 },
 
+{
+    "key": "ctrl+k",
+    "command": "editor.action.clipboardCutAction",
+},
+
 // make meta and ctrl act the same way on linux and macos
 {
     "key": "meta+x",
