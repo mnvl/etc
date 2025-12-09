@@ -11,6 +11,11 @@
 },
 
 {
+    "key": "alt+d",
+    "command": "deleteWordRight",
+},
+
+{
     "key": "ctrl+r",
     "command": "editor.action.startFindReplaceAction",
 },
