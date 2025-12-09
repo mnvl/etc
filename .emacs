@@ -78,11 +78,12 @@
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 
-(global-set-key (kbd "M-;") 'windmove-up)
-(global-set-key (kbd "M-'") 'windmove-down)
-(global-set-key (kbd "M-,") 'windmove-left)
-(global-set-key (kbd "M-.") 'windmove-right)
+(global-set-key (kbd "M-<up>") 'windmove-up)
+(global-set-key (kbd "M-<down>") 'windmove-down)
+(global-set-key (kbd "M-<left>") 'windmove-left)
+(global-set-key (kbd "M-<right>") 'windmove-right)
 (global-set-key (kbd "M-/") 'other-window)
+(global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "C-x f") 'projectile-find-file)
 (global-set-key (kbd "C-x C-f") 'counsel-find-file)
