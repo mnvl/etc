@@ -11,11 +11,6 @@
 },
 
 {
-    "key": "ctrl+s",
-    "command": "actions.find",
-},
-
-{
     "key": "ctrl+r",
     "command": "editor.action.startFindReplaceAction",
 },
