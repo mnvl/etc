@@ -99,6 +99,7 @@
 (use-package company)
 (use-package eglot)
 (use-package py-autopep8)
+(use-package elpy :init (elpy-enable))
 (use-package rust-mode)
 
 (add-hook 'after-init-hook 'global-company-mode)
