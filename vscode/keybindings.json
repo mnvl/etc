@@ -11,12 +11,12 @@
 },
 
 {
-    "key": "alt+s",
+    "key": "ctrl+s",
     "command": "actions.find",
 },
 
 {
-    "key": "alt+r",
+    "key": "ctrl+r",
     "command": "editor.action.startFindReplaceAction",
 },
 
@@ -77,81 +77,86 @@
     "command": "workbench.action.quickOpen",
 },
 
-// *** alt+x ... ****
+// *** ctrl+x ... ****
 {
-    "key": "alt+x f",
+    "key": "ctrl+x f",
     "command": "workbench.action.quickOpen",
 },
 
 {
-    "key": "alt+x s",
+    "key": "ctrl+x s",
     "command": "workbench.action.files.save",
 },
 
 {
-    "key": "alt+x b",
+    "key": "ctrl+x ctrl+s",
+    "command": "workbench.action.files.save",
+},
+
+{
+    "key": "ctrl+x b",
     "command":"workbench.action.quickOpen",
 },
 
 {
-    "key": "alt+x 1",
+    "key": "ctrl+x 1",
     "command": "workbench.action.joinTwoGroups",
 },
 
 {
-    "key": "alt+x 2",
+    "key": "ctrl+x 2",
     "command": "workbench.action.splitEditor",
 },
 
 {
-    "key": "alt+x 3",
+    "key": "ctrl+x 3",
     "command": "workbench.action.splitEditorDown",
 },
 
 {
-    "key": "alt+x 0",
+    "key": "ctrl+x 0",
     "command": "workbench.action.closeAllEditors",
 },
 
-// *** alt+c ... ***
+// *** ctrl+c ... ***
 {
-    "key": "alt+c g",
+    "key": "ctrl+c g",
     "command": "workbench.action.gotoSymbol",
 },
 
 {
-    "key": "alt+c d",
+    "key": "ctrl+c d",
     "command": "editor.action.revealDefinition",
 },
 
 {
-    "key": "alt+c x",
+    "key": "ctrl+c x",
     "command": "editor.action.referenceSearch.trigger",
 },
 
 {
-    "key": "alt+c b",
+    "key": "ctrl+c b",
     "command": "editor.debug.action.toggleBreakpoint",
 },
 
 {
-  "key": "alt+c s",
+  "key": "ctrl+c s",
   "command": "workbench.action.debug.stop",
 },
 
 // *** alt+t ... ***
 {
-    "key": "alt+t c",
+    "key": "ctrl+t c",
     "command": "testing.debugAtCursor",
 },
 
 {
-    "key": "alt+t f",
+    "key": "ctrl+t f",
     "command": "testing.runCurrentFile",
 },
 
 {
-    "key": "alt+t l",
+    "key": "ctrl+t l",
     "command": "testing.debugLastRun",
 },
 
@@ -177,7 +182,7 @@
 },
 
 {
-    "key": "ctrl+o",
+    "key": "alt+o",
     "command": "workbench.action.focusNextGroup",
 },
 
