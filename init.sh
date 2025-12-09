@@ -1,14 +1,18 @@
 #! /bin/sh -ex
 
+curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep 'PkgTTC-Iosevka-.*zip' | xargs -n 1 curl -L -O --fail --silent --show-error
+unzip PkgTTC-Iosevka-*.zip
+
 case "$(uname -s)" in
     Linux*)
         gsettings list-keys org.gnome.settings-daemon.plugins.media-keys | grep brightness \
             | xargs -I KEY gsettings set org.gnome.settings-daemon.plugins.media-keys KEY "[]"
 
+        dconf write /org/gnome/terminal/legacy/keybindings/copy  '"<Super>c"'
+        dconf write /org/gnome/terminal/legacy/keybindings/paste '"<Super>v"'
+
         sudo apt-get install fish mc emacs tmux clangd git-gui git-lfs
 
-        curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep 'PkgTTC-Iosevka-.*zip' | xargs -n 1 curl -L -O --fail --silent --show-error
-        unzip PkgTTC-Iosevka-*.zip
         cp *.ttc ~/.fonts
         fc-cache
     ;;
