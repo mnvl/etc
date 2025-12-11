@@ -16,6 +16,11 @@
 },
 
 {
+    "key": "ctrl+d",
+    "command": "deleteRight",
+},
+
+{
     "key": "ctrl+r",
     "command": "editor.action.startFindReplaceAction",
 },
@@ -38,6 +43,11 @@
 {
     "key": "ctrl+k",
     "command": "editor.action.clipboardCutAction",
+},
+
+{
+    "key": "ctrl+shift+-",
+    "command": "undo",
 },
 
 // make meta and ctrl act the same way on linux and macos
@@ -69,6 +79,16 @@
 {
     "key": "meta+b",
     "command": "workbench.action.toggleSidebarVisibility",
+},
+
+{
+    "key": "meta+z",
+    "command": "undo",
+},
+
+{
+    "key": "meta+shift+z",
+    "command": "redo",
 },
 
 // gsettings set org.gnome.mutter.keybindings switch-monitor "[]"
@@ -118,7 +138,12 @@
     "command": "workbench.action.closeAllEditors",
 },
 
-// *** ctrl+c ... ***
+// *** code completion and navigation: ctrl+c ... ***
+{
+    "key": "ctrl+c c",
+    "command": "editor.action.triggerSuggest",
+},
+
 {
     "key": "ctrl+c g",
     "command": "workbench.action.gotoSymbol",
@@ -140,11 +165,11 @@
 },
 
 {
-  "key": "ctrl+c s",
-  "command": "workbench.action.debug.stop",
+    "key": "meta+g",
+    "command": "workbench.action.gotoSymbol",
 },
 
-// *** alt+t ... ***
+// *** testing and debugging: ctrl+t ***
 {
     "key": "ctrl+t c",
     "command": "testing.debugAtCursor",
@@ -159,6 +184,26 @@
     "key": "ctrl+t l",
     "command": "testing.debugLastRun",
 },
+
+{
+    "key": "ctrl+t r", // resume
+    "command": "workbench.action.debug.continue",
+},
+
+{
+    "key": "ctrl+t s",
+    "command": "workbench.action.debug.stop",
+},
+
+{
+    "key": "ctrl+t d",
+    "command": "workbench.action.debug.start",
+},
+
+{
+    "key": "ctrl+t b",
+    "command": "debug.toggleBreakpoint",
+}
 
 // more muscle memory bindings from emacs config
 {
