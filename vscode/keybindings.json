@@ -203,7 +203,7 @@
 {
     "key": "ctrl+t b",
     "command": "debug.toggleBreakpoint",
-}
+},
 
 // more muscle memory bindings from emacs config
 {
