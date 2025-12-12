@@ -57,12 +57,27 @@
 },
 
 {
+    "key": "ctrl+shift+x",
+    "command": "editor.action.clipboardCutAction",
+},
+
+{
     "key": "meta+c",
     "command": "editor.action.clipboardCopyAction",
 },
 
 {
+    "key": "ctrl+shift+c",
+    "command": "editor.action.clipboardCopyAction",
+},
+
+{
     "key": "meta+v",
+    "command": "editor.action.clipboardPasteAction",
+},
+
+{
+    "key": "ctrl+shift+v",
     "command": "editor.action.clipboardPasteAction",
 },
 
