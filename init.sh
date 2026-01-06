@@ -5,11 +5,8 @@ unzip PkgTTC-Iosevka-*.zip
 
 case "$(uname -s)" in
     Linux*)
-        gsettings list-keys org.gnome.settings-daemon.plugins.media-keys | grep brightness \
-            | xargs -I KEY gsettings set org.gnome.settings-daemon.plugins.media-keys KEY "[]"
-
-        dconf write /org/gnome/terminal/legacy/keybindings/copy  '"<Super>c"'
-        dconf write /org/gnome/terminal/legacy/keybindings/paste '"<Super>v"'
+        gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier ''
+        gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 
         sudo apt-get install fish mc emacs tmux clangd git-gui git-lfs
 
