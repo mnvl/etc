@@ -77,6 +77,7 @@
 ;; key bindings
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "C-p") 'ivy-switch-buffer)
 
 (global-set-key (kbd "M-<up>") 'windmove-up)
 (global-set-key (kbd "M-<down>") 'windmove-down)
@@ -94,7 +95,7 @@
 (global-set-key (kbd "C-s") 'swiper)
 
 ;; sudo apt-get install clangd
-;; pip3 install 'python-lsp-server[all]'
+;; pip3 install pyright
 ;; cargo install rls
 ;; rustup component add rls
 (use-package company)
