@@ -79,6 +79,10 @@
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "C-p") 'ivy-switch-buffer)
 
+(global-set-key (kbd "C-S-x") 'kill-region)
+(global-set-key (kbd "C-S-c") 'kill-ring-save)
+(global-set-key (kbd "C-S-v") 'yank)
+
 (global-set-key (kbd "M-<up>") 'windmove-up)
 (global-set-key (kbd "M-<down>") 'windmove-down)
 (global-set-key (kbd "M-<left>") 'windmove-left)
