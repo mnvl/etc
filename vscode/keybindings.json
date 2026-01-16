@@ -106,6 +106,47 @@
     "command": "redo",
 },
 
+{
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen",
+},
+
+{
+    "key": "ctrl+shift+p",
+    "command": "workbench.action.showCommands",
+},
+
+// disable mission control shortcuts in MacOS!
+{
+    "key": "ctrl+left",
+    "command": "cursorWordLeft",
+},
+
+{
+    "key": "ctrl+right",
+    "command": "cursorWordRight",
+},
+
+{
+    "key": "ctrl+shift+left",
+    "command": "cursorWordLeftSelect",
+},
+
+{
+    "key": "ctrl+shift+right",
+    "command": "cursorWordRightSelect",
+},
+
+{
+    "key": "ctrl+up",
+    "command": "scrollPageUp",
+},
+
+{
+    "key": "ctrl+down",
+    "command": "scrollPageDown",
+},
+
 // gsettings set org.gnome.mutter.keybindings switch-monitor "[]"
 {
     "key": "meta+p",
