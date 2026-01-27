@@ -202,7 +202,7 @@
 },
 
 {
-    "key": "alt+c x",s
+    "key": "alt+c x",
     "command": "editor.action.referenceSearch.trigger",
 },
 
