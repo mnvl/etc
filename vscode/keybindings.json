@@ -50,6 +50,16 @@
     "command": "undo",
 },
 
+{
+    "key": "ctrl+z",
+    "command": "undo",
+},
+
+{
+    "key": "ctrl+alt+z",
+    "command": "redo",
+},
+
 // make meta and ctrl act the same way on linux and macos
 {
     "key": "meta+x",
@@ -79,6 +89,11 @@
 {
     "key": "ctrl+shift+v",
     "command": "editor.action.clipboardPasteAction",
+},
+
+{
+    "key": "cmd+s",
+    "command": "workbench.action.files.save",
 },
 
 {
