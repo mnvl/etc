@@ -216,39 +216,39 @@
     "command": "workbench.action.gotoSymbol",
 },
 
-// *** testing and debugging: alt+v ***
+// *** testing and debugging: alt+t ***
 {
-    "key": "alt+v c",
+    "key": "alt+t c",
     "command": "testing.debugAtCursor",
 },
 
 {
-    "key": "alt+v f",
+    "key": "alt+t f",
     "command": "testing.runCurrentFile",
 },
 
 {
-    "key": "alt+v l",
+    "key": "alt+t l",
     "command": "testing.debugLastRun",
 },
 
 {
-    "key": "alt+v r", // resume
+    "key": "alt+t r", // resume
     "command": "workbench.action.debug.continue",
 },
 
 {
-    "key": "alt+v s",
+    "key": "alt+t s",
     "command": "workbench.action.debug.stop",
 },
 
 {
-    "key": "alt+v d",
+    "key": "alt+t d",
     "command": "workbench.action.debug.start",
 },
 
 {
-    "key": "alt+v b",
+    "key": "alt+t b",
     "command": "debug.toggleBreakpoint",
 },
 
