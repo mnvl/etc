@@ -11,14 +11,14 @@ case "$(uname -s)" in
         gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier ''
         gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
 
-        sudo apt-get install fish mc emacs tmux clangd git-gui git-lfs
+        sudo apt-get install zsh fish mc emacs tmux clangd git-gui git-lfs fzf bat parallel fd-find
 
         cp *.ttc ~/.fonts
         fc-cache
     ;;
 
     Darwin*)
-        brew install fish mc emacs tmux llvm git-gui
+        brew install fish mc emacs tmux llvm git-gui fzf bat parallel
         brew install --cask font-iosevka
     ;;
 
