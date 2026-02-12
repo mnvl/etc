@@ -1,7 +1,10 @@
 #! /bin/sh -ex
 
-curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep 'PkgTTC-Iosevka-.*zip' | xargs -n 1 curl -L -O --fail --silent --show-error
-unzip PkgTTC-Iosevka-*.zip
+if test ! -e PkgTTC-Iosevka-*.zip
+then
+   curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep 'PkgTTC-Iosevka-.*zip' | xargs -n 1 curl -L -O --fail --silent --show-error
+   unzip PkgTTC-Iosevka-*.zip
+fi
 
 case "$(uname -s)" in
     Linux*)
@@ -28,7 +31,14 @@ rm -rf $HOME/.tmux/plugins/tpm
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
-for x in .emacs .jupyter .gdbinit .tmux.conf .gitconfig
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+cd ~/.oh-my-zsh/custom/plugins/
+for plugin in zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting
+do
+    git clone https://github.com/zsh-users/$plugin.git
+done
+
+for x in .emacs .jupyter .gdbinit .tmux.conf .gitconfig .zshrc
 do
     ln -f -s $HOME/etc/$x $HOME/$x
 done
