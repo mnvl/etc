@@ -87,7 +87,6 @@
 (global-set-key (kbd "M-<down>") 'windmove-down)
 (global-set-key (kbd "M-<left>") 'windmove-left)
 (global-set-key (kbd "M-<right>") 'windmove-right)
-(global-set-key (kbd "M-b") 'neotree-toggle)
 (global-set-key (kbd "M-h") 'query-replace)
 (global-set-key (kbd "M-/") 'other-window)
 (global-set-key (kbd "M-o") 'other-window)
@@ -212,7 +211,8 @@
 
 (define-prefix-command 'my-test-debug-map)
 (global-set-key (kbd "C-t") 'my-test-debug-map)
-(global-set-key (kbd "M-t") 'my-test-debug-map)
+(define-key key-translation-map (kbd "M-t") (kbd "C-t"))
+(define-key key-translation-map (kbd "M-c") (kbd "C-c"))
 (define-key my-test-debug-map (kbd "c") 'my-test-debug-at-cursor)
 (define-key my-test-debug-map (kbd "f") 'my-test-run-current-file)
 (define-key my-test-debug-map (kbd "l") 'my-test-debug-last-run)
