@@ -351,7 +351,17 @@
 },
 
 {
+    "key": "alt+,",
+    "command": "workbench.action.focusLeftGroup",
+},
+
+{
     "key": "alt+right",
+    "command": "workbench.action.focusRightGroup",
+},
+
+{
+    "key": "alt+.",
     "command": "workbench.action.focusRightGroup",
 },
 
