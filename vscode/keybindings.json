@@ -16,6 +16,48 @@
 },
 
 {
+    "key": "alt+n",
+    "command": "runCommands",
+    "args": {
+        "commands": [
+            {
+                "command": "editor.actions.findWithArgs",
+                "args": {
+                    "searchString": "^\\s*$",
+                    "isRegex": true,
+                    "matchWholeWord": false,
+                    "isCaseSensitive": false
+                }
+            },
+            {
+                "command": "editor.action.nextMatchFindAction"
+            }
+        ]
+    }
+},
+
+{
+    "key": "alt+p",
+    "command": "runCommands",
+    "args": {
+        "commands": [
+            {
+                "command": "editor.actions.findWithArgs",
+                "args": {
+                    "searchString": "^\\s*$",
+                    "isRegex": true,
+                    "matchWholeWord": false,
+                    "isCaseSensitive": false
+                }
+            },
+            {
+                "command": "editor.action.previousMatchFindAction"
+            }
+        ]
+    }
+},
+
+{
     "key": "ctrl+d",
     "command": "deleteRight",
 },
@@ -234,11 +276,6 @@
 {
     "key": "alt+c r",
     "command": "editor.action.rename",
-},
-
-{
-    "key": "alt+c shift+s",
-    "command": "workbench.action.showCommands",
 },
 
 {

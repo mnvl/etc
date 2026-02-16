@@ -87,6 +87,8 @@
 (global-set-key (kbd "M-<down>") 'windmove-down)
 (global-set-key (kbd "M-<left>") 'windmove-left)
 (global-set-key (kbd "M-<right>") 'windmove-right)
+(global-set-key (kbd "M-b") 'neotree-toggle)
+(global-set-key (kbd "M-h") 'query-replace)
 (global-set-key (kbd "M-/") 'other-window)
 (global-set-key (kbd "M-o") 'other-window)
 
@@ -97,6 +99,8 @@
 ;; press C-q to query-replace once in swiper mode
 (global-set-key (kbd "C-r") 'ivy-resume)
 (global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-g") 'goto-line)
+(global-set-key (kbd "M-g") 'counsel-imenu)
 
 ;; testing and debugging workflow (C-t / M-t like VSCode Alt+t)
 (defvar my-test-last-command nil)
@@ -215,6 +219,7 @@
 (define-key my-test-debug-map (kbd "s") 'my-debug-stop)
 (define-key my-test-debug-map (kbd "d") 'my-debug-start)
 (define-key my-test-debug-map (kbd "b") 'my-debug-toggle-breakpoint)
+(global-set-key (kbd "C-c b") 'my-debug-toggle-breakpoint)
 
 ;; sudo apt-get install clangd
 ;; pip3 install pyright
