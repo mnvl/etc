@@ -11,6 +11,16 @@
 },
 
 {
+    "key": "alt+;",
+    "command": "workbench.action.previousEditorInGroup",
+},
+
+{
+    "key": "alt+'",
+    "command": "workbench.action.nextEditorInGroup",
+},
+
+{
     "key": "alt+d",
     "command": "deleteWordRight",
 },
