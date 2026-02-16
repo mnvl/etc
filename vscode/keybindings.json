@@ -41,6 +41,9 @@
             },
             {
                 "command": "editor.action.nextMatchFindAction"
+            },
+            {
+                "command": "closeFindWidget"
             }
         ]
     }
@@ -62,6 +65,57 @@
             },
             {
                 "command": "editor.action.previousMatchFindAction"
+            },
+            {
+                "command": "closeFindWidget"
+            }
+        ]
+    }
+},
+
+{
+    "key": "alt+down",
+    "command": "runCommands",
+    "args": {
+        "commands": [
+            {
+                "command": "editor.actions.findWithArgs",
+                "args": {
+                    "searchString": "^\\s*$",
+                    "isRegex": true,
+                    "matchWholeWord": false,
+                    "isCaseSensitive": false
+                }
+            },
+            {
+                "command": "editor.action.nextMatchFindAction"
+            },
+            {
+                "command": "closeFindWidget"
+            }
+        ]
+    }
+},
+
+{
+    "key": "alt+up",
+    "command": "runCommands",
+    "args": {
+        "commands": [
+            {
+                "command": "editor.actions.findWithArgs",
+                "args": {
+                    "searchString": "^\\s*$",
+                    "isRegex": true,
+                    "matchWholeWord": false,
+                    "isCaseSensitive": false
+                }
+            },
+            {
+                "command": "editor.action.previousMatchFindAction"
+            },
+            {
+                "command": "closeFindWidget"
             }
         ]
     }
@@ -378,16 +432,6 @@
 {
     "key": "alt+.",
     "command": "workbench.action.focusRightGroup",
-},
-
-{
-    "key": "alt+up",
-    "command": "workbench.action.focusAboveGroup",
-},
-
-{
-    "key": "alt+down",
-    "command": "workbench.action.focusBelowGroup",
 },
 
 {
