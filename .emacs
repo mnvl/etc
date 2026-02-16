@@ -101,6 +101,7 @@
 (global-set-key (kbd "C-s") 'swiper)
 (global-set-key (kbd "C-g") 'goto-line)
 (global-set-key (kbd "M-g") 'counsel-imenu)
+(global-set-key (kbd "<escape>") 'keyboard-quit)
 
 ;; testing and debugging workflow (C-t / M-t like VSCode Alt+t)
 (defvar my-test-last-command nil)
