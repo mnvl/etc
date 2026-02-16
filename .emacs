@@ -98,6 +98,124 @@
 (global-set-key (kbd "C-r") 'ivy-resume)
 (global-set-key (kbd "C-s") 'swiper)
 
+;; testing and debugging workflow (C-t / M-t like VSCode Alt+t)
+(defvar my-test-last-command nil)
+
+(defun my-test--project-root ()
+  (or
+   (when (fboundp 'projectile-project-root)
+     (ignore-errors (projectile-project-root)))
+   (let ((proj (and (fboundp 'project-current) (project-current nil))))
+     (when (and proj (fboundp 'project-roots))
+       (car (project-roots proj))))
+   (locate-dominating-file default-directory "pyproject.toml")
+   (locate-dominating-file default-directory "Cargo.toml")
+   (locate-dominating-file default-directory "go.mod")
+   (locate-dominating-file default-directory "package.json")
+   (locate-dominating-file default-directory "CMakeLists.txt")
+   default-directory))
+
+(defun my-test--from-root (root cmd)
+  (if (and root (file-directory-p root))
+      (format "cd %s && %s" (shell-quote-argument (expand-file-name root)) cmd)
+    cmd))
+
+(defun my-test--js-test-command (root)
+  (when (and root (file-exists-p (expand-file-name "package.json" root)))
+    (cond
+     ((file-exists-p (expand-file-name "pnpm-lock.yaml" root)) "pnpm test")
+     ((file-exists-p (expand-file-name "yarn.lock" root)) "yarn test")
+     (t "npm test"))))
+
+(defun my-test--default-command ()
+  (let* ((root (my-test--project-root))
+         (has-file (and buffer-file-name root))
+         (file-arg (when has-file
+                     (shell-quote-argument
+                      (file-relative-name buffer-file-name root)))))
+    (cond
+     ((derived-mode-p 'python-mode)
+      (if file-arg
+          (my-test--from-root root (format "pytest %s" file-arg))
+        (my-test--from-root root "pytest")))
+     ((derived-mode-p 'rust-mode)
+      (my-test--from-root root "cargo test"))
+     ((or (derived-mode-p 'go-mode) (derived-mode-p 'go-ts-mode))
+      (my-test--from-root root "go test ./..."))
+     ((or (derived-mode-p 'js-mode)
+          (derived-mode-p 'js-ts-mode)
+          (derived-mode-p 'typescript-mode)
+          (derived-mode-p 'typescript-ts-mode))
+      (let ((js-cmd (my-test--js-test-command root)))
+        (when js-cmd
+          (my-test--from-root root js-cmd))))
+     ((or (derived-mode-p 'c-mode) (derived-mode-p 'c++-mode))
+      (if (and root (file-exists-p (expand-file-name "CMakeLists.txt" root)))
+          (my-test--from-root root "ctest --output-on-failure")
+        nil))
+     (t nil))))
+
+(defun my-test-debug-at-cursor ()
+  (interactive)
+  (let* ((base (or (my-test--default-command)
+                   (read-shell-command "Debug command: ")))
+         (cmd (if (string-match-p "pytest" base)
+                  (concat base " --pdb")
+                base)))
+    (setq my-test-last-command cmd)
+    (compile cmd)))
+
+(defun my-test-run-current-file ()
+  (interactive)
+  (let ((cmd (or (my-test--default-command)
+                 (read-shell-command "Test command: "))))
+    (setq my-test-last-command cmd)
+    (compile cmd)))
+
+(defun my-test-debug-last-run ()
+  (interactive)
+  (if my-test-last-command
+      (compile my-test-last-command)
+    (call-interactively 'my-test-run-current-file)))
+
+(defun my-debug-start ()
+  (interactive)
+  (cond
+   ((fboundp 'dap-debug) (call-interactively 'dap-debug))
+   (t (call-interactively 'gdb))))
+
+(defun my-debug-continue ()
+  (interactive)
+  (cond
+   ((fboundp 'dap-continue) (call-interactively 'dap-continue))
+   ((fboundp 'gud-cont) (call-interactively 'gud-cont))
+   (t (message "No debug continue command available"))))
+
+(defun my-debug-stop ()
+  (interactive)
+  (cond
+   ((fboundp 'dap-disconnect) (call-interactively 'dap-disconnect))
+   ((get-buffer "*compilation*") (kill-compilation))
+   (t (message "No active debug/test process"))))
+
+(defun my-debug-toggle-breakpoint ()
+  (interactive)
+  (cond
+   ((fboundp 'dap-breakpoint-toggle) (call-interactively 'dap-breakpoint-toggle))
+   ((fboundp 'gud-break) (call-interactively 'gud-break))
+   (t (message "No breakpoint command available"))))
+
+(define-prefix-command 'my-test-debug-map)
+(global-set-key (kbd "C-t") 'my-test-debug-map)
+(global-set-key (kbd "M-t") 'my-test-debug-map)
+(define-key my-test-debug-map (kbd "c") 'my-test-debug-at-cursor)
+(define-key my-test-debug-map (kbd "f") 'my-test-run-current-file)
+(define-key my-test-debug-map (kbd "l") 'my-test-debug-last-run)
+(define-key my-test-debug-map (kbd "r") 'my-debug-continue)
+(define-key my-test-debug-map (kbd "s") 'my-debug-stop)
+(define-key my-test-debug-map (kbd "d") 'my-debug-start)
+(define-key my-test-debug-map (kbd "b") 'my-debug-toggle-breakpoint)
+
 ;; sudo apt-get install clangd
 ;; pip3 install pyright
 ;; cargo install rls
