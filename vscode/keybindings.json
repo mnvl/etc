@@ -161,6 +161,16 @@
 },
 
 {
+    "key": "alt+x ctrl+f",
+    "command": "workbench.action.quickOpen",
+},
+
+{
+    "key": "alt+x ctrl+r",
+    "command": "workbench.action.openRecent",
+},
+
+{
     "key": "alt+x b",
     "command":"workbench.action.quickOpen",
 },
@@ -199,6 +209,51 @@
 {
     "key": "alt+c d",
     "command": "editor.action.revealDefinition",
+},
+
+{
+    "key": "alt+c a",
+    "command": "editor.action.codeAction",
+},
+
+{
+    "key": "alt+c f",
+    "command": "editor.action.formatDocument",
+},
+
+{
+    "key": "alt+c i",
+    "command": "editor.action.goToImplementation",
+},
+
+{
+    "key": "alt+c j",
+    "command": "editor.action.revealDeclaration",
+},
+
+{
+    "key": "alt+c r",
+    "command": "editor.action.rename",
+},
+
+{
+    "key": "alt+c shift+s",
+    "command": "workbench.action.showCommands",
+},
+
+{
+    "key": "alt+c ctrl+f",
+    "command": "editor.action.formatDocument",
+},
+
+{
+    "key": "alt+c <",
+    "command": "outdentLines",
+},
+
+{
+    "key": "alt+c >",
+    "command": "editor.action.indentLines",
 },
 
 {
@@ -276,6 +331,16 @@
 {
     "key": "alt+o",
     "command": "workbench.action.focusNextGroup",
+},
+
+{
+    "key": "alt+/",
+    "command": "workbench.action.focusNextGroup",
+},
+
+{
+    "key": "alt+q",
+    "command": "C_Cpp.SwitchHeaderSource",
 },
 
 ]
