@@ -50,6 +50,7 @@
 
 (use-package neotree)
 (global-set-key [f8] 'neotree-toggle)
+(global-set-key (kbd "C-b") 'neotree-toggle)
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
@@ -101,7 +102,8 @@
 
 ;; press C-q to query-replace once in swiper mode
 (global-set-key (kbd "C-r") 'ivy-resume)
-(global-set-key (kbd "C-s") 'swiper)
+(global-set-key (kbd "C-s") 'save-buffer)
+(global-set-key (kbd "C-f") 'swiper)
 (global-set-key (kbd "C-g") 'goto-line)
 (global-set-key (kbd "M-g") 'counsel-imenu)
 (global-set-key (kbd "<escape>") 'keyboard-quit)

@@ -114,6 +114,11 @@
 },
 
 {
+    "key": "alt+h",
+    "command": "editor.action.startFindReplaceAction"
+},
+
+{
     "key": "meta+h",
     "command": "editor.action.startFindReplaceAction"
 },
