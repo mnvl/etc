@@ -1,6 +1,14 @@
 #! /bin/sh -ex
 
-if test ! -e PkgTTC-Iosevka-*.zip
+# Detect whether a GUI is available
+has_gui=false
+if [ "$(uname -s)" = "Darwin" ]; then
+    has_gui=true
+elif [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+    has_gui=true
+fi
+
+if $has_gui && test ! -e PkgTTC-Iosevka-*.zip
 then
    curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' | jq -r ".assets[] | .browser_download_url" | grep 'PkgTTC-Iosevka-.*zip' | xargs -n 1 curl -L -O --fail --silent --show-error
    unzip PkgTTC-Iosevka-*.zip
@@ -8,13 +16,17 @@ fi
 
 case "$(uname -s)" in
     Linux*)
-        gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier ''
-        gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
+        if $has_gui; then
+            gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier ''
+            gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
+        fi
 
         sudo apt-get install zsh fish mc emacs tmux clangd git-gui git-lfs fzf bat parallel fd-find
 
-        cp *.ttc ~/.fonts
-        fc-cache
+        if $has_gui; then
+            cp *.ttc ~/.fonts
+            fc-cache
+        fi
     ;;
 
     Darwin*)
@@ -45,7 +57,13 @@ done
 
 ln -f -s $HOME/etc/fish $HOME/.config/fish
 
-for x in $HOME/etc/vscode/*.json
-do
-    ln -f -s $x $HOME/.config/Code/User/
-done
+if $has_gui; then
+    case "$(uname -s)" in
+        Darwin*) vscode_dir="$HOME/Library/Application Support/Code/User" ;;
+        *)       vscode_dir="$HOME/.config/Code/User" ;;
+    esac
+    for x in $HOME/etc/vscode/*.json
+    do
+        ln -f -s "$x" "$vscode_dir/"
+    done
+fi
