@@ -1,5 +1,10 @@
 # AGENTS.md
 
+## Project Structure
+
+- `~/etc` is the repo. Dotfiles like `~/.emacs` are symlinks into it (e.g. `~/.emacs` -> `~/etc/.emacs`).
+- Always use paths relative to the repo (e.g. `.emacs`, `vscode/keybindings.json`) for git operations.
+
 ## Session Handoff (2026-02-16)
 
 This repo now has aligned VSCode/Emacs keybinding workflows focused on `C-x`/`C-c`/`C-t` muscle memory and paragraph navigation.

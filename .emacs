@@ -60,12 +60,17 @@
 (use-package ivy)
 (use-package swiper)
 (use-package counsel)
+(use-package flx)
 
 (ivy-mode 1)
 (setq enable-recursive-minibuffers t)
 (setq ivy-use-virtual-buffers t)
 (setq ivy-height 20)
 (setq ivy-wrap t)
+(setq ivy-initial-inputs-alist nil)
+(setq ivy-re-builders-alist
+      '((swiper . ivy--regex-plus)
+        (t . ivy--regex-fuzzy)))
 
 (define-key ivy-minibuffer-map (kbd "C-j") 'ivy-immediate-done)
 (define-key ivy-minibuffer-map (kbd "RET") 'ivy-alt-done)
