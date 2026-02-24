@@ -81,6 +81,9 @@
 (which-key-setup-side-window-right)
 
 ;; key bindings
+(global-set-key (kbd "C-z") 'undo)
+(global-set-key (kbd "C-S-z") 'undo-redo)
+
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "C-p") 'ivy-switch-buffer)

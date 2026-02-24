@@ -166,6 +166,16 @@
     "command": "undo",
 },
 
+{
+    "key": "ctrl+z",
+    "command": "undo",
+},
+
+{
+    "key": "ctrl+shift+z",
+    "command": "redo",
+},
+
 // search & replace
 {
     "key": "ctrl+f",
