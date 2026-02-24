@@ -104,9 +104,8 @@
 (global-set-key (kbd "C-r") 'ivy-resume)
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-f") 'swiper)
-(global-set-key (kbd "C-g") 'goto-line)
+(global-set-key (kbd "M-l") 'goto-line)
 (global-set-key (kbd "M-g") 'counsel-imenu)
-(global-set-key (kbd "<escape>") 'keyboard-quit)
 
 ;; testing and debugging workflow (C-t / M-t like VSCode Alt+t)
 (defvar my-test-last-command nil)

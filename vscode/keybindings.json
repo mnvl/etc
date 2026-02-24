@@ -147,6 +147,21 @@
 },
 
 {
+    "key": "ctrl+shift+x",
+    "command": "editor.action.clipboardCutAction",
+},
+
+{
+    "key": "ctrl+shift+c",
+    "command": "editor.action.clipboardCopyAction",
+},
+
+{
+    "key": "ctrl+shift+v",
+    "command": "editor.action.clipboardPasteAction",
+},
+
+{
     "key": "ctrl+shift+-",
     "command": "undo",
 },
@@ -373,8 +388,18 @@
 },
 
 {
+    "key": "alt+l",
+    "command": "workbench.action.gotoLine",
+},
+
+{
+    "key": "alt+g",
+    "command": "workbench.action.showAllSymbols",
+},
+
+{
     "key": "meta+g",
-    "command": "workbench.action.gotoSymbol",
+    "command": "workbench.action.showAllSymbols",
 },
 
 // *** testing and debugging: alt+t ***
