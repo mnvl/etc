@@ -24,6 +24,21 @@ case "$(uname -s)" in
         sudo apt-get install zsh fish mc emacs tmux clangd git-gui git-lfs fzf bat parallel fd-find
 
         if $has_gui; then
+            # keyd: remap keys for macOS-style shortcuts
+            if ! command -v keyd >/dev/null 2>&1; then
+                sudo apt-get install keyd 2>/dev/null || \
+                    (cd /tmp && rm -rf keyd && git clone https://github.com/rvaiya/keyd && cd keyd && make && sudo make install)
+            fi
+            sudo ln -f -s $HOME/etc/keyd/default.conf /etc/keyd/default.conf
+            sudo systemctl enable keyd
+            sudo systemctl restart keyd
+            sudo usermod -aG keyd $USER
+            mkdir -p $HOME/.config/keyd $HOME/.config/autostart
+            ln -f -s $HOME/etc/keyd/app.conf $HOME/.config/keyd/app.conf
+            ln -f -s $HOME/etc/keyd/keyd-application-mapper.desktop $HOME/.config/autostart/keyd-application-mapper.desktop
+        fi
+
+        if $has_gui; then
             cp *.ttc ~/.fonts
             fc-cache
         fi
