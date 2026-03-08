@@ -178,18 +178,8 @@
 
 // search & replace
 {
-    "key": "ctrl+f",
-    "command": "actions.find",
-},
-
-{
     "key": "cmd+f",
     "command": "actions.find",
-},
-
-{
-    "key": "ctrl+h",
-    "command": "editor.action.startFindReplaceAction"
 },
 
 {
@@ -202,20 +192,10 @@
     "command": "editor.action.startFindReplaceAction"
 },
 
-// macos & linux compatibility
+// sidebar & navigation
 {
     "key": "meta+b",
     "command": "workbench.action.toggleSidebarVisibility",
-},
-
-{
-    "key": "ctrl+b",
-    "command": "workbench.action.toggleSidebarVisibility",
-},
-
-{
-    "key": "ctrl+p",
-    "command": "workbench.action.quickOpen",
 },
 
 {
@@ -224,18 +204,8 @@
 },
 
 {
-    "key": "ctrl+shift+p",
-    "command": "workbench.action.showCommands",
-},
-
-{
     "key": "cmd+shift+p",
     "command": "workbench.action.showCommands",
-},
-
-{
-    "key": "ctrl+s",
-    "command": "workbench.action.files.save"
 },
 
 {
@@ -272,12 +242,6 @@
 {
     "key": "ctrl+down",
     "command": "scrollPageDown",
-},
-
-// gsettings set org.gnome.mutter.keybindings switch-monitor "[]"
-{
-    "key": "meta+p",
-    "command": "workbench.action.quickOpen",
 },
 
 // *** alt+x ... ****
@@ -400,11 +364,6 @@
 {
     "key": "alt+l",
     "command": "workbench.action.gotoLine",
-},
-
-{
-    "key": "alt+g",
-    "command": "workbench.action.showAllSymbols",
 },
 
 {
