@@ -244,120 +244,126 @@
     "command": "scrollPageDown",
 },
 
-// *** alt+x ... ****
+// M-x: command palette (like emacs execute-extended-command)
 {
-    "key": "alt+x f",
+    "key": "alt+x",
+    "command": "workbench.action.showCommands",
+},
+
+// *** ctrl+x ... ****
+{
+    "key": "ctrl+xf",
     "command": "workbench.action.quickOpen",
 },
 
 {
-    "key": "alt+x s",
+    "key": "ctrl+xs",
     "command": "workbench.action.files.save",
 },
 
 {
-    "key": "alt+x ctrl+s",
+    "key": "ctrl+xctrl+s",
     "command": "workbench.action.files.save",
 },
 
 {
-    "key": "alt+x ctrl+f",
+    "key": "ctrl+xctrl+f",
     "command": "workbench.action.quickOpen",
 },
 
 {
-    "key": "alt+x ctrl+r",
+    "key": "ctrl+xctrl+r",
     "command": "workbench.action.openRecent",
 },
 
 {
-    "key": "alt+x b",
+    "key": "ctrl+xb",
     "command":"workbench.action.quickOpen",
 },
 
 {
-    "key": "alt+x 1",
+    "key": "ctrl+x1",
     "command": "workbench.action.joinTwoGroups",
 },
 
 {
-    "key": "alt+x 2",
+    "key": "ctrl+x2",
     "command": "workbench.action.splitEditor",
 },
 
 {
-    "key": "alt+x 3",
+    "key": "ctrl+x3",
     "command": "workbench.action.splitEditorDown",
 },
 
 {
-    "key": "alt+x 0",
+    "key": "ctrl+x0",
     "command": "workbench.action.closeAllEditors",
 },
 
-// *** code completion and navigation: alt+c ... ***
+// *** code completion and navigation: ctrl+c ... ***
 {
-    "key": "alt+c c",
+    "key": "ctrl+cc",
     "command": "editor.action.triggerSuggest",
 },
 
 {
-    "key": "alt+c g",
+    "key": "ctrl+cg",
     "command": "workbench.action.gotoSymbol",
 },
 
 {
-    "key": "alt+c d",
+    "key": "ctrl+cd",
     "command": "editor.action.revealDefinition",
 },
 
 {
-    "key": "alt+c a",
+    "key": "ctrl+ca",
     "command": "editor.action.codeAction",
 },
 
 {
-    "key": "alt+c f",
+    "key": "ctrl+cf",
     "command": "editor.action.formatDocument",
 },
 
 {
-    "key": "alt+c i",
+    "key": "ctrl+ci",
     "command": "editor.action.goToImplementation",
 },
 
 {
-    "key": "alt+c j",
+    "key": "ctrl+cj",
     "command": "editor.action.revealDeclaration",
 },
 
 {
-    "key": "alt+c r",
+    "key": "ctrl+cr",
     "command": "editor.action.rename",
 },
 
 {
-    "key": "alt+c ctrl+f",
+    "key": "ctrl+cctrl+f",
     "command": "editor.action.formatDocument",
 },
 
 {
-    "key": "alt+c <",
+    "key": "ctrl+c<",
     "command": "outdentLines",
 },
 
 {
-    "key": "alt+c >",
+    "key": "ctrl+c>",
     "command": "editor.action.indentLines",
 },
 
 {
-    "key": "alt+c x",
+    "key": "ctrl+cx",
     "command": "editor.action.referenceSearch.trigger",
 },
 
 {
-    "key": "alt+c b",
+    "key": "ctrl+cb",
     "command": "editor.debug.action.toggleBreakpoint",
 },
 
@@ -371,39 +377,39 @@
     "command": "workbench.action.showAllSymbols",
 },
 
-// *** testing and debugging: alt+t ***
+// *** testing and debugging: ctrl+t ***
 {
-    "key": "alt+t c",
+    "key": "ctrl+tc",
     "command": "testing.debugAtCursor",
 },
 
 {
-    "key": "alt+t f",
+    "key": "ctrl+tf",
     "command": "testing.runCurrentFile",
 },
 
 {
-    "key": "alt+t l",
+    "key": "ctrl+tl",
     "command": "testing.debugLastRun",
 },
 
 {
-    "key": "alt+t r", // resume
+    "key": "ctrl+tr", // resume
     "command": "workbench.action.debug.continue",
 },
 
 {
-    "key": "alt+t s",
+    "key": "ctrl+ts",
     "command": "workbench.action.debug.stop",
 },
 
 {
-    "key": "alt+t d",
+    "key": "ctrl+td",
     "command": "workbench.action.debug.start",
 },
 
 {
-    "key": "alt+t b",
+    "key": "ctrl+tb",
     "command": "debug.toggleBreakpoint",
 },
 
