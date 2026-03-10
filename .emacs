@@ -115,7 +115,7 @@
 (global-set-key (kbd "M-l") 'goto-line)
 (global-set-key (kbd "M-g") 'counsel-imenu)
 
-;; testing and debugging workflow (C-t / M-t like VSCode Alt+t)
+;; testing and debugging workflow (M-t like VSCode alt+t)
 (defvar my-test-last-command nil)
 
 (defun my-test--project-root ()
@@ -223,7 +223,7 @@
    (t (message "No breakpoint command available"))))
 
 (define-prefix-command 'my-test-debug-map)
-(global-set-key (kbd "C-t") 'my-test-debug-map)
+(global-set-key (kbd "M-t") 'my-test-debug-map)
 (define-key my-test-debug-map (kbd "c") 'my-test-debug-at-cursor)
 (define-key my-test-debug-map (kbd "f") 'my-test-run-current-file)
 (define-key my-test-debug-map (kbd "l") 'my-test-debug-last-run)
@@ -231,7 +231,7 @@
 (define-key my-test-debug-map (kbd "s") 'my-debug-stop)
 (define-key my-test-debug-map (kbd "d") 'my-debug-start)
 (define-key my-test-debug-map (kbd "b") 'my-debug-toggle-breakpoint)
-(global-set-key (kbd "C-c b") 'my-debug-toggle-breakpoint)
+(global-set-key (kbd "M-c b") 'my-debug-toggle-breakpoint)
 
 ;; sudo apt-get install clangd
 ;; pip3 install pyright
@@ -325,16 +325,16 @@
   (local-set-key (kbd "TAB") 'company-indent-or-complete-common)
   (local-set-key (kbd "RET") 'newline-and-indent)
 
-  (local-set-key (kbd "C-c S") 'eglot-list-connections)
-  (local-set-key (kbd "C-c a") 'eglot-code-actions)
-  (local-set-key (kbd "C-c c") 'company-complete)
-  (local-set-key (kbd "C-c d") 'xref-find-definitions)
-  (local-set-key (kbd "C-c f") 'eglot-format-buffer)
-  (local-set-key (kbd "C-c g") 'counsel-imenu)
-  (local-set-key (kbd "C-c i") 'eglot-find-implementation)
-  (local-set-key (kbd "C-c j") 'eglot-find-declaration)
-  (local-set-key (kbd "C-c r") 'eglot-rename)
-  (local-set-key (kbd "C-c x") 'xref-find-references)
+  (local-set-key (kbd "M-c S") 'eglot-list-connections)
+  (local-set-key (kbd "M-c a") 'eglot-code-actions)
+  (local-set-key (kbd "M-c c") 'company-complete)
+  (local-set-key (kbd "M-c d") 'xref-find-definitions)
+  (local-set-key (kbd "M-c f") 'eglot-format-buffer)
+  (local-set-key (kbd "M-c g") 'counsel-imenu)
+  (local-set-key (kbd "M-c i") 'eglot-find-implementation)
+  (local-set-key (kbd "M-c j") 'eglot-find-declaration)
+  (local-set-key (kbd "M-c r") 'eglot-rename)
+  (local-set-key (kbd "M-c x") 'xref-find-references)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file))
 
@@ -343,9 +343,9 @@
   (c-set-style "my-cc-style"))
 
 (defun my-python-mode-hook ()
-  (local-set-key (kbd "C-c <") 'python-indent-shift-left)
-  (local-set-key (kbd "C-c >") 'python-indent-shift-right)
-  (local-set-key (kbd "C-c C-f") 'py-autopep8))
+  (local-set-key (kbd "M-c <") 'python-indent-shift-left)
+  (local-set-key (kbd "M-c >") 'python-indent-shift-right)
+  (local-set-key (kbd "M-c C-f") 'py-autopep8))
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)

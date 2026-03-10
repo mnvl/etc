@@ -244,7 +244,7 @@
     "command": "scrollPageDown",
 },
 
-// *** alt+x ... (keyd sends alt+x when ctrl+x is pressed in vscode) ***
+// *** alt+x ... ***
 {
     "key": "alt+x f",
     "command": "workbench.action.quickOpen",
@@ -295,7 +295,7 @@
     "command": "workbench.action.closeAllEditors",
 },
 
-// *** code completion and navigation: alt+c (keyd sends alt+c for ctrl+c) ***
+// *** code completion and navigation: alt+c ***
 {
     "key": "alt+c c",
     "command": "editor.action.triggerSuggest",
@@ -371,7 +371,7 @@
     "command": "workbench.action.showAllSymbols",
 },
 
-// *** testing and debugging: alt+t (keyd sends alt+t for ctrl+t) ***
+// *** testing and debugging: alt+t ***
 {
     "key": "alt+t c",
     "command": "testing.debugAtCursor",
