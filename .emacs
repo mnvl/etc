@@ -231,7 +231,6 @@
 (define-key my-test-debug-map (kbd "s") 'my-debug-stop)
 (define-key my-test-debug-map (kbd "d") 'my-debug-start)
 (define-key my-test-debug-map (kbd "b") 'my-debug-toggle-breakpoint)
-(global-set-key (kbd "M-c b") 'my-debug-toggle-breakpoint)
 
 ;; sudo apt-get install clangd
 ;; pip3 install pyright
@@ -327,6 +326,7 @@
 
   (local-set-key (kbd "M-c S") 'eglot-list-connections)
   (local-set-key (kbd "M-c a") 'eglot-code-actions)
+  (local-set-key (kbd "M-c b") 'my-debug-toggle-breakpoint)
   (local-set-key (kbd "M-c c") 'company-complete)
   (local-set-key (kbd "M-c d") 'xref-find-definitions)
   (local-set-key (kbd "M-c f") 'eglot-format-buffer)
