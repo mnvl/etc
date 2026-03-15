@@ -410,7 +410,7 @@
 // more muscle memory bindings from emacs config
 {
     "key": "alt+left",
-    "command": "workbench.action.focusLeftGroup",
+    "command": "workbench.action.previousEditorInGroup",
 },
 
 {
@@ -420,7 +420,7 @@
 
 {
     "key": "alt+right",
-    "command": "workbench.action.focusRightGroup",
+    "command": "workbench.action.nextEditorInGroup",
 },
 
 {

@@ -92,10 +92,6 @@
 (global-set-key (kbd "C-S-c") 'kill-ring-save)
 (global-set-key (kbd "C-S-v") 'yank)
 
-(global-set-key (kbd "M-<up>") 'windmove-up)
-(global-set-key (kbd "M-<down>") 'windmove-down)
-(global-set-key (kbd "M-<left>") 'windmove-left)
-(global-set-key (kbd "M-<right>") 'windmove-right)
 (global-set-key (kbd "M-,") 'windmove-left)
 (global-set-key (kbd "M-.") 'windmove-right)
 (global-set-key (kbd "M-;") 'previous-buffer)
