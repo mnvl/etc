@@ -80,6 +80,12 @@
         "Alt"
       ],
       "key": "O"
+    },
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "/"
     }
   ]
 }
