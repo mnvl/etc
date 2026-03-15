@@ -114,6 +114,8 @@
 (global-set-key (kbd "C-f") 'swiper)
 (global-set-key (kbd "M-l") 'goto-line)
 (global-set-key (kbd "M-g") 'counsel-imenu)
+(global-set-key (kbd "s-p") 'projectile-find-file)
+(global-set-key (kbd "s-P") 'counsel-M-x)
 
 ;; testing and debugging workflow (M-t like VSCode alt+t)
 (defvar my-test-last-command nil)
