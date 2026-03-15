@@ -50,6 +50,12 @@
         "Alt"
       ],
       "key": "H"
+    },
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "H"
     }
   ],
   "app:toggle-left-sidebar": [
