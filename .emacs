@@ -59,6 +59,13 @@
   (vertico-count 20)
   (vertico-cycle t))
 
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
+  :bind (:map vertico-map
+         ("DEL" . vertico-directory-delete-word)
+         ("RET" . vertico-directory-enter)))
+
 ;; orderless — flexible completion matching (replaces flx/ivy-regex)
 (use-package orderless
   :custom
