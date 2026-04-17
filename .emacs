@@ -63,8 +63,8 @@
   :after vertico
   :ensure nil
   :bind (:map vertico-map
-         ("DEL" . vertico-directory-delete-word)
-         ("RET" . vertico-directory-enter)))
+              ("DEL" . vertico-directory-delete-word)
+              ("RET" . vertico-directory-enter)))
 
 ;; orderless — flexible completion matching (replaces flx/ivy-regex)
 (use-package orderless
@@ -88,15 +88,10 @@
 
 ;; key bindings
 (global-set-key (kbd "C-z") 'undo)
-(global-set-key (kbd "C-S-z") 'undo-redo)
+(global-set-key (kbd "C-p") 'consult-buffer)
 
 (global-set-key (kbd "M-n") 'forward-paragraph)
 (global-set-key (kbd "M-p") 'backward-paragraph)
-(global-set-key (kbd "C-p") 'consult-buffer)
-
-(global-set-key (kbd "C-S-x") 'kill-region)
-(global-set-key (kbd "C-S-c") 'kill-ring-save)
-(global-set-key (kbd "C-S-v") 'yank)
 
 (global-set-key (kbd "M-,") 'windmove-left)
 (global-set-key (kbd "M-.") 'windmove-right)
@@ -110,7 +105,7 @@
 (global-set-key (kbd "C-x C-f") 'find-file)
 (global-set-key (kbd "C-x C-r") 'consult-recent-file)
 
-(global-set-key (kbd "C-r") 'consult-isearch-history)
+(global-set-key (kbd "C-r") 'query-replace)
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-f") 'consult-line)
 (global-set-key (kbd "M-l") 'goto-line)
