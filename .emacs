@@ -240,6 +240,11 @@
 (use-package apheleia
   :init (apheleia-global-mode))
 (use-package rust-mode)
+(use-package markdown-mode
+  :mode (("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)
+         ("README\\.md\\'" . gfm-mode))
+  :custom (markdown-command "pandoc"))
 
 ;; based on https://raw.github.com/google/styleguide/gh-pages/google-c-style.el
 (defconst my-cc-style
