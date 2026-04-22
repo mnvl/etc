@@ -72,6 +72,9 @@ done
 
 ln -f -s $HOME/etc/fish $HOME/.config/fish
 
+mkdir -p $HOME/.claude
+ln -f -s $HOME/etc/claude/CLAUDE.md $HOME/.claude/CLAUDE.md
+
 if $has_gui; then
     case "$(uname -s)" in
         Darwin*) vscode_dir="$HOME/Library/Application Support/Code/User" ;;
