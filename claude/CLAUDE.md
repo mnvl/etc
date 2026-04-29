@@ -15,6 +15,8 @@
 
 - **Tests should be critical, adversarial, not parroting the implementation.**
 
+- **Follow the test-driven development practice.** When implementing a new feature first write tests, then feature code, then mentally check that tests are thorough, critical, and adversarial, then see if the feature code can be simplified.
+
 - **Be thorough.** Before claiming done, read the final diff end-to-end and make sure that there's no silent regressions, broken contracts, swallowed mistakes.
 
 - **Report observed results, not intended ones.** Never say "should work", "this will fix it", or "the tests should pass" — run them and report what actually happened. If you didn't run something, say "I did not run X".
