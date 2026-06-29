@@ -16,19 +16,11 @@ fi
 
 case "$(uname -s)" in
     Linux*)
-        if $has_gui; then
-            gsettings set org.gnome.desktop.wm.preferences mouse-button-modifier ''
-            gsettings set org.gnome.shell.extensions.dash-to-dock always-center-icons true
-        fi
-
         sudo apt-get install zsh fish mc emacs tmux clangd git-gui git-lfs fzf bat parallel fd-find
 
         if $has_gui; then
-            # keyd: remap keys for macOS-style shortcuts
-            if ! command -v keyd >/dev/null 2>&1; then
-                sudo apt-get install keyd 2>/dev/null || \
-                    (cd /tmp && rm -rf keyd && git clone https://github.com/rvaiya/keyd && cd keyd && make && sudo make install)
-            fi
+            sudo apt install keyd keyd-application-mapper
+
             sudo ln -f -s $HOME/etc/keyd/default.conf /etc/keyd/default.conf
             sudo systemctl enable keyd
             sudo systemctl restart keyd
@@ -58,7 +50,8 @@ rm -rf $HOME/.tmux/plugins/tpm
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
 cd ~/.oh-my-zsh/custom/plugins/
 for plugin in zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting
 do
