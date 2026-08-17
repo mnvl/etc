@@ -1,10 +1,10 @@
 {
-    "editor.fontSize": 18,
+    "editor.fontSize": 16,
     "security.workspace.trust.untrustedFiles": "open",
     "git.openRepositoryInParentFolders": "always",
     "editor.cursorStyle": "block",
-    "debug.console.fontSize": 17,
-    "terminal.integrated.fontSize": 17,
+    "debug.console.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
     "explorer.confirmDragAndDrop": false,
     "python.analysis.typeCheckingMode": "standard",
     "jupyter.interactiveWindow.creationMode": "perFile",
@@ -24,14 +24,8 @@
     "editor.fontFamily": "Iosevka, 'Droid Sans Mono', 'monospace', monospace",
     "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
     "remote.SSH.remotePlatform": {
-        "192.168.1.11": "linux",
-        "10.8.0.6": "linux",
-        "192.168.1.12": "linux",
-        "192.168.1.27": "linux",
-        "10.8.0.2": "linux",
-        "192.168.1.16": "linux",
-        "192.168.1.21": "linux",
-        "192.168.1.31": "linux",
-        "192.168.1.22": "linux"
-    }
+    },
+    "chat.titleBar.signIn.enabled": false,
+    "claudeCode.preferredLocation": "panel",
+    "chat.titleBar.openInAgentsWindow.enabled": false
 }
