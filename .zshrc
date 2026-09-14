@@ -38,3 +38,5 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 ZSH_HIGHLIGHT_STYLES[comment]='fg=gray'
+
+source <(fzf --zsh)
