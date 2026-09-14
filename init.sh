@@ -16,7 +16,7 @@ fi
 
 case "$(uname -s)" in
     Linux*)
-        sudo apt-get install zsh fish mc emacs tmux clangd git-gui git-lfs fzf bat parallel fd-find
+        sudo apt-get install zsh fish mc emacs tmux clangd git-gui git-lfs fzf bat parallel fd-find yazi eza zoxide ripgrep btop dust
 
         if $has_gui; then
             sudo apt install keyd keyd-application-mapper
@@ -37,7 +37,7 @@ case "$(uname -s)" in
     ;;
 
     Darwin*)
-        brew install fish mc emacs tmux llvm git-gui fzf bat parallel
+        brew install fish mc emacs tmux llvm git-gui fzf bat parallel yazi eza zoxide ripgrep btop dust
         brew install --cask font-iosevka
     ;;
 
