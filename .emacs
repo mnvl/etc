@@ -2,7 +2,7 @@
 ;; install packages automatically on startup
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa-stable" . "https://stable.melpa.org/packages/"))
+	     '("melpa" . "https://melpa.org/packages/"))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
@@ -43,10 +43,6 @@
 (setq uniquify-buffer-name-style 'post-forward)
 (save-place-mode 1)
 (setq-default show-trailing-whitespace 1)
-
-(use-package treemacs)
-(global-set-key [f8] 'treemacs)
-(global-set-key (kbd "C-b") 'treemacs)
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
@@ -114,131 +110,10 @@
 (global-set-key (kbd "s-p") 'project-find-file)
 (global-set-key (kbd "s-P") 'execute-extended-command)
 
-;; testing and debugging workflow (M-t like VSCode alt+t)
-(defvar my-test-last-command nil)
-
-(defun my-test--project-root ()
-  (or
-   (let ((proj (project-current nil)))
-     (when proj (project-root proj)))
-   (locate-dominating-file default-directory "pyproject.toml")
-   (locate-dominating-file default-directory "Cargo.toml")
-   (locate-dominating-file default-directory "go.mod")
-   (locate-dominating-file default-directory "package.json")
-   (locate-dominating-file default-directory "CMakeLists.txt")
-   default-directory))
-
-(defun my-test--from-root (root cmd)
-  (if (and root (file-directory-p root))
-      (format "cd %s && %s" (shell-quote-argument (expand-file-name root)) cmd)
-    cmd))
-
-(defun my-test--js-test-command (root)
-  (when (and root (file-exists-p (expand-file-name "package.json" root)))
-    (cond
-     ((file-exists-p (expand-file-name "pnpm-lock.yaml" root)) "pnpm test")
-     ((file-exists-p (expand-file-name "yarn.lock" root)) "yarn test")
-     (t "npm test"))))
-
-(defun my-test--default-command ()
-  (let* ((root (my-test--project-root))
-         (has-file (and buffer-file-name root))
-         (file-arg (when has-file
-                     (shell-quote-argument
-                      (file-relative-name buffer-file-name root)))))
-    (cond
-     ((derived-mode-p 'python-mode)
-      (if file-arg
-          (my-test--from-root root (format "pytest %s" file-arg))
-        (my-test--from-root root "pytest")))
-     ((derived-mode-p 'rust-mode)
-      (my-test--from-root root "cargo test"))
-     ((or (derived-mode-p 'go-mode) (derived-mode-p 'go-ts-mode))
-      (my-test--from-root root "go test ./..."))
-     ((or (derived-mode-p 'js-mode)
-          (derived-mode-p 'js-ts-mode)
-          (derived-mode-p 'typescript-mode)
-          (derived-mode-p 'typescript-ts-mode))
-      (let ((js-cmd (my-test--js-test-command root)))
-        (when js-cmd
-          (my-test--from-root root js-cmd))))
-     ((or (derived-mode-p 'c-mode) (derived-mode-p 'c++-mode))
-      (if (and root (file-exists-p (expand-file-name "CMakeLists.txt" root)))
-          (my-test--from-root root "ctest --output-on-failure")
-        nil))
-     (t nil))))
-
-(defun my-test-debug-at-cursor ()
-  (interactive)
-  (let* ((base (or (my-test--default-command)
-                   (read-shell-command "Debug command: ")))
-         (cmd (if (string-match-p "pytest" base)
-                  (concat base " --pdb")
-                base)))
-    (setq my-test-last-command cmd)
-    (compile cmd)))
-
-(defun my-test-run-current-file ()
-  (interactive)
-  (let ((cmd (or (my-test--default-command)
-                 (read-shell-command "Test command: "))))
-    (setq my-test-last-command cmd)
-    (compile cmd)))
-
-(defun my-test-debug-last-run ()
-  (interactive)
-  (if my-test-last-command
-      (compile my-test-last-command)
-    (call-interactively 'my-test-run-current-file)))
-
-(defun my-debug-start ()
-  (interactive)
-  (cond
-   ((fboundp 'dap-debug) (call-interactively 'dap-debug))
-   (t (call-interactively 'gdb))))
-
-(defun my-debug-continue ()
-  (interactive)
-  (cond
-   ((fboundp 'dap-continue) (call-interactively 'dap-continue))
-   ((fboundp 'gud-cont) (call-interactively 'gud-cont))
-   (t (message "No debug continue command available"))))
-
-(defun my-debug-stop ()
-  (interactive)
-  (cond
-   ((fboundp 'dap-disconnect) (call-interactively 'dap-disconnect))
-   ((get-buffer "*compilation*") (kill-compilation))
-   (t (message "No active debug/test process"))))
-
-(defun my-debug-toggle-breakpoint ()
-  (interactive)
-  (cond
-   ((fboundp 'dap-breakpoint-toggle) (call-interactively 'dap-breakpoint-toggle))
-   ((fboundp 'gud-break) (call-interactively 'gud-break))
-   (t (message "No breakpoint command available"))))
-
-(define-prefix-command 'my-test-debug-map)
-(global-set-key (kbd "M-t") 'my-test-debug-map)
-(define-key my-test-debug-map (kbd "c") 'my-test-debug-at-cursor)
-(define-key my-test-debug-map (kbd "f") 'my-test-run-current-file)
-(define-key my-test-debug-map (kbd "l") 'my-test-debug-last-run)
-(define-key my-test-debug-map (kbd "r") 'my-debug-continue)
-(define-key my-test-debug-map (kbd "s") 'my-debug-stop)
-(define-key my-test-debug-map (kbd "d") 'my-debug-start)
-(define-key my-test-debug-map (kbd "b") 'my-debug-toggle-breakpoint)
-
 ;; sudo apt-get install clangd
 ;; pip3 install pyright
 ;; rustup component add rust-analyzer
-(use-package corfu
-  :custom
-  (corfu-auto t)
-  (corfu-cycle t)
-  :init (global-corfu-mode))
-(use-package eglot)
-(use-package apheleia
-  :init (apheleia-global-mode))
+(use-package eglot :ensure nil)
 (use-package rust-mode)
 (use-package markdown-mode
   :mode (("\\.md\\'" . markdown-mode)
@@ -326,7 +201,6 @@
 
   (local-set-key (kbd "M-c S") 'eglot-list-connections)
   (local-set-key (kbd "M-c a") 'eglot-code-actions)
-  (local-set-key (kbd "M-c b") 'my-debug-toggle-breakpoint)
   (local-set-key (kbd "M-c c") 'completion-at-point)
   (local-set-key (kbd "M-c d") 'xref-find-definitions)
   (local-set-key (kbd "M-c f") 'eglot-format-buffer)
@@ -344,8 +218,7 @@
 
 (defun my-python-mode-hook ()
   (local-set-key (kbd "M-c <") 'python-indent-shift-left)
-  (local-set-key (kbd "M-c >") 'python-indent-shift-right)
-  (local-set-key (kbd "M-c C-f") 'apheleia-format-buffer))
+  (local-set-key (kbd "M-c >") 'python-indent-shift-right))
 
 (add-hook 'c-mode-common-hook 'my-programming-modes-hook)
 (add-hook 'c-mode-hook 'my-c-c++-mode-hook)

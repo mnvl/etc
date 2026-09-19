@@ -1,1 +1,3 @@
-git clone --recursive https://github.com/mnvl/etc.git
+git clone https://github.com/mnvl/etc.git ~/etc
+~/etc/install.sh   # packages + fonts + symlinks
+~/etc/link.sh      # symlinks only

@@ -1,2 +1,2 @@
-export PATH=~/.local/bin:~/miniconda3/bin:$PATH
-. "$HOME/.cargo/env"
+export PATH=~/.local/bin:$PATH
+[ -f "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"

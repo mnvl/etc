@@ -8,7 +8,6 @@
     "explorer.confirmDragAndDrop": false,
     "python.analysis.typeCheckingMode": "standard",
     "jupyter.interactiveWindow.creationMode": "perFile",
-    "remote.SSH.useLocalServer": false,
     "workbench.editor.empty.hint": "hidden",
     "terminal.integrated.macOptionIsMeta": true,
     "editor.renderWhitespace": "trailing",
@@ -23,8 +22,6 @@
     "testing.showAllMessages": true,
     "editor.fontFamily": "Iosevka, 'Droid Sans Mono', 'monospace', monospace",
     "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
-    "remote.SSH.remotePlatform": {
-    },
     "chat.titleBar.signIn.enabled": false,
     "claudeCode.preferredLocation": "panel",
     "chat.titleBar.openInAgentsWindow.enabled": false
