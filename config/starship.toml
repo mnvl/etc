@@ -1,0 +1,51 @@
+# Two-line prompt: gray info line, then the plain "$ " prompt.
+# Monokai gray (#75715e) for everything; the "$ " itself stays uncolored.
+
+add_newline = true
+format = """
+[$directory$git_branch$git_status$cmd_duration$status]($style)
+$character"""
+
+palette = "monokai"
+
+[palettes.monokai]
+gray = "#75715e"
+
+[character]
+success_symbol = "\\$"
+error_symbol = "\\$"
+
+[directory]
+style = "gray"
+truncation_length = 0
+truncate_to_repo = false
+format = "[$path]($style) "
+
+[git_branch]
+style = "gray"
+format = "[$branch]($style) "
+
+[git_status]
+style = "gray"
+format = "[$all_status$ahead_behind]($style)"
+# eliminate spacing quirks: show a trailing space only when something is printed
+conflicted = "= "
+ahead = "↑${count} "
+behind = "↓${count} "
+diverged = "↑${ahead_count}↓${behind_count} "
+untracked = "?${count} "
+stashed = "*${count} "
+modified = "!${count} "
+staged = "+${count} "
+renamed = "»${count} "
+deleted = "✘${count} "
+
+[cmd_duration]
+min_time = 2_000
+style = "gray"
+format = "[$duration]($style) "
+
+[status]
+disabled = false
+style = "gray"
+format = "[exit $status]($style) "

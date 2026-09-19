@@ -1,6 +1,4 @@
-#! /bin/sh -eu
-
-# Symlinks dotfiles from ~/etc into $HOME. Safe to re-run; needs no sudo.
+#! /bin/sh -eux
 
 cd "$HOME/etc"
 

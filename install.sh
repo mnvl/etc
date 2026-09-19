@@ -1,6 +1,4 @@
-#! /bin/sh -eu
-
-# Installs packages, fonts and keyd. Run once per machine; use link.sh to (re)create symlinks.
+#! /bin/sh -eux
 
 has_gui=false
 if [ "$(uname -s)" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
@@ -12,7 +10,7 @@ case "$(uname -s)" in
         # bat and fd are installed as batcat / fdfind on Debian/Ubuntu; .zshrc aliases them
         sudo apt-get install -y zsh zsh-autosuggestions zsh-syntax-highlighting \
             mc emacs tmux clangd git git-lfs git-delta lazygit \
-            fzf bat fd-find ripgrep eza zoxide parallel btop
+            fzf bat fd-find ripgrep eza zoxide parallel btop starship
 
         if $has_gui; then
             sudo apt-get install -y keyd keyd-application-mapper
@@ -37,7 +35,7 @@ case "$(uname -s)" in
 
     Darwin*)
         brew install zsh-autosuggestions zsh-syntax-highlighting mc emacs tmux llvm git-lfs git-delta lazygit \
-            fzf bat fd ripgrep eza zoxide parallel btop
+            fzf bat fd ripgrep eza zoxide parallel btop starship
         brew install --cask font-iosevka
     ;;
 
