@@ -6,6 +6,12 @@ setopt SHARE_HISTORY
 bindkey -e
 setopt interactivecomments
 
+# Homebrew: sets PATH and HOMEBREW_PREFIX (nothing else on macOS does)
+for brew in /opt/homebrew/bin/brew /usr/local/bin/brew
+do
+    [[ -x $brew ]] && eval "$($brew shellenv)" && break
+done
+
 autoload -U select-word-style
 select-word-style bash
 

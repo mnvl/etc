@@ -34,6 +34,11 @@ case "$(uname -s)" in
     ;;
 
     Darwin*)
+        # brew is not on PATH until .zshrc is linked (see the same loop there)
+        for brew in /opt/homebrew/bin/brew /usr/local/bin/brew
+        do
+            [ -x "$brew" ] && eval "$($brew shellenv)" && break
+        done
         brew install zsh-autosuggestions zsh-syntax-highlighting mc emacs tmux llvm git-lfs git-delta lazygit \
             fzf bat fd ripgrep eza zoxide parallel btop starship
         brew install --cask font-iosevka
