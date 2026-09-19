@@ -1,10 +1,12 @@
 # Two-line prompt: gray info line, then the plain "$ " prompt.
 # Monokai gray (#75715e) for everything; the "$ " itself stays uncolored.
+# Modules only appear when relevant (ssh, venv, jobs, slow/failed commands).
 
 add_newline = true
 format = """
-[$directory$git_branch$git_status$cmd_duration$status]($style)
+[$hostname$directory$git_branch$git_state$git_status$python$jobs$cmd_duration$status]($style)
 $character"""
+right_format = "[$time]($style)"
 
 palette = "monokai"
 
@@ -14,6 +16,11 @@ gray = "#75715e"
 [character]
 success_symbol = "\\$"
 error_symbol = "\\$"
+
+[hostname]
+ssh_only = true
+style = "gray"
+format = "[$hostname]($style) "
 
 [directory]
 style = "gray"
@@ -25,27 +32,52 @@ format = "[$path]($style) "
 style = "gray"
 format = "[$branch]($style) "
 
+[git_state]
+style = "gray"
+format = "[$state( $progress_current/$progress_total)]($style) "
+
 [git_status]
 style = "gray"
 format = "[$all_status$ahead_behind]($style)"
-# eliminate spacing quirks: show a trailing space only when something is printed
+# each indicator carries its own trailing space so nothing is printed when clean
 conflicted = "= "
 ahead = "↑${count} "
 behind = "↓${count} "
 diverged = "↑${ahead_count}↓${behind_count} "
 untracked = "?${count} "
-stashed = "*${count} "
+stashed = ""
 modified = "!${count} "
 staged = "+${count} "
 renamed = "»${count} "
 deleted = "✘${count} "
 
+[python]
+style = "gray"
+# only when a venv/conda env is active, not just because a .py file exists
+detect_extensions = []
+detect_files = []
+detect_folders = []
+format = "[${virtualenv}]($style) "
+
+[jobs]
+style = "gray"
+symbol = "✦"
+format = "[$symbol$number]($style) "
+
 [cmd_duration]
 min_time = 2_000
 style = "gray"
 format = "[$duration]($style) "
+show_notifications = true
+min_time_to_notify = 30_000
 
 [status]
 disabled = false
 style = "gray"
 format = "[exit $status]($style) "
+
+[time]
+disabled = false
+style = "gray"
+format = "[$time]($style)"
+time_format = "%H:%M"
