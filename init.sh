@@ -16,7 +16,7 @@ fi
 
 case "$(uname -s)" in
     Linux*)
-        sudo apt-get install zsh fish mc emacs tmux clangd git-gui git-lfs fzf bat parallel fd-find yazi eza zoxide ripgrep btop dust
+        sudo apt-get install zsh zsh-autosuggestions zsh-syntax-highlighting fish mc emacs tmux clangd git-gui git-lfs fzf bat parallel fd-find yazi eza zoxide ripgrep btop dust
 
         if $has_gui; then
             sudo apt install keyd keyd-application-mapper
@@ -37,7 +37,7 @@ case "$(uname -s)" in
     ;;
 
     Darwin*)
-        brew install fish mc emacs tmux llvm git-gui fzf bat parallel yazi eza zoxide ripgrep btop dust
+        brew install zsh-autosuggestions zsh-syntax-highlighting fish mc emacs tmux llvm git-gui fzf bat parallel yazi eza zoxide ripgrep btop dust
         brew install --cask font-iosevka
     ;;
 
@@ -49,14 +49,6 @@ esac
 rm -rf $HOME/.tmux/plugins/tpm
 mkdir -p ~/.tmux/plugins
 git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-
-cd ~/.oh-my-zsh/custom/plugins/
-for plugin in zsh-autosuggestions zsh-completions zsh-history-substring-search zsh-syntax-highlighting
-do
-    git clone https://github.com/zsh-users/$plugin.git
-done
 
 for x in .emacs .jupyter .gdbinit .tmux.conf .gitconfig .zshrc
 do
