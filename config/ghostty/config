@@ -15,10 +15,13 @@ window-inherit-working-directory = false
 
 # macos compatibility
 macos-icon = glass
-macos-option-as-alt = left
+macos-option-as-alt = true
 keybind = §=text:`
 keybind = ±=text:~
 keybind = super+f=unbind
+# ghostty binds these to esc:b / esc:f by default, which eats tmux M-Left/M-Right
+keybind = alt+left=unbind
+keybind = alt+right=unbind
 
 confirm-close-surface = false
 copy-on-select = clipboard
