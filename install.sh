@@ -1,25 +1,74 @@
 #! /bin/sh -eux
 
+os=$(uname -s)
+
 has_gui=false
-if [ "$(uname -s)" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
+if [ "$os" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
     has_gui=true
 fi
 
-case "$(uname -s)" in
-    Linux*)
-        # bat and fd are installed as batcat / fdfind on Debian/Ubuntu; .zshrc aliases them
-        # curl/jq/unzip are for the Iosevka download below
-        sudo apt-get install -y zsh zsh-autosuggestions zsh-syntax-highlighting \
-            mc emacs tmux clangd git git-lfs git-delta lazygit \
-            fzf bat fd-find ripgrep eza zoxide vivid atuin parallel htop btop starship \
-            curl jq unzip
+# Homebrew is the package manager on both macOS and Linux: Debian ships most of
+# the list below too old, under a different name, or not at all (eza, atuin,
+# starship, lazygit, git-delta, vivid).
+find_brew() {
+    for brew in /opt/homebrew/bin/brew /usr/local/bin/brew \
+                /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"
+    do
+        # shellcheck disable=SC2015
+        [ -x "$brew" ] && eval "$($brew shellenv)" && return 0
+    done
+    return 1
+}
 
-        if $has_gui; then
-            sudo apt-get install -y keyd keyd-application-mapper
-            sudo ln -f -s "$HOME/etc/keyd/default.conf" /etc/keyd/default.conf
-            sudo systemctl enable keyd
-            sudo systemctl restart keyd
-            sudo usermod -aG keyd "$USER"
+if ! find_brew
+then
+    if [ "$os" = "Linux" ]; then
+        sudo apt-get update
+        sudo apt-get install -y build-essential procps curl file git
+    fi
+    NONINTERACTIVE=1 /bin/bash -c \
+        "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    find_brew
+fi
+
+brew install zsh-autosuggestions zsh-syntax-highlighting \
+    mc emacs tmux llvm git git-lfs git-delta lazygit \
+    fzf bat fd ripgrep eza zoxide vivid atuin parallel htop btop starship jq
+
+# llvm is keg-only, so clangd/clang-format are not on PATH; eglot looks them up by name
+for x in clangd clang-format
+do
+    ln -f -s "$(brew --prefix llvm)/bin/$x" "$(brew --prefix)/bin/$x"
+done
+
+if [ "$os" = "Linux" ]; then
+    # Debian's zsh is fine, but keep one zsh so ${HOMEBREW_PREFIX}/share plugins match it
+    brew install zsh
+    zsh="$(brew --prefix)/bin/zsh"
+    grep -q -x -F "$zsh" /etc/shells || echo "$zsh" | sudo tee -a /etc/shells >/dev/null
+    [ "${SHELL:-}" = "$zsh" ] || echo "to make it the login shell: chsh -s $zsh"
+fi
+
+if $has_gui
+then
+    case "$os" in
+        Darwin*)
+            brew install --cask font-iosevka ghostty
+        ;;
+
+        Linux*)
+            sudo apt install ghostty
+
+            # keyd is a system daemon (systemd unit, /etc/keyd, a group): distro package only
+            if sudo apt-get install -y keyd keyd-application-mapper
+            then
+                sudo ln -f -s "$HOME/etc/keyd/default.conf" /etc/keyd/default.conf
+                sudo systemctl enable keyd
+                sudo systemctl restart keyd
+                sudo usermod -aG keyd "$USER"
+            else
+                echo "keyd is not packaged for this release - skipped"
+            fi
 
             fonts="$HOME/.local/share/fonts"
             mkdir -p "$fonts"
@@ -33,23 +82,8 @@ case "$(uname -s)" in
                 rm -rf "$tmp"
                 fc-cache
             fi
-        fi
-    ;;
-
-    Darwin*)
-        # brew is not on PATH until .zshrc is linked (see the same loop there)
-        for brew in /opt/homebrew/bin/brew /usr/local/bin/brew
-        do
-            [ -x "$brew" ] && eval "$($brew shellenv)" && break
-        done
-        brew install zsh-autosuggestions zsh-syntax-highlighting mc emacs tmux llvm git-lfs git-delta lazygit \
-            fzf bat fd ripgrep eza zoxide vivid atuin parallel htop btop starship
-        brew install --cask font-iosevka ghostty
-    ;;
-
-    *)
-        echo "unknown OS"
-        exit 1
-esac
+        ;;
+    esac
+fi
 
 "$(dirname "$0")/link.sh"

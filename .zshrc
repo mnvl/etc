@@ -8,8 +8,10 @@ setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
 bindkey -e
 setopt interactivecomments
 
-# Homebrew: sets PATH and HOMEBREW_PREFIX (nothing else on macOS does)
-for brew in /opt/homebrew/bin/brew /usr/local/bin/brew
+# Homebrew: sets PATH and HOMEBREW_PREFIX; the package manager on Linux too
+# (same list of prefixes as install.sh)
+for brew in /opt/homebrew/bin/brew /usr/local/bin/brew \
+            /home/linuxbrew/.linuxbrew/bin/brew ~/.linuxbrew/bin/brew
 do
     [[ -x $brew ]] && eval "$($brew shellenv)" && break
 done
@@ -33,11 +35,13 @@ if command -v eza >/dev/null; then
     alias ll='eza -l --group-directories-first --git'
     alias la='eza -la --group-directories-first --git'
 fi
-# Debian/Ubuntu install bat/fd under different names
-command -v batcat >/dev/null && alias bat='batcat'
-command -v fdfind >/dev/null && alias fd='fdfind'
+# brew installs bat/fd under their real names; Debian renames them, so alias only
+# when there is no real one (an apt bat/fd left over must not shadow brew's newer one)
+command -v bat >/dev/null || { command -v batcat >/dev/null && alias bat='batcat' }
+command -v fd  >/dev/null || { command -v fdfind >/dev/null && alias fd='fdfind' }
+bat_bin=$(command -v bat || command -v batcat)
 export LESS='-R'
-export MANPAGER="sh -c 'col -bx | $(command -v batcat || echo bat) -l man -p'"
+export MANPAGER="sh -c 'col -bx | $bat_bin -l man -p'"
 
 export EDITOR='emacs -nw --no-desktop'
 
@@ -56,10 +60,13 @@ else
     PROMPT="$ "
 fi
 
-# apt puts these in /usr/share, brew in $(brew --prefix)/share
+# brew keeps these in $HOMEBREW_PREFIX/share; a distro package would be in /usr/share
 for plugin in zsh-autosuggestions zsh-syntax-highlighting
 do
-    source ${HOMEBREW_PREFIX:-/usr}/share/$plugin/$plugin.zsh
+    for dir in ${HOMEBREW_PREFIX:-/usr}/share /usr/share
+    do
+        [[ -r $dir/$plugin/$plugin.zsh ]] && source $dir/$plugin/$plugin.zsh && break
+    done
 done
 # monokai: green commands, yellow strings, purple numbers-ish, gray comments, red errors
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
@@ -87,7 +94,7 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border \
     --color=bg+:#3e3d32,bg:#272822,spinner:#a6e22e,hl:#f92672 \
     --color=fg:#f8f8f2,header:#66d9ef,info:#e6db74,pointer:#a6e22e \
     --color=marker:#a6e22e,fg+:#f8f8f2,prompt:#66d9ef,hl+:#f92672"
-export FZF_CTRL_T_OPTS="--preview '$(command -v batcat || echo bat) --color=always --style=numbers --line-range=:200 {}'"
+export FZF_CTRL_T_OPTS="--preview '$bat_bin --color=always --style=numbers --line-range=:200 {}'"
 
 # atuin: sqlite history, takes over Ctrl-R from fzf (must come after fzf --zsh); Up stays zsh's
 # see config/atuin/config.toml; not packaged before Debian trixie, so the fzf Ctrl-R stays as fallback

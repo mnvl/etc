@@ -118,7 +118,7 @@
 (global-set-key (kbd "s-p") 'project-find-file)
 (global-set-key (kbd "s-P") 'execute-extended-command)
 
-;; sudo apt-get install clangd
+;; clangd comes from brew's llvm (install.sh links it onto PATH)
 ;; pip3 install pyright
 ;; rustup component add rust-analyzer
 (use-package eglot :ensure nil)
