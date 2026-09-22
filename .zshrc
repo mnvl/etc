@@ -34,12 +34,10 @@ fi
 # Debian/Ubuntu install bat/fd under different names
 command -v batcat >/dev/null && alias bat='batcat'
 command -v fdfind >/dev/null && alias fd='fdfind'
-export BAT_THEME='Monokai Extended'
 export LESS='-R'
 export MANPAGER="sh -c 'col -bx | $(command -v batcat || echo bat) -l man -p'"
 
 export EDITOR='emacs -nw --no-desktop'
-export DIFF='ediff -nw --no-desktop'
 
 # LANG for locale, but keep sort order / number formatting / messages in C
 export LANG=ru_RU.UTF-8
@@ -49,8 +47,7 @@ export LC_MESSAGES=C
 export LESSCHARSET=utf-8
 
 # starship draws a gray info line (dir, git, duration, exit code) above the plain "$ " prompt
-# see config/starship.toml
-export STARSHIP_CONFIG=$HOME/etc/config/starship.toml
+# see config/starship.toml (linked to ~/.config/starship.toml by link.sh)
 if command -v starship >/dev/null; then
     eval "$(starship init zsh)"
 else

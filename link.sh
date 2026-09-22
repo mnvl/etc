@@ -10,6 +10,13 @@ done
 mkdir -p "$HOME/.claude"
 ln -f -s "$HOME/etc/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
+# config/<name> -> ~/.config/<name>; -n so an existing directory is replaced, not linked into
+mkdir -p "$HOME/.config"
+for x in "$HOME/etc"/config/*
+do
+    ln -f -s -n "$x" "$HOME/.config/$(basename "$x")"
+done
+
 if [ "$(uname -s)" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
     case "$(uname -s)" in
         Darwin*) vscode_dir="$HOME/Library/Application Support/Code/User" ;;

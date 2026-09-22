@@ -8,9 +8,11 @@ fi
 case "$(uname -s)" in
     Linux*)
         # bat and fd are installed as batcat / fdfind on Debian/Ubuntu; .zshrc aliases them
+        # curl/jq/unzip are for the Iosevka download below
         sudo apt-get install -y zsh zsh-autosuggestions zsh-syntax-highlighting \
             mc emacs tmux clangd git git-lfs git-delta lazygit \
-            fzf bat fd-find ripgrep eza zoxide parallel btop starship
+            fzf bat fd-find ripgrep eza zoxide parallel btop starship \
+            curl jq unzip
 
         if $has_gui; then
             sudo apt-get install -y keyd keyd-application-mapper
@@ -19,14 +21,15 @@ case "$(uname -s)" in
             sudo systemctl restart keyd
             sudo usermod -aG keyd "$USER"
 
-            mkdir -p "$HOME/.fonts"
-            if ! ls "$HOME/.fonts"/Iosevka-*.ttc >/dev/null 2>&1; then
+            fonts="$HOME/.local/share/fonts"
+            mkdir -p "$fonts"
+            if ! ls "$fonts"/Iosevka-*.ttc >/dev/null 2>&1; then
                 tmp=$(mktemp -d)
                 curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' \
                     | jq -r '.assets[] | .browser_download_url' \
                     | grep 'PkgTTC-Iosevka-.*zip' \
                     | xargs -n 1 curl -L --fail --silent --show-error -o "$tmp/iosevka.zip"
-                unzip -q "$tmp/iosevka.zip" -d "$HOME/.fonts"
+                unzip -q "$tmp/iosevka.zip" -d "$fonts"
                 rm -rf "$tmp"
                 fc-cache
             fi
@@ -41,7 +44,7 @@ case "$(uname -s)" in
         done
         brew install zsh-autosuggestions zsh-syntax-highlighting mc emacs tmux llvm git-lfs git-delta lazygit \
             fzf bat fd ripgrep eza zoxide parallel btop starship
-        brew install --cask font-iosevka
+        brew install --cask font-iosevka ghostty
     ;;
 
     *)

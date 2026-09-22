@@ -2,23 +2,46 @@
 	name = Manvel Avetisian
 	email = manvel@manvel.ai
 [core]
-	autocrlf = input
 	pager = delta
 [interactive]
 	diffFilter = delta --color-only
 [delta]
 	navigate = true
+	line-numbers = true
+	syntax-theme = Monokai Extended
 [init]
 	defaultBranch = master
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[tag]
+	sort = version:refname
+[fetch]
+	prune = true
+	pruneTags = true
+[push]
+	autoSetupRemote = true
+	followTags = true
 [pull]
 	rebase = true
+[rebase]
+	autoStash = true
+	autoSquash = true
+	updateRefs = true
+[commit]
+	verbose = true
 [rerere]
 	enabled = true
+	autoupdate = true
 [diff]
 	algorithm = histogram
 	colorMoved = default
+	renames = true
 [merge]
 	conflictstyle = zdiff3
+[help]
+	autocorrect = prompt
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

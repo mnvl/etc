@@ -1,0 +1,2 @@
+# also used by the fzf Ctrl-T preview and MANPAGER (see .zshrc); delta has its own syntax-theme in .gitconfig
+--theme="Monokai Extended"

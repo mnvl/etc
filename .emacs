@@ -77,6 +77,13 @@
   :custom
   (consult-preview-key "M-."))
 
+;; corfu — in-buffer completion popup (same family as vertico); Emacs 31 draws it in the tty too
+(use-package corfu
+  :init (global-corfu-mode)
+  :custom
+  (corfu-auto t)
+  (corfu-cycle t))
+
 ;; make remembering key sequences a bit easier
 (use-package which-key)
 (which-key-mode)
