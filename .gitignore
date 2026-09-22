@@ -1,2 +1,2 @@
-*.ttc
-*.zip
+.DS_Store
+.zcompdump*

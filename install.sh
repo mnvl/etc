@@ -11,7 +11,7 @@ case "$(uname -s)" in
         # curl/jq/unzip are for the Iosevka download below
         sudo apt-get install -y zsh zsh-autosuggestions zsh-syntax-highlighting \
             mc emacs tmux clangd git git-lfs git-delta lazygit \
-            fzf bat fd-find ripgrep eza zoxide parallel btop starship \
+            fzf bat fd-find ripgrep eza zoxide vivid atuin parallel htop btop starship \
             curl jq unzip
 
         if $has_gui; then
@@ -43,7 +43,7 @@ case "$(uname -s)" in
             [ -x "$brew" ] && eval "$($brew shellenv)" && break
         done
         brew install zsh-autosuggestions zsh-syntax-highlighting mc emacs tmux llvm git-lfs git-delta lazygit \
-            fzf bat fd ripgrep eza zoxide parallel btop starship
+            fzf bat fd ripgrep eza zoxide vivid atuin parallel htop btop starship
         brew install --cask font-iosevka ghostty
     ;;
 

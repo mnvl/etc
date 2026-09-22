@@ -1,0 +1,13 @@
+# atuin: Ctrl-R history search (see .zshrc). ~/.config/atuin is linked here by link.sh.
+# Sync is off until `atuin register` / `atuin login` is run on a machine.
+
+# Enter puts the command on the prompt instead of running it, like fzf's Ctrl-R did
+enter_accept = false
+# 40%-ish popup under the prompt instead of full screen, like the fzf layout
+inline_height = 20
+style = "compact"
+# Ctrl-R starts with all hosts; Ctrl-R again cycles to this host, then this directory
+filter_mode = "global"
+search_mode = "fuzzy"
+# apt/brew handle upgrades
+update_check = false
