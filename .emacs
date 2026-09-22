@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 
 ;; install packages automatically on startup
 (require 'package)
