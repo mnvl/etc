@@ -3,10 +3,10 @@
 	email = manvel@manvel.ai
 [core]
 	# git runs the pager through a shell, so fall back to less where delta is
-	# not packaged (Debian/Ubuntu) instead of losing the output to "not found"
-	pager = delta || less
+	# not packaged (Debian/Ubuntu) instead of printing "not found"
+	pager = "if command -v delta >/dev/null; then delta; else less; fi"
 [interactive]
-	diffFilter = delta --color-only || cat
+	diffFilter = "if command -v delta >/dev/null; then delta --color-only; else cat; fi"
 [delta]
 	navigate = true
 	line-numbers = true
@@ -41,7 +41,7 @@
 	colorMoved = default
 	renames = true
 [merge]
-	conflictstyle = zdiff3
+	conflictstyle = diff3
 [help]
 	autocorrect = prompt
 [filter "lfs"]
