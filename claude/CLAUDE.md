@@ -22,3 +22,5 @@
 - **Report observed results, not intended ones.** Never say "should work", "this will fix it", or "the tests should pass" — run them and report what actually happened. If you didn't run something, say "I did not run X".
 
 - If a test fails after your change, do not claim the task is complete. State the failure, investigate, and either fix it or explain why the failure is unrelated with evidence.
+
+- **Exception — this dotfiles repo (`~/etc`).** The rules about tests, TDD and contract tests do not apply here: there is no test suite and none should be added. Shell config is checked by running it — `sh -n` / `zsh -n`, a real `zsh -i`, a dry run with the package manager stubbed — and the result is reported as observed. Keep the code short; prefer dropping a feature over guarding it.
