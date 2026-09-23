@@ -8,8 +8,8 @@ if [ "$os" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" 
 fi
 
 # Homebrew is the package manager on both macOS and Linux: Debian ships most of
-# the list below too old, under a different name, or not at all (eza, atuin,
-# starship, lazygit, git-delta, vivid).
+# the list below too old, under a different name, or not at all (eza, starship,
+# lazygit, git-delta, vivid).
 find_brew() {
     for brew in /opt/homebrew/bin/brew /usr/local/bin/brew \
                 /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"
@@ -33,7 +33,7 @@ fi
 
 brew install zsh-autosuggestions zsh-syntax-highlighting \
     mc emacs tmux llvm git git-lfs git-delta lazygit \
-    fzf bat fd ripgrep eza zoxide vivid atuin parallel htop btop starship jq
+    fzf bat fd ripgrep eza zoxide vivid parallel htop btop starship jq
 
 # llvm is keg-only, so clangd/clang-format are not on PATH; eglot looks them up by name
 for x in clangd clang-format

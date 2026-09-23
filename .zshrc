@@ -1,4 +1,3 @@
-# zsh's own history stays as a fallback; atuin (below) is the primary one
 HISTFILE=$HOME/.zhistory
 HISTSIZE=1000000
 SAVEHIST=1000000
@@ -95,10 +94,6 @@ export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border \
     --color=fg:#f8f8f2,header:#66d9ef,info:#e6db74,pointer:#a6e22e \
     --color=marker:#a6e22e,fg+:#f8f8f2,prompt:#66d9ef,hl+:#f92672"
 export FZF_CTRL_T_OPTS="--preview '$bat_bin --color=always --style=numbers --line-range=:200 {}'"
-
-# atuin: sqlite history, takes over Ctrl-R from fzf (must come after fzf --zsh); Up stays zsh's
-# see config/atuin/config.toml; not packaged before Debian trixie, so the fzf Ctrl-R stays as fallback
-command -v atuin >/dev/null && eval "$(atuin init zsh --disable-up-arrow)"
 
 # zoxide: z <dir> jumps to a frecent directory, zi picks interactively
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"
