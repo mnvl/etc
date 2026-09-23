@@ -7,7 +7,7 @@ setopt HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE
 bindkey -e
 setopt interactivecomments
 
-# Homebrew: sets PATH and HOMEBREW_PREFIX; the package manager on Linux too
+# Homebrew: sets PATH and HOMEBREW_PREFIX; used on Linux too when it is there
 # (same list of prefixes as install.sh)
 for brew in /opt/homebrew/bin/brew /usr/local/bin/brew \
             /home/linuxbrew/.linuxbrew/bin/brew ~/.linuxbrew/bin/brew
@@ -22,8 +22,13 @@ autoload -Uz compinit && compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# file colors for eza/fd/completion menu; vivid works on macOS too, where there is no dircolors
-command -v vivid >/dev/null && export LS_COLORS="$(vivid generate molokai)"
+# file colors for eza/fd/completion menu; vivid works on macOS too, where there is no
+# dircolors, and is not packaged for Debian/Ubuntu, where dircolors is the fallback
+if command -v vivid >/dev/null; then
+    export LS_COLORS="$(vivid generate molokai)"
+elif command -v dircolors >/dev/null; then
+    eval "$(dircolors -b)"
+fi
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
 zstyle ':completion:*' group-name ''
@@ -38,9 +43,11 @@ fi
 # when there is no real one (an apt bat/fd left over must not shadow brew's newer one)
 command -v bat >/dev/null || { command -v batcat >/dev/null && alias bat='batcat' }
 command -v fd  >/dev/null || { command -v fdfind >/dev/null && alias fd='fdfind' }
-bat_bin=$(command -v bat || command -v batcat)
+# whence -p, not command -v: the alias just defined above would shadow the binary
+bat_bin=$(whence -p bat || whence -p batcat || true)
 export LESS='-R'
-export MANPAGER="sh -c 'col -bx | $bat_bin -l man -p'"
+# without bat, leave MANPAGER alone: man's own pager beats a broken pipeline
+[[ -n $bat_bin ]] && export MANPAGER="sh -c 'col -bx | $bat_bin -l man -p'"
 
 export EDITOR='emacs -nw --no-desktop'
 
@@ -67,6 +74,7 @@ do
         [[ -r $dir/$plugin/$plugin.zsh ]] && source $dir/$plugin/$plugin.zsh && break
     done
 done
+
 # monokai: green commands, yellow strings, purple numbers-ish, gray comments, red errors
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 ZSH_HIGHLIGHT_STYLES[comment]='fg=#75715e'
@@ -87,13 +95,24 @@ ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#fd971f'
 ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#fd971f'
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#75715e'
 
-# fzf: Ctrl-R history, Ctrl-T files, Alt-C cd, **<Tab> fuzzy completion
-source <(fzf --zsh)
+# fzf: Ctrl-R history, Ctrl-T files, Alt-C cd, **<Tab> fuzzy completion.
+# --zsh only exists since 0.48; older ones (Debian/Ubuntu) ship the scripts as docs.
+if command -v fzf >/dev/null; then
+    if fzf --zsh >/dev/null 2>&1; then
+        source <(fzf --zsh)
+    else
+        for f in /usr/share/doc/fzf/examples/{key-bindings,completion}.zsh
+        do
+            [[ -r $f ]] && source $f
+        done
+    fi
+fi
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border \
     --color=bg+:#3e3d32,bg:#272822,spinner:#a6e22e,hl:#f92672 \
     --color=fg:#f8f8f2,header:#66d9ef,info:#e6db74,pointer:#a6e22e \
     --color=marker:#a6e22e,fg+:#f8f8f2,prompt:#66d9ef,hl+:#f92672"
-export FZF_CTRL_T_OPTS="--preview '$bat_bin --color=always --style=numbers --line-range=:200 {}'"
+[[ -n $bat_bin ]] && \
+    export FZF_CTRL_T_OPTS="--preview '$bat_bin --color=always --style=numbers --line-range=:200 {}'"
 
 # zoxide: z <dir> jumps to a frecent directory, zi picks interactively
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"

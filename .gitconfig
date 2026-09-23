@@ -2,9 +2,11 @@
 	name = Manvel Avetisian
 	email = manvel@manvel.ai
 [core]
-	pager = delta
+	# git runs the pager through a shell, so fall back to less where delta is
+	# not packaged (Debian/Ubuntu) instead of losing the output to "not found"
+	pager = delta || less
 [interactive]
-	diffFilter = delta --color-only
+	diffFilter = delta --color-only || cat
 [delta]
 	navigate = true
 	line-numbers = true
