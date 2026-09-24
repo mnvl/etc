@@ -88,6 +88,35 @@
   (corfu-auto t)
   (corfu-cycle t))
 
+;; coding keymap for M-c
+(defvar-keymap my-coding-prefix-map
+  "S" #'eglot-list-connections
+  "a" #'eglot-code-actions
+  "c" #'completion-at-point
+  "d" #'xref-find-definitions
+  "f" #'eglot-format-buffer
+  "g" #'consult-imenu
+  "i" #'eglot-find-implementation
+  "j" #'eglot-find-declaration
+  "r" #'eglot-rename
+  "x" #'xref-find-references)
+(keymap-global-set "M-c" my-coding-prefix-map)
+
+;; claude code
+(use-package inheritenv
+  :vc (:url "https://github.com/purcell/inheritenv" :rev :newest))
+
+(use-package ghostel
+  :vc (:url "https://github.com/dakra/ghostel" :rev :newest))
+
+(use-package claude-code-ide
+  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+  :bind ("M-c l" . claude-code-ide-menu)
+  :config
+  (claude-code-ide-emacs-tools-setup))
+
+(setq claude-code-ide-terminal-backend 'ghostel)
+
 ;; make remembering key sequences a bit easier
 (use-package which-key)
 (which-key-mode)
@@ -209,17 +238,6 @@
 
   (local-set-key (kbd "TAB") 'indent-for-tab-command)
   (local-set-key (kbd "RET") 'newline-and-indent)
-
-  (local-set-key (kbd "M-c S") 'eglot-list-connections)
-  (local-set-key (kbd "M-c a") 'eglot-code-actions)
-  (local-set-key (kbd "M-c c") 'completion-at-point)
-  (local-set-key (kbd "M-c d") 'xref-find-definitions)
-  (local-set-key (kbd "M-c f") 'eglot-format-buffer)
-  (local-set-key (kbd "M-c g") 'consult-imenu)
-  (local-set-key (kbd "M-c i") 'eglot-find-implementation)
-  (local-set-key (kbd "M-c j") 'eglot-find-declaration)
-  (local-set-key (kbd "M-c r") 'eglot-rename)
-  (local-set-key (kbd "M-c x") 'xref-find-references)
 
   (local-set-key (kbd "M-q") 'ff-find-other-file))
 
