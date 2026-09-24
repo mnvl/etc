@@ -7,10 +7,6 @@ if [ "$os" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" 
     has_gui=true
 fi
 
-as_root() {
-    if [ "$(id -u)" = 0 ]; then "$@"; else sudo "$@"; fi
-}
-
 # Homebrew is the package manager on macOS, and the better one on Linux: Debian
 # ships part of the list below too old, under a different name, or not at all.
 # It is used on Linux only when it is already there - it refuses to run as root,
@@ -44,7 +40,7 @@ apt_install() {
         if have_pkg "$p"; then have="$have $p"; else miss="$miss $p"; fi
     done
     # shellcheck disable=SC2086
-    if [ -n "$have" ]; then as_root apt-get install -y --no-install-recommends $have; fi
+    if [ -n "$have" ]; then sudo apt-get install -y --no-install-recommends $have; fi
     if [ -n "$miss" ]; then echo "skipped:$miss (not packaged for this release)"; fi
 }
 
@@ -64,12 +60,12 @@ then
         # Debian's zsh is fine, but keep one zsh so ${HOMEBREW_PREFIX}/share plugins match it
         brew install zsh
         zsh="$(brew --prefix)/bin/zsh"
-        grep -q -x -F "$zsh" /etc/shells || echo "$zsh" | as_root tee -a /etc/shells >/dev/null
+        grep -q -x -F "$zsh" /etc/shells || echo "$zsh" | sudo tee -a /etc/shells >/dev/null
         [ "${SHELL:-}" = "$zsh" ] || echo "to make it the login shell: chsh -s $zsh"
     fi
 elif [ "$os" = "Linux" ]
 then
-    as_root apt-get update
+    sudo apt-get update
 
     # emacs pulls in the whole of X; a headless box only needs the terminal build.
     # eza/git-delta/lazygit/vivid/starship are unpackaged before Debian 13 /
@@ -97,10 +93,10 @@ then
             if have_pkg keyd && have_pkg keyd-application-mapper
             then
                 apt_install keyd keyd-application-mapper
-                as_root ln -f -s "$HOME/etc/keyd/default.conf" /etc/keyd/default.conf
-                as_root systemctl enable keyd
-                as_root systemctl restart keyd
-                as_root usermod -aG keyd "$USER"
+                sudo ln -f -s "$HOME/etc/keyd/default.conf" /etc/keyd/default.conf
+                sudo systemctl enable keyd
+                sudo systemctl restart keyd
+                sudo usermod -aG keyd "$USER"
             else
                 echo "skipped: keyd keyd-application-mapper (not packaged for this release)"
             fi

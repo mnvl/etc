@@ -75,26 +75,6 @@ do
     done
 done
 
-# monokai: green commands, yellow strings, purple numbers-ish, gray comments, red errors
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
-ZSH_HIGHLIGHT_STYLES[comment]='fg=#75715e'
-ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=#f92672'
-ZSH_HIGHLIGHT_STYLES[command]='fg=#a6e22e'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=#a6e22e'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=#a6e22e'
-ZSH_HIGHLIGHT_STYLES[function]='fg=#a6e22e'
-ZSH_HIGHLIGHT_STYLES[precommand]='fg=#a6e22e,underline'
-ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=#f92672'
-ZSH_HIGHLIGHT_STYLES[path]='fg=#66d9ef'
-ZSH_HIGHLIGHT_STYLES[globbing]='fg=#ae81ff'
-ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=#e6db74'
-ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=#e6db74'
-ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=#e6db74'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=#f92672'
-ZSH_HIGHLIGHT_STYLES[single-hyphen-option]='fg=#fd971f'
-ZSH_HIGHLIGHT_STYLES[double-hyphen-option]='fg=#fd971f'
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#75715e'
-
 # fzf: Ctrl-R history, Ctrl-T files, Alt-C cd, **<Tab> fuzzy completion.
 # --zsh only exists since 0.48; older ones (Debian/Ubuntu) ship the scripts as docs.
 if command -v fzf >/dev/null; then
@@ -107,10 +87,7 @@ if command -v fzf >/dev/null; then
         done
     fi
 fi
-export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border \
-    --color=bg+:#3e3d32,bg:#272822,spinner:#a6e22e,hl:#f92672 \
-    --color=fg:#f8f8f2,header:#66d9ef,info:#e6db74,pointer:#a6e22e \
-    --color=marker:#a6e22e,fg+:#f8f8f2,prompt:#66d9ef,hl+:#f92672"
+
 [[ -n $bat_bin ]] && \
     export FZF_CTRL_T_OPTS="--preview '$bat_bin --color=always --style=numbers --line-range=:200 {}'"
 
