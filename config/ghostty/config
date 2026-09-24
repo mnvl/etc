@@ -5,6 +5,7 @@ bold-is-bright = true
 
 theme = Monokai Remastered
 background = #000000
+palette = 0=#000000
 
 cursor-style = block
 cursor-style-blink = false
