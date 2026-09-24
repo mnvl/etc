@@ -32,6 +32,8 @@
 (savehist-mode 1)
 (show-paren-mode 1)
 (transient-mark-mode 1)
+(recentf-mode 1)
+(save-place-mode 1)
 
 (prefer-coding-system 'utf-8)
 (setq frame-title-format (list "%f"))
@@ -42,8 +44,8 @@
 (setq undo-outer-limit (* 16 1024 1024))
 (setq undo-strong-limit (* 64 1024 1024))
 (setq uniquify-buffer-name-style 'post-forward)
-(save-place-mode 1)
-(setq-default show-trailing-whitespace 1)
+(setq windmove-wrap-around t)
+(setq windmove-wrap-around t)
 
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
@@ -106,8 +108,13 @@
 (use-package inheritenv
   :vc (:url "https://github.com/purcell/inheritenv" :rev :newest))
 
+;; keys that stay with emacs instead of going to the terminal
 (use-package ghostel
-  :vc (:url "https://github.com/dakra/ghostel" :rev :newest))
+  :vc (:url "https://github.com/dakra/ghostel" :rev :newest)
+  :custom
+  (ghostel-keymap-exceptions
+   '("C-c" "M-," "M-." "M-;" "M-'" "M-/"))
+  :hook (ghostel-mode . (lambda () (setq show-trailing-whitespace nil))))
 
 (use-package claude-code-ide
   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
@@ -131,17 +138,17 @@
 
 (global-set-key (kbd "M-,") 'windmove-left)
 (global-set-key (kbd "M-.") 'windmove-right)
+(global-set-key (kbd "M-/") 'other-window)
 (global-set-key (kbd "M-;") 'previous-buffer)
 (global-set-key (kbd "M-'") 'next-buffer)
-(global-set-key (kbd "M-h") 'query-replace)
-(global-set-key (kbd "M-/") 'other-window)
-(global-set-key (kbd "M-o") 'other-window)
 
 (global-set-key (kbd "C-x f") 'project-find-file)
 (global-set-key (kbd "C-x C-f") 'find-file)
 (global-set-key (kbd "C-x C-r") 'consult-recent-file)
 
+
 (global-set-key (kbd "C-r") 'query-replace)
+(global-set-key (kbd "M-h") 'query-replace)
 (global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "C-f") 'consult-line)
 (global-set-key (kbd "M-l") 'goto-line)
