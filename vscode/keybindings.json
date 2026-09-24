@@ -11,16 +11,6 @@
 },
 
 {
-    "key": "alt+;",
-    "command": "workbench.action.previousEditorInGroup",
-},
-
-{
-    "key": "alt+'",
-    "command": "workbench.action.nextEditorInGroup",
-},
-
-{
     "key": "alt+d",
     "command": "deleteWordRight",
 },
@@ -137,6 +127,11 @@
 },
 
 {
+    "key": "cmd+w",
+    "command": "editor.action.clipboardCopyAction",
+},
+
+{
     "key": "ctrl+y",
     "command": "editor.action.clipboardPasteAction",
 },
@@ -152,12 +147,27 @@
 },
 
 {
+    "key": "cmd+x",
+    "command": "editor.action.clipboardCutAction",
+},
+
+{
     "key": "ctrl+shift+c",
     "command": "editor.action.clipboardCopyAction",
 },
 
 {
+    "key": "cmd+c",
+    "command": "editor.action.clipboardCopyAction",
+},
+
+{
     "key": "ctrl+shift+v",
+    "command": "editor.action.clipboardPasteAction",
+},
+
+{
+    "key": "cmd+v",
     "command": "editor.action.clipboardPasteAction",
 },
 
@@ -176,10 +186,41 @@
     "command": "redo",
 },
 
+{
+    "key": "cmd+z",
+    "command": "redo",
+},
+
 // search & replace
+{
+    "key": "ctrl+f",
+    "command": "actions.find",
+},
+
+{
+    "key": "ctrl+shift+f",
+    "command": "actions.find",
+},
+
 {
     "key": "cmd+f",
     "command": "actions.find",
+},
+
+{
+    "key": "ctrl+r",
+    "command": "editor.action.startFindReplaceAction",
+},
+
+
+{
+    "key": "ctrl+shift+r",
+    "command": "editor.action.startFindReplaceAction",
+},
+
+{
+    "key": "cmd+r",
+    "command": "editor.action.startFindReplaceAction",
 },
 
 {
@@ -190,6 +231,22 @@
 {
     "key": "meta+h",
     "command": "editor.action.startFindReplaceAction"
+},
+
+// file operations
+{
+    "key": "ctrl+s",
+    "command": "workbench.action.files.save"
+},
+
+{
+    "key": "ctrl+shift+s",
+    "command": "workbench.action.files.save"
+},
+
+{
+    "key": "cmd+s",
+    "command": "workbench.action.files.save"
 },
 
 // sidebar & navigation
@@ -204,13 +261,63 @@
 },
 
 {
+    "key": "ctrl+p",
+    "command": "workbench.action.quickOpen",
+},
+
+{
     "key": "cmd+shift+p",
     "command": "workbench.action.showCommands",
 },
 
 {
-    "key": "cmd+s",
-    "command": "workbench.action.files.save"
+    "key": "ctrl+shift+p",
+    "command": "workbench.action.showCommands",
+},
+
+{
+    "key": "alt+;",
+    "command": "workbench.action.previousEditorInGroup",
+},
+
+{
+    "key": "alt+'",
+    "command": "workbench.action.nextEditorInGroup",
+},
+
+{
+    "key": "alt+left",
+    "command": "workbench.action.previousEditorInGroup",
+},
+
+{
+    "key": "alt+,",
+    "command": "workbench.action.focusLeftGroup",
+},
+
+{
+    "key": "alt+right",
+    "command": "workbench.action.nextEditorInGroup",
+},
+
+{
+    "key": "alt+.",
+    "command": "workbench.action.focusRightGroup",
+},
+
+{
+    "key": "ctrl+\\",
+    "command": "workbench.action.focusNextGroup",
+},
+
+{
+    "key": "alt+/",
+    "command": "workbench.action.focusNextGroup",
+},
+
+{
+    "key": "alt+q",
+    "command": "C_Cpp.SwitchHeaderSource",
 },
 
 // disable mission control shortcuts on macos
@@ -244,7 +351,7 @@
     "command": "scrollPageDown",
 },
 
-// *** alt+x ... ***
+// alt+x ...
 {
     "key": "alt+x f",
     "command": "workbench.action.quickOpen",
@@ -253,6 +360,11 @@
 {
     "key": "alt+x s",
     "command": "workbench.action.files.save",
+},
+
+{
+    "key": "alt+x r",
+    "command": "workbench.action.openRecent",
 },
 
 {
@@ -371,7 +483,7 @@
     "command": "workbench.action.showAllSymbols",
 },
 
-// *** testing and debugging: alt+t ***
+// testing and debugging: alt+t
 {
     "key": "alt+t c",
     "command": "testing.debugAtCursor",
@@ -405,42 +517,6 @@
 {
     "key": "alt+t b",
     "command": "debug.toggleBreakpoint",
-},
-
-// more muscle memory bindings from emacs config
-{
-    "key": "alt+left",
-    "command": "workbench.action.previousEditorInGroup",
-},
-
-{
-    "key": "alt+,",
-    "command": "workbench.action.focusLeftGroup",
-},
-
-{
-    "key": "alt+right",
-    "command": "workbench.action.nextEditorInGroup",
-},
-
-{
-    "key": "alt+.",
-    "command": "workbench.action.focusRightGroup",
-},
-
-{
-    "key": "ctrl+\\",
-    "command": "workbench.action.focusNextGroup",
-},
-
-{
-    "key": "alt+/",
-    "command": "workbench.action.focusNextGroup",
-},
-
-{
-    "key": "alt+q",
-    "command": "C_Cpp.SwitchHeaderSource",
 },
 
 ]
