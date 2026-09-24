@@ -91,5 +91,5 @@ fi
 [[ -n $bat_bin ]] && \
     export FZF_CTRL_T_OPTS="--preview '$bat_bin --color=always --style=numbers --line-range=:200 {}'"
 
-# zoxide: z <dir> jumps to a frecent directory, zi picks interactively
+# zoxide: z <dir> jumps to a recent directory, zi picks interactively
 command -v zoxide >/dev/null && eval "$(zoxide init zsh)"

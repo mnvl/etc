@@ -2,10 +2,15 @@
 
 cd "$HOME/etc"
 
-for x in .emacs .gdbinit .tmux.conf .gitconfig .zshrc .zshenv
+for x in .emacs .gdbinit .tmux.conf .gitconfig .zshrc
 do
     ln -f -s "$HOME/etc/$x" "$HOME/$x"
 done
+
+if [ ! -f "$HOME/.zshenv" ];
+then
+    cp .zshenv "$HOME/.zshenv"
+fi
 
 mkdir -p "$HOME/.claude"
 ln -f -s "$HOME/etc/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
