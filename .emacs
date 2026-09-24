@@ -48,7 +48,9 @@
 ;; tip: C-u C-x = to get a name of face under cursor and some additional info
 ;; tip: M-x customize-themes to browse themes
 ;; tip: select "linux console" color theme in terminal if background is grey
-(load-theme 'modus-vivendi-tritanopia)
+(use-package monokai-theme)
+(load-theme 'monokai t)
+(set-face-attribute 'default nil :background "black")
 
 ;; vertico — vertical completion UI (replaces ivy)
 (use-package vertico
