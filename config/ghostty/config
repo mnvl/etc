@@ -26,3 +26,8 @@ keybind = alt+right=unbind
 
 confirm-close-surface = false
 copy-on-select = clipboard
+
+# font-size is in points scaled by display dpi, and linux (96dpi base) draws a
+# given size a third larger than macos (72dpi), so keep the per-machine size in
+# an untracked "local" next to this file -- it wins, and is skipped if missing
+config-file = ?local
