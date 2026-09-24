@@ -1,7 +1,8 @@
 // VS Code is used both on Linux and Mac OS. We try our best to make it work similarly on both
 // platforms while trying to incorporate Emacs-era muscle-memory keybindings:
 // 1. generally, Meta = Ctrl+Shift, but in some exceptional cases Meta = Alt,
-// 2. on Linux, we use keyd to make Meta act as Ctrl for the most important bindings.
+// 2. on Linux, we use keyd to make Meta act as Ctrl for the most important bindings,
+// 3. Ctrl+x and Meta+X are both shortcuts for cut, so we moved all M-x Emacs bindings to Alt+X.
 
 [
 // basic posix-like editing
