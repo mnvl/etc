@@ -429,7 +429,7 @@
 },
 
 {
-    "key": "alt+o",
+    "key": "ctrl+\\",
     "command": "workbench.action.focusNextGroup",
 },
 
