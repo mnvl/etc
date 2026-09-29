@@ -413,6 +413,71 @@
     "command": "workbench.action.closeAllEditors",
 },
 
+{
+    "key": "alt+x k",
+    "command": "workbench.action.closeActiveEditor",
+},
+
+{
+    "key": "alt+x shift+k",
+    "command": "workbench.action.reopenClosedEditor",
+},
+
+{
+    "key": "alt+x o",
+    "command": "workbench.action.focusNextGroup",
+},
+
+{
+    "key": "alt+x w",
+    "command": "workbench.action.files.saveAs",
+},
+
+{
+    "key": "alt+x ctrl+w",
+    "command": "workbench.action.files.saveAs",
+},
+
+{
+    "key": "alt+x ctrl+b",
+    "command": "workbench.action.showAllEditorsByMostRecentlyUsed",
+},
+
+{
+    "key": "alt+x h",
+    "command": "editor.action.selectAll",
+},
+
+{
+    "key": "alt+x d",
+    "command": "workbench.files.action.showActiveFileInExplorer",
+},
+
+{
+    "key": "alt+x g",
+    "command": "workbench.view.scm",
+},
+
+{
+    "key": "alt+x n",
+    "command": "workbench.action.files.newUntitledFile",
+},
+
+{
+    "key": "alt+x ctrl+q",
+    "command": "workbench.action.files.toggleActiveEditorReadonlyInSession",
+},
+
+{
+    "key": "alt+x t",
+    "command": "workbench.action.terminal.toggleTerminal",
+},
+
+{
+    "key": "alt+x p",
+    "command": "copyRelativeFilePath",
+},
+
 // *** code completion and navigation: alt+c ***
 {
     "key": "alt+c c",
@@ -480,6 +545,91 @@
 },
 
 {
+    "key": "alt+c ;",
+    "command": "editor.action.commentLine",
+},
+
+{
+    "key": "alt+c shift+;",
+    "command": "editor.action.blockComment",
+},
+
+{
+    "key": "alt+c t",
+    "command": "editor.action.goToTypeDefinition",
+},
+
+{
+    "key": "alt+c p",
+    "command": "editor.action.peekDefinition",
+},
+
+{
+    "key": "alt+c u",
+    "command": "editor.action.goToReferences",
+},
+
+{
+    "key": "alt+c ,",
+    "command": "workbench.action.navigateBack",
+},
+
+{
+    "key": "alt+c .",
+    "command": "workbench.action.navigateForward",
+},
+
+{
+    "key": "alt+c h",
+    "command": "editor.action.showHover",
+},
+
+{
+    "key": "alt+c s",
+    "command": "editor.action.triggerParameterHints",
+},
+
+{
+    "key": "alt+c k",
+    "command": "references-view.showCallHierarchy",
+},
+
+{
+    "key": "alt+c o",
+    "command": "editor.action.organizeImports",
+},
+
+{
+    "key": "alt+c q",
+    "command": "editor.action.quickFix",
+},
+
+{
+    "key": "alt+c shift+r",
+    "command": "editor.action.refactor",
+},
+
+{
+    "key": "alt+c shift+f",
+    "command": "editor.action.formatSelection",
+},
+
+{
+    "key": "alt+c e",
+    "command": "editor.action.marker.nextInFiles",
+},
+
+{
+    "key": "alt+c shift+e",
+    "command": "editor.action.marker.prevInFiles",
+},
+
+{
+    "key": "alt+c l",
+    "command": "workbench.actions.view.problems",
+},
+
+{
     "key": "alt+l",
     "command": "workbench.action.gotoLine",
 },
@@ -523,6 +673,131 @@
 {
     "key": "alt+t b",
     "command": "debug.toggleBreakpoint",
+},
+
+{
+    "key": "alt+t shift+c",
+    "command": "testing.runAtCursor",
+},
+
+{
+    "key": "alt+t shift+f",
+    "command": "testing.debugCurrentFile",
+},
+
+{
+    "key": "alt+t shift+l",
+    "command": "testing.reRunLastRun",
+},
+
+{
+    "key": "alt+t a",
+    "command": "testing.runAll",
+},
+
+{
+    "key": "alt+t shift+a",
+    "command": "testing.debugAll",
+},
+
+{
+    "key": "alt+t e",
+    "command": "testing.reRunFailTests",
+},
+
+{
+    "key": "alt+t shift+e",
+    "command": "testing.debugFailTests",
+},
+
+{
+    "key": "alt+t k",
+    "command": "testing.cancelRun",
+},
+
+{
+    "key": "alt+t shift+o",
+    "command": "testing.showMostRecentOutput",
+},
+
+{
+    "key": "alt+t v",
+    "command": "workbench.view.extension.test",
+},
+
+{
+    "key": "alt+t g",
+    "command": "testing.goToRelatedTest",
+},
+
+{
+    "key": "alt+t shift+g",
+    "command": "testing.goToRelatedCode",
+},
+
+{
+    "key": "alt+t m",
+    "command": "testing.coverageCurrentFile",
+},
+
+{
+    "key": "alt+t n",
+    "command": "workbench.action.debug.stepOver",
+},
+
+{
+    "key": "alt+t i",
+    "command": "workbench.action.debug.stepInto",
+},
+
+{
+    "key": "alt+t o",
+    "command": "workbench.action.debug.stepOut",
+},
+
+{
+    "key": "alt+t h",
+    "command": "editor.debug.action.runToCursor",
+},
+
+{
+    "key": "alt+t p",
+    "command": "workbench.action.debug.pause",
+},
+
+{
+    "key": "alt+t shift+r",
+    "command": "workbench.action.debug.restart",
+},
+
+{
+    "key": "alt+t w",
+    "command": "editor.debug.action.selectionToWatch",
+},
+
+{
+    "key": "alt+t x",
+    "command": "editor.debug.action.selectionToRepl",
+},
+
+{
+    "key": "alt+t shift+x",
+    "command": "workbench.debug.action.toggleRepl",
+},
+
+{
+    "key": "alt+t shift+b",
+    "command": "editor.debug.action.conditionalBreakpoint",
+},
+
+{
+    "key": "alt+t shift+p",
+    "command": "editor.debug.action.addLogPoint",
+},
+
+{
+    "key": "alt+t shift+k",
+    "command": "workbench.debug.viewlet.action.removeAllBreakpoints",
 },
 
 // text manipulation: alt+z
