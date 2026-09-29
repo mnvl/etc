@@ -525,4 +525,151 @@
     "command": "debug.toggleBreakpoint",
 },
 
+// text manipulation: alt+z
+// alt+z replaces the default toggleWordWrap, which moves to alt+z z
+{
+    "key": "alt+z f",
+    "command": "workbench.action.findInFiles",
+},
+
+{
+    "key": "alt+z r",
+    "command": "workbench.action.replaceInFiles",
+},
+
+{
+    "key": "alt+z e",
+    "command": "search.action.openNewEditor",
+},
+
+{
+    "key": "alt+z t",
+    "command": "workbench.action.findInFiles",
+    "args": {
+        "query": "TODO|FIXME|XXX",
+        "isRegex": true,
+        "triggerSearch": true
+    },
+},
+
+{
+    "key": "alt+z a",
+    "command": "editor.action.selectHighlights",
+},
+
+{
+    "key": "alt+z n",
+    "command": "editor.action.addSelectionToNextFindMatch",
+},
+
+{
+    "key": "alt+z p",
+    "command": "editor.action.addSelectionToPreviousFindMatch",
+},
+
+{
+    "key": "alt+z k",
+    "command": "editor.action.moveSelectionToNextFindMatch",
+},
+
+{
+    "key": "alt+z i",
+    "command": "editor.action.insertCursorAtEndOfEachLineSelected",
+},
+
+{
+    "key": "alt+z b",
+    "command": "editor.action.toggleColumnSelection",
+},
+
+{
+    "key": "alt+z s",
+    "command": "editor.action.sortLinesAscending",
+},
+
+{
+    "key": "alt+z shift+s",
+    "command": "editor.action.sortLinesDescending",
+},
+
+{
+    "key": "alt+z d",
+    "command": "editor.action.removeDuplicateLines",
+},
+
+{
+    "key": "alt+z v",
+    "command": "editor.action.reverseLines",
+},
+
+{
+    "key": "alt+z j",
+    "command": "editor.action.joinLines",
+},
+
+{
+    "key": "alt+z w",
+    "command": "editor.action.trimTrailingWhitespace",
+},
+
+{
+    "key": "alt+z u",
+    "command": "editor.action.transformToUppercase",
+},
+
+{
+    "key": "alt+z l",
+    "command": "editor.action.transformToLowercase",
+},
+
+{
+    "key": "alt+z c",
+    "command": "editor.action.transformToTitlecase",
+},
+
+{
+    "key": "alt+z -",
+    "command": "editor.action.transformToKebabcase",
+},
+
+{
+    "key": "alt+z shift+-",
+    "command": "editor.action.transformToSnakecase",
+},
+
+{
+    "key": "alt+z shift+c",
+    "command": "editor.action.transformToCamelcase",
+},
+
+{
+    "key": "alt+z =",
+    "command": "workbench.files.action.compareWithSaved",
+},
+
+{
+    "key": "alt+z y",
+    "command": "workbench.files.action.compareWithClipboard",
+},
+
+{
+    "key": "alt+z g",
+    "command": "workbench.action.files.revert",
+},
+
+{
+    "key": "alt+z m",
+    "command": "workbench.action.editor.changeLanguageMode",
+},
+
+{
+    "key": "alt+z z",
+    "command": "editor.action.toggleWordWrap",
+},
+
+{
+    "key": "alt+z space",
+    "command": "editor.action.smartSelect.expand",
+},
+
 ]
