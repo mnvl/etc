@@ -1,0 +1,1 @@
+- **This is the dotfiles repo; it overrides the global rules about tests, TDD and contract tests.** There is no test suite and none should be added. Shell config is checked by running it — `sh -n` / `zsh -n`, a real `zsh -i`, a dry run with the package manager stubbed — and the result is reported as observed. Keep the code short; prefer dropping a feature over guarding it.

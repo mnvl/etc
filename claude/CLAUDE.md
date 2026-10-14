@@ -23,4 +23,4 @@
 
 - If a test fails after your change, do not claim the task is complete. State the failure, investigate, and either fix it or explain why the failure is unrelated with evidence.
 
-- **Exception —  this dotfiles repo (`~/etc`).** The rules about tests, TDD and contract tests do not apply here: there is no test suite and none should be added. Shell config is checked by running it — `sh -n` / `zsh -n`, a real `zsh -i`, a dry run with the package manager stubbed — and the result is reported as observed. Keep the code short; prefer dropping a feature over guarding it.
+- **Flag, don't fix.** If code you're modifying or depending on is dead, duplicated, or needlessly tangled, mention it in one line at the end (max 3, only if verified, e.g. grep shows no callers). Do not refactor it unless asked.
