@@ -1,13 +1,13 @@
 
 - **Never commit or push without explicit permission from the user.** Do not commit as a "convenience" after completing a task. Wait to be asked.
 
-- When investigating a bug, **we first create a test that replicates the bug, and then investigate and fix it.**
+- When fixing a bug, **we first create a test that replicates the bug, and then investigate and fix it.**
 
-- **Never supply a default value (zero, empty list, `None`, fallback constant) where real data should exist.** If a value is missing, that is a bug — crash immediately. A silent default hides the bug and costs days of debugging later.
+- **Never supply a default value (zero, empty list, `None`, fallback constant) where real data should exist.** If a value is missing, that is a bug —  crash immediately. A silent default hides the bug and costs days of debugging later.
 
 - **No type coercion to "make it work".** Never cast, clamp, `int()`, `float()`, `np.nan_to_num()`, or otherwise massage a value into the expected type/range to keep code running. If the type or value is wrong, something is broken upstream — find and fix it.
 
-- **No skipped tests.** Never use `pytest.skip()`, `@pytest.mark.skip`, or conditional skips for missing assets, missing config, or "not available" hardware. If a test can't run, it must fail, not silently disappear from the results.
+- **No skipped tests.** Never use `pytest.skip()`, `@pytest.mark.skip`, or conditional skips for missing assets, missing config. If a test can't run, it must fail, not silently disappear from the results. **Exception**: unavailable hardware.
 
 - **No breaking interfaces.** Understand how changed code works in the context of the whole project. If the interface changed -- you need to write tests for the parts working together.
 
@@ -19,8 +19,8 @@
 
 - **Be thorough.** Before claiming done, read the final diff end-to-end and make sure that there's no silent regressions, broken contracts, swallowed mistakes.
 
-- **Report observed results, not intended ones.** Never say "should work", "this will fix it", or "the tests should pass" — run them and report what actually happened. If you didn't run something, say "I did not run X".
+- **Report observed results, not intended ones.** Never say "should work", "this will fix it", or "the tests should pass" —  run them and report what actually happened. If you didn't run something, say "I did not run X".
 
 - If a test fails after your change, do not claim the task is complete. State the failure, investigate, and either fix it or explain why the failure is unrelated with evidence.
 
-- **Exception — this dotfiles repo (`~/etc`).** The rules about tests, TDD and contract tests do not apply here: there is no test suite and none should be added. Shell config is checked by running it — `sh -n` / `zsh -n`, a real `zsh -i`, a dry run with the package manager stubbed — and the result is reported as observed. Keep the code short; prefer dropping a feature over guarding it.
+- **Exception —  this dotfiles repo (`~/etc`).** The rules about tests, TDD and contract tests do not apply here: there is no test suite and none should be added. Shell config is checked by running it — `sh -n` / `zsh -n`, a real `zsh -i`, a dry run with the package manager stubbed — and the result is reported as observed. Keep the code short; prefer dropping a feature over guarding it.

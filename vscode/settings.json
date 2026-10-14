@@ -24,5 +24,6 @@
     "workbench.iconTheme": "Monokai Pro (Filter Octagon) Icons",
     "chat.titleBar.signIn.enabled": false,
     "claudeCode.preferredLocation": "panel",
-    "chat.titleBar.openInAgentsWindow.enabled": false
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+    "C_Cpp.intelliSenseEngine": "disabled"
 }
