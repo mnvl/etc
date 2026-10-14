@@ -87,7 +87,7 @@ then
         ;;
 
         Linux*)
-            apt_install ghostty
+            apt_install ghostty git-cola
 
             # keyd is a system daemon (systemd unit, /etc/keyd, a group): distro package only
             if have_pkg keyd && have_pkg keyd-application-mapper
