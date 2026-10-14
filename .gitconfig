@@ -12,7 +12,7 @@
 	line-numbers = true
 	syntax-theme = Monokai Extended
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [column]
 	ui = auto
 [branch]
@@ -43,7 +43,7 @@
 [merge]
 	conflictstyle = diff3
 [help]
-	autocorrect = prompt
+	autocorrect = 0
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
