@@ -23,4 +23,6 @@
 
 - If a test fails after your change, do not claim the task is complete. State the failure, investigate, and either fix it or explain why the failure is unrelated with evidence.
 
-- **Flag, don't fix.** If code you're modifying or depending on is dead, duplicated, or needlessly tangled, mention it in one line at the end (max 3, only if verified, e.g. grep shows no callers). Do not refactor it unless asked.
+- **Flag suspicious code.** If code you're modifying or depending on is dead, duplicated, or needlessly tangled, mention it in one line at the end (max 3, only if verified, e.g. grep shows no callers). Do not refactor it unless asked.
+
+- **Minimize time spent on running tests.** When working on a change, run only relevant tests, especially on mutation checks. Run full test suites when you finish big chunk of work.
