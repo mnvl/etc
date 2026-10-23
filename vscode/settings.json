@@ -25,5 +25,6 @@
     "chat.titleBar.signIn.enabled": false,
     "claudeCode.preferredLocation": "panel",
     "chat.titleBar.openInAgentsWindow.enabled": false,
-    "C_Cpp.intelliSenseEngine": "disabled"
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "chat.disableAIFeatures": true
 }

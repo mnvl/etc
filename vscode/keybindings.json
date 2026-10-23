@@ -188,6 +188,11 @@
 },
 
 {
+    "key": "cmd+z",
+    "command": "undo",
+},
+
+{
     "key": "ctrl+shift+z",
     "command": "redo",
 },
