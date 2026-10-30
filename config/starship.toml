@@ -1,10 +1,9 @@
-# Plain "$ " prompt on the left; all gray info lives in the right prompt.
+# Blank line, gray info line, then plain "$ " on the line below.
 # Monokai gray (#75715e) for everything; the "$ " itself stays uncolored.
 # Modules only appear when relevant (ssh, venv, jobs, slow/failed commands).
 
 add_newline = false
-format = "$character"
-right_format = "$status$cmd_duration$jobs$python$hostname$directory$git_branch$git_state$git_status$time"
+format = "$line_break$status$cmd_duration$jobs$python$hostname$directory$git_branch$git_state$git_status$time$line_break$character"
 
 palette = "monokai"
 
