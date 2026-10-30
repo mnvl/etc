@@ -13,16 +13,18 @@
 
 - **Write designated black-box contract tests.** Check that the contract is valid. Your task is to find bugs, not mask them. Be critical.
 
+- **Follow the test-driven development practice.** When implementing a new feature first write tests, then feature code, then mentally check that tests are thorough, critical, and adversarial, then see if the feature code can be simplified.
+
+- **Write short unit-tests, not large integration tests.** Tests should be short and fast, taking less than 10 secs.
+
 - **Tests should be critical, adversarial, not parroting the implementation.**
 
-- **Follow the test-driven development practice.** When implementing a new feature first write tests, then feature code, then mentally check that tests are thorough, critical, and adversarial, then see if the feature code can be simplified.
+- **Minimize time spent on running tests.** Run only relevant tests. Use relevant tools to run tests in parallel.
+
+- If a test fails, do not claim the task is complete. State the failure and investigate.
 
 - **Be thorough.** Before claiming done, read the final diff end-to-end and make sure that there's no silent regressions, broken contracts, swallowed mistakes.
 
 - **Report observed results, not intended ones.** Never say "should work", "this will fix it", or "the tests should pass" —  run them and report what actually happened. If you didn't run something, say "I did not run X".
 
-- If a test fails after your change, do not claim the task is complete. State the failure, investigate, and either fix it or explain why the failure is unrelated with evidence.
-
 - **Flag suspicious code.** If code you're modifying or depending on is dead, duplicated, or needlessly tangled, mention it in one line at the end (max 3, only if verified, e.g. grep shows no callers). Do not refactor it unless asked.
-
-- **Minimize time spent on running tests.** When working on a change, run only relevant tests, especially when testing mutation checks. Run full test suites when you finish big chunk of work. Use tools to run test cases in parallel.
