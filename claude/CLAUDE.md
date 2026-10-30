@@ -1,27 +1,25 @@
 
 - **Never commit or push without explicit permission from the user.** Do not commit as a "convenience" after completing a task. Wait to be asked.
 
-- When fixing a bug, **we first create a test that replicates the bug, and then investigate and fix it.**
-
 - **Never supply a default value (zero, empty list, `None`, fallback constant) where real data should exist.** If a value is missing, that is a bug —  crash immediately. A silent default hides the bug and costs days of debugging later.
 
 - **No type coercion to "make it work".** Never cast, clamp, `int()`, `float()`, `np.nan_to_num()`, or otherwise massage a value into the expected type/range to keep code running. If the type or value is wrong, something is broken upstream — find and fix it.
 
-- **No skipped tests.** Never use `pytest.skip()`, `@pytest.mark.skip`, or conditional skips for missing assets, missing config. If a test can't run, it must fail, not silently disappear from the results. **Exception**: unavailable hardware.
-
 - **No breaking interfaces.** Understand how changed code works in the context of the whole project. If the interface changed -- you need to write tests for the parts working together.
 
-- **Write designated black-box contract tests.** Check that the contract is valid. Your task is to find bugs, not mask them. Be critical.
-
-- **Follow the test-driven development practice.** When implementing a new feature first write tests, then feature code, then mentally check that tests are thorough, critical, and adversarial, then see if the feature code can be simplified.
-
-- **Write short unit-tests, not large integration tests.** Tests should be short and fast, taking less than 10 secs.
+- **Follow the test-driven development practice.** When implementing a new feature first write tests, then implementation, then mentally check that tests are thorough, critical, and adversarial.
 
 - **Tests should be critical, adversarial, not parroting the implementation.**
 
-- **Minimize time spent on running tests.** Run only relevant tests. Use relevant tools to run tests in parallel.
+- **Write designated black-box contract tests.** Check that the contract is valid. Your task is to find bugs, not mask them. Be critical.
 
-- If a test fails, do not claim the task is complete. State the failure and investigate.
+- **No skipped tests.** Never use `pytest.skip()`, `@pytest.mark.skip`. If a test can't run, it must fail, not silently disappear from the results. **Exception**: unavailable hardware, data or assets.
+
+- When fixing a bug, **we first create a test that replicates the bug, and then investigate and fix it.**
+
+- **Write short unit-tests**, not huge integration tests. Tests should be short and fast, taking less than 20 secs.
+
+- **Minimize time spent on running tests.** Run only relevant tests. Use tools to run tests in parallel. Set test timeout to 20 secs. Ignore timed out tests or rewrite them.
 
 - **Be thorough.** Before claiming done, read the final diff end-to-end and make sure that there's no silent regressions, broken contracts, swallowed mistakes.
 
