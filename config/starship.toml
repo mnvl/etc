@@ -3,7 +3,7 @@
 # Modules only appear when relevant (ssh, venv, jobs, slow/failed commands).
 
 add_newline = false
-format = "$line_break$status$cmd_duration$jobs$python$hostname$directory$git_branch$git_state$git_status$time$line_break$character"
+format = "$status$cmd_duration$jobs$python$hostname$git_branch$git_state$git_status$time$directory$character"
 
 palette = "monokai"
 
@@ -11,8 +11,8 @@ palette = "monokai"
 gray = "#75715e"
 
 [character]
-success_symbol = "\\$"
-error_symbol = "\\$"
+success_symbol = " \\$"
+error_symbol = " \\$"
 
 [hostname]
 ssh_only = true
