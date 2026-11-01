@@ -49,10 +49,10 @@ export LESS='-R'
 # without bat, leave MANPAGER alone: man's own pager beats a broken pipeline
 [[ -n $bat_bin ]] && export MANPAGER="sh -c 'col -bx | $bat_bin -l man -p'"
 
-export EDITOR='emacs -nw --no-desktop'
+export EDITOR='nano'
 
 # LANG for locale, but keep sort order / number formatting / messages in C
-export LANG=ru_RU.UTF-8
+export LANG=en_US.UTF-8
 export LC_COLLATE=C
 export LC_NUMERIC=C
 export LC_MESSAGES=C
