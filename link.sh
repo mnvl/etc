@@ -22,7 +22,8 @@ do
     ln -f -s -n "$x" "$HOME/.config/$(basename "$x")"
 done
 
-if [ "$(uname -s)" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
+if [ "$(uname -s)" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ];
+then
     case "$(uname -s)" in
         Darwin*) vscode_dir="$HOME/Library/Application Support/Code/User" ;;
         *)       vscode_dir="$HOME/.config/Code/User"
