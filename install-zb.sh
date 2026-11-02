@@ -42,7 +42,7 @@ if $has_gui
 then
     case "$os" in
         Darwin*)
-            echo "zb --cask is not supported on MacOS yet"
+            echo "warning: zb does not support --cask yet"
             zb install --cask font-iosevka ghostty
         ;;
 
