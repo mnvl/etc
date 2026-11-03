@@ -1,30 +1,33 @@
 #! /bin/sh -eux
 
-os=$(uname -s)
+# Linux only: zb has no --cask yet, so there is no macOS path here.
+# Ubuntu 26.04+ packages everything but yazi; .zshrc copes with batcat/fdfind
+# and finds the zsh plugins in /usr/share.
 
 has_gui=false
-if [ "$os" = "Darwin" ] || [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
+if [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
     has_gui=true
 fi
 
-if ! zb --help
-then
-    curl -fsSL https://zerobrew.rs/install | bash
-fi
+# emacs pulls in the whole of X; a headless box only needs the terminal build
+if $has_gui; then emacs=emacs; else emacs=emacs-nox; fi
 
-zb install \
+sudo apt-get update
+sudo apt-get install -y \
    bat \
    btop \
-   emacs \
+   clang-format \
+   clangd \
+   curl \
+   "$emacs" \
    eza \
-   fd \
+   fd-find \
    fzf \
    git \
    git-delta \
    git-lfs \
    jq \
    lazygit \
-   llvm \
    mc \
    nvtop \
    parallel \
@@ -32,44 +35,37 @@ zb install \
    starship \
    tmux \
    vivid \
-   yazi \
    zoxide \
    zsh \
    zsh-autosuggestions \
    zsh-syntax-highlighting
 
+if ! zb --help
+then
+    curl -fsSL https://zerobrew.rs/install | bash
+fi
+
+zb install yazi
+
 if $has_gui
 then
-    case "$os" in
-        Darwin*)
-            echo "warning: zb does not support --cask yet"
-            zb install --cask font-iosevka ghostty
-        ;;
+    sudo apt-get install -y ghostty fonts-iosevka
 
-        Linux*)
-            sudo apt install ghostty
+    # keyd is a system daemon (systemd unit, /etc/keyd, a group): distro package only
+    sudo apt-get install -y keyd keyd-application-mapper
+    sudo ln -f -s "$HOME/etc/keyd/default.conf" /etc/keyd/default.conf
+    sudo systemctl enable keyd
+    sudo systemctl restart keyd
+    sudo usermod -aG keyd "$USER"
 
-            # keyd is a system daemon (systemd unit, /etc/keyd, a group): distro package only
-            sudo apt install keyd keyd-application-mapper
-            sudo ln -f -s "$HOME/etc/keyd/default.conf" /etc/keyd/default.conf
-            sudo systemctl enable keyd
-            sudo systemctl restart keyd
-            sudo usermod -aG keyd "$USER"
-
-            fonts="$HOME/.local/share/fonts"
-            mkdir -p "$fonts"
-            if ! ls "$fonts"/Iosevka-*.ttc >/dev/null 2>&1; then
-                tmp=$(mktemp -d)
-                curl -s 'https://api.github.com/repos/be5invis/Iosevka/releases/latest' \
-                    | jq -r '.assets[] | .browser_download_url' \
-                    | grep 'PkgTTC-Iosevka-.*zip' \
-                    | xargs -n 1 curl -L --fail --silent --show-error -o "$tmp/iosevka.zip"
-                unzip -q "$tmp/iosevka.zip" -d "$fonts"
-                rm -rf "$tmp"
-                fc-cache
-            fi
-        ;;
-    esac
+    # no zb (casks need 'binary' artifacts) or apt package for the nerd symbols
+    fonts="$HOME/.local/share/fonts"
+    mkdir -p "$fonts"
+    if [ ! -e "$fonts/SymbolsNerdFont-Regular.ttf" ]; then
+        curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.tar.xz \
+            | tar -xJf - -C "$fonts" SymbolsNerdFont-Regular.ttf SymbolsNerdFontMono-Regular.ttf
+        fc-cache
+    fi
 fi
 
 "$(dirname "$0")/link.sh"
