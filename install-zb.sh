@@ -42,7 +42,7 @@ then
     curl -fsSL https://zerobrew.rs/install | bash
 fi
 
-zb install yazi
+~/.local/bin/zb install yazi
 
 if $has_gui
 then
