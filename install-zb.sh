@@ -9,9 +9,6 @@ if [ -n "${DISPLAY:-}" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
     has_gui=true
 fi
 
-# emacs pulls in the whole of X; a headless box only needs the terminal build
-if $has_gui; then emacs=emacs; else emacs=emacs-nox; fi
-
 sudo apt-get update
 sudo apt-get install -y \
    bat \
@@ -19,7 +16,7 @@ sudo apt-get install -y \
    clang-format \
    clangd \
    curl \
-   "$emacs" \
+   emacs-nox \
    eza \
    fd-find \
    fzf \
@@ -57,15 +54,6 @@ then
     sudo systemctl enable keyd
     sudo systemctl restart keyd
     sudo usermod -aG keyd "$USER"
-
-    # no zb (casks need 'binary' artifacts) or apt package for the nerd symbols
-    fonts="$HOME/.local/share/fonts"
-    mkdir -p "$fonts"
-    if [ ! -e "$fonts/SymbolsNerdFont-Regular.ttf" ]; then
-        curl -fsSL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/NerdFontsSymbolsOnly.tar.xz \
-            | tar -xJf - -C "$fonts" SymbolsNerdFont-Regular.ttf SymbolsNerdFontMono-Regular.ttf
-        fc-cache
-    fi
 fi
 
 "$(dirname "$0")/link.sh"

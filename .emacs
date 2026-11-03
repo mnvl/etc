@@ -131,7 +131,7 @@
   :config
   (treemacs-project-follow-mode 1))
 
-;; icons from Symbols Nerd Font (install.sh); ghostty bundles the glyphs for the tty
+;; emacs runs in ghostty, which bundles Symbols Nerd Font for these icons
 (use-package treemacs-nerd-icons
   :after treemacs
   :config (treemacs-load-theme "nerd-icons"))
