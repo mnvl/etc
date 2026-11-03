@@ -123,6 +123,19 @@
 
 (setq claude-code-ide-terminal-backend 'ghostel)
 
+;; file tree on the left, same keys as vscode
+(use-package treemacs
+  :bind (("C-b" . treemacs)
+         ("C-S-b" . treemacs)
+         ("s-b" . treemacs))
+  :config
+  (treemacs-project-follow-mode 1))
+
+;; icons from Symbols Nerd Font (install.sh); ghostty bundles the glyphs for the tty
+(use-package treemacs-nerd-icons
+  :after treemacs
+  :config (treemacs-load-theme "nerd-icons"))
+
 ;; make remembering key sequences a bit easier
 (use-package which-key)
 (which-key-mode)
