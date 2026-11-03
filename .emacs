@@ -109,7 +109,7 @@
 
 ;; keys that stay with emacs instead of going to the terminal
 (use-package ghostel
-  :vc (:url "https://github.com/dakra/ghostel" :rev :newest)
+  :vc (:url "https://github.com/dakra/ghostel" :lisp-dir "lisp" :rev :newest)
   :custom
   (ghostel-keymap-exceptions
    '("C-c" "M-," "M-." "M-;" "M-'" "M-/"))
