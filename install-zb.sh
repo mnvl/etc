@@ -37,12 +37,12 @@ sudo apt-get install -y \
    zsh-autosuggestions \
    zsh-syntax-highlighting
 
-if ! zb --help
+if ! zb help
 then
     curl -fsSL https://zerobrew.rs/install | bash
 fi
 
-~/.local/bin/zb install yazi
+~/.local/bin/zb install yazi deno gitleaks
 
 if $has_gui
 then
