@@ -21,7 +21,7 @@
 	sort = version:refname
 [fetch]
 	prune = true
-	pruneTags = true
+	pruneTags = false
 [push]
 	autoSetupRemote = true
 	followTags = true

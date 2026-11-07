@@ -26,5 +26,6 @@
     "claudeCode.preferredLocation": "panel",
     "chat.titleBar.openInAgentsWindow.enabled": false,
     "C_Cpp.intelliSenseEngine": "disabled",
-    "chat.disableAIFeatures": true
+    "chat.disableAIFeatures": true,
+    "claudeCode.hideOnboarding": true
 }
