@@ -34,6 +34,8 @@ zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
 zstyle ':completion:*' group-name ''
 
 alias mc='SHELL=bash mc'
+alias bt='btop'
+
 if command -v eza >/dev/null; then
     alias ls='eza --group-directories-first'
     alias ll='eza -l --group-directories-first --git'

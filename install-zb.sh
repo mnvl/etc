@@ -24,6 +24,7 @@ sudo apt-get install -y \
    git-delta \
    git-lfs \
    jq \
+   htop \
    lazygit \
    mc \
    nvtop \
